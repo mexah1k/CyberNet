@@ -1,6 +1,7 @@
 ﻿using Database.Abstractions.Context;
 using Database.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Database.Context.Context
 {
@@ -14,9 +15,14 @@ namespace Database.Context.Context
         {
         }
 
-        protected ApplicationDbContext(DbContextOptions connectionString)
-            : base(connectionString)
+        protected ApplicationDbContext(DbContextOptions options)
+            : base(options)
         {
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            return base.SaveChangesAsync();
         }
     }
 }
