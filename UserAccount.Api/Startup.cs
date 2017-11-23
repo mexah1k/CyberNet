@@ -17,6 +17,11 @@ namespace UserAccount.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            IntegrateSimpleInjector(services);
+        }
+
+        private void IntegrateSimpleInjector(IServiceCollection services)
+        {
             services.AddMvc();
         }
 
@@ -28,7 +33,12 @@ namespace UserAccount.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller}/{action=Index}/{id?}");
+                });
         }
     }
 }
