@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
-namespace Database.Repository.Repositories
+namespace Database.Core.Repositories
 {
     public class UserAccountRepository : IUserAccountRepository
     {

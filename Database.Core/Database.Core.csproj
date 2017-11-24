@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Context\" />
-    <Folder Include="Repositories\UnitOfWork\" />
+    <ProjectReference Include="..\Database.Abstractions\Database.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using Database.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
-namespace Database.Context.Context
+namespace Database.Core.Context
 {
     public class ApplicationDbContext : DbContext, IDatabaseContext
     {

@@ -1,4 +1,4 @@
-﻿namespace Database.Repository.Repositories
+﻿namespace Database.Core.Repositories
 {
     public class UserTokenRepository
     {

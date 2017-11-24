@@ -2,7 +2,7 @@
 using Database.Abstractions.Repositories;
 using System.Threading.Tasks;
 
-namespace Database.Repository
+namespace Database.Core.Repositories.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
