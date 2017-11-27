@@ -1,7 +1,9 @@
-﻿namespace UserAccount.Api.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace UserAccount.Api.Controllers
 {
-    public class UserAccountController
+    [Route("api/[controller]")]
+    public class UserAccountController : Controller
     {
-        
     }
 }
