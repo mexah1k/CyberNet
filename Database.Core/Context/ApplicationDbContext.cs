@@ -7,18 +7,9 @@ namespace Database.Core.Context
 {
     public class ApplicationDbContext : DbContext, IDatabaseContext
     {
-        public DbSet<UserAccount> UsersAccounts { get; set; }
+        public DbSet<User> UsersAccounts { get; set; }
 
         public DbSet<UserToken> UserTokens { get; set; }
-
-        public ApplicationDbContext()
-        {
-        }
-
-        public ApplicationDbContext(DbContextOptions options)
-            : base(options)
-        {
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

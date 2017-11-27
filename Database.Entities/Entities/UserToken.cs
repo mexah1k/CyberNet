@@ -10,7 +10,7 @@ namespace Database.Entities.Entities
         [ForeignKey(nameof(Account))]
         public int AccountId { get; set; }
 
-        public UserAccount Account { get; set; }
+        public User Account { get; set; }
 
         public string RefreshToken { get; set; }
 

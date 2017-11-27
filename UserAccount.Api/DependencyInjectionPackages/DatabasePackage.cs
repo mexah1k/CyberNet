@@ -2,20 +2,21 @@
 using Database.Abstractions.Repositories;
 using Database.Abstractions.Repositories.UnitOfWork;
 using Database.Core.Context;
+using Database.Core.Repositories;
 using Database.Core.Repositories.UnitOfWork;
 using SimpleInjector;
 using SimpleInjector.Packaging;
 
-namespace Database.Core
+namespace UserAccount.Api.DependencyInjectionPackages
 {
     public class DatabasePackage : IPackage
     {
         public void RegisterServices(Container container)
         {
-            container.Register<IUserAccountRepository, IUserAccountRepository>(Lifestyle.Scoped);
-            container.Register<IUserTokenRepository, IUserTokenRepository>(Lifestyle.Scoped);
-            container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
             container.Register<IDatabaseContext, ApplicationDbContext>(Lifestyle.Scoped);
+            container.Register<IUserAccountRepository, UserAccountRepository>(Lifestyle.Scoped);
+            container.Register<IUserTokenRepository, UserTokenRepository>(Lifestyle.Scoped);
+            container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
         }
     }
 }

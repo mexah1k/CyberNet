@@ -16,14 +16,14 @@ namespace Database.Core.Repositories
             this.context = context;
         }
 
-        public async Task<UserAccount> Get(int id)
+        public async Task<User> Get(int id)
         {
             return await context.UsersAccounts.FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public async void Add(UserAccount userAccount)
+        public async void Add(User user)
         {
-            await context.UsersAccounts.AddAsync(userAccount);
+            await context.UsersAccounts.AddAsync(user);
         }
 
         public async void Delete(int id)
@@ -38,7 +38,6 @@ namespace Database.Core.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
     }
 }

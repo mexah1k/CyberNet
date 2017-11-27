@@ -6,7 +6,6 @@ namespace Database.Core.Repositories
     {
         public void Dispose()
         {
-            throw new System.NotImplementedException();
         }
     }
 }

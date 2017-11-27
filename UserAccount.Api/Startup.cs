@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
+using System;
 
 namespace UserAccount.Api
 {
@@ -59,6 +60,13 @@ namespace UserAccount.Api
 
             // Cross-wire ASP.NET services (if any). For instance:
             // container.CrossWire<ILoggerFactory>(app);
+
+            RegisterPackages();
+        }
+
+        private void RegisterPackages()
+        {
+            container.RegisterPackages(AppDomain.CurrentDomain.GetAssemblies());
         }
     }
 }

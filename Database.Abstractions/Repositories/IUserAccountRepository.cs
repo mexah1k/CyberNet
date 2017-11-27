@@ -6,6 +6,6 @@ namespace Database.Abstractions.Repositories
 {
     public interface IUserAccountRepository : IDisposable
     {
-        Task<UserAccount> Get(int id);
+        Task<User> Get(int id);
     }
 }

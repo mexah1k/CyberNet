@@ -2,7 +2,7 @@
 
 namespace Database.Entities.Entities
 {
-    public class UserAccount
+    public class User
     {
         [Key]
         public int Id { get; set; }

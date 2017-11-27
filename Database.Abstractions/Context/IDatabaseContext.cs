@@ -6,7 +6,7 @@ namespace Database.Abstractions.Context
 {
     public interface IDatabaseContext
     {
-        DbSet<UserAccount> UsersAccounts { get; set; }
+        DbSet<User> UsersAccounts { get; set; }
         DbSet<UserToken> UserTokens { get; set; }
 
         Task<int> SaveChangesAsync();

@@ -18,4 +18,10 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Database.Abstractions\Database.Abstractions.csproj" />
+    <ProjectReference Include="..\Database.Core\Database.Core.csproj" />
+    <ProjectReference Include="..\Database.Entities\Database.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
