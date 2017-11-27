@@ -11,13 +11,18 @@ namespace Database.Core.Context
 
         public DbSet<UserToken> UserTokens { get; set; }
 
-        protected ApplicationDbContext()
+        public ApplicationDbContext()
         {
         }
 
-        protected ApplicationDbContext(DbContextOptions options)
+        public ApplicationDbContext(DbContextOptions options)
             : base(options)
         {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(ConnectionStringProvider.GetSqlConnection());
         }
 
         public Task<int> SaveChangesAsync()

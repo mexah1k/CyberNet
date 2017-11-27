@@ -3,17 +3,20 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SimpleInjector;
 
 namespace UserAccount.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly Container _container;
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration, Container container)
         {
             Configuration = configuration;
+            _container = container;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -24,7 +27,14 @@ namespace UserAccount.Api
         private void IntegrateSimpleInjector(IServiceCollection services)
         {
             services.AddMvc();
+
+            // _container.RegisterPackages();
         }
+
+        //  private IEnumerable<IPackage> InitPackageList()
+        //  {
+
+        //  }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)

@@ -1,6 +1,12 @@
-﻿namespace Database.Core.Repositories
+﻿using Database.Abstractions.Repositories;
+
+namespace Database.Core.Repositories
 {
-    public class UserTokenRepository
+    public class UserTokenRepository : IUserTokenRepository
     {
+        public void Dispose()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
