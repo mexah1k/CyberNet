@@ -8,7 +8,7 @@ namespace Database.Core
         public static string GetSqlConnection()
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(Path.GetDirectoryName(Directory.GetCurrentDirectory()))
                 .AddJsonFile("db_connection.json")
                 .Build();
 
