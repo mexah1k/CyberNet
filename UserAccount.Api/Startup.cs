@@ -6,6 +6,9 @@ using Microsoft.Extensions.Logging;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 using System;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
+using SimpleInjector.Integration.AspNetCore.Mvc;
 
 namespace UserAccount.Api
 {
@@ -31,6 +34,14 @@ namespace UserAccount.Api
         private void IntegrateSimpleInjector(IServiceCollection services)
         {
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+
+            services.AddSingleton<IControllerActivator>(
+                new SimpleInjectorControllerActivator(container));
+            services.AddSingleton<IViewComponentActivator>(
+                new SimpleInjectorViewComponentActivator(container));
+
+            services.EnableSimpleInjectorCrossWiring(container);
+            services.UseSimpleInjectorAspNetRequestScoping(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,14 +65,11 @@ namespace UserAccount.Api
 
         private void InitializeContainer(IApplicationBuilder app)
         {
+            RegisterPackages();
+
             // Add application presentation components:
             container.RegisterMvcControllers(app);
             container.RegisterMvcViewComponents(app);
-
-            // Cross-wire ASP.NET services (if any). For instance:
-            // container.CrossWire<ILoggerFactory>(app);
-
-            RegisterPackages();
         }
 
         private void RegisterPackages()
