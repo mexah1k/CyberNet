@@ -23,10 +23,25 @@ namespace UserAccount.Api.Controllers
             return unitOfWork.Accounts.Get(id);
         }
 
+        // GET api/useraccount
         [HttpGet]
         public Task<IEnumerable<User>> Get()
         {
             return unitOfWork.Accounts.Get();
+        }
+
+        // POST api/useraccount
+        [HttpPost]
+        public async Task Post([FromBody]User user)
+        {
+            await unitOfWork.Accounts.Add(user);
+        }
+
+        // DELETE api/useraccount/5
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await unitOfWork.Accounts.Delete(id);
         }
     }
 }

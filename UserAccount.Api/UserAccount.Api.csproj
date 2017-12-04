@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Database.Entities\Database.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
 </Project>

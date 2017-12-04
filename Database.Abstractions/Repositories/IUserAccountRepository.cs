@@ -9,7 +9,7 @@ namespace Database.Abstractions.Repositories
     {
         Task<User> Get(int id);
         Task<IEnumerable<User>> Get();
-        void Add(User user);
-        void Delete(int id);
+        Task Add(User user);
+        Task Delete(int id);
     }
 }

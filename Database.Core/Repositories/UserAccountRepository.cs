@@ -27,12 +27,12 @@ namespace Database.Core.Repositories
             return await context.UsersAccounts.ToListAsync();
         }
 
-        public async void Add(User user)
+        public async Task Add(User user)
         {
             await context.UsersAccounts.AddAsync(user);
         }
 
-        public async void Delete(int id)
+        public async Task Delete(int id)
         {
             var user = await context.UsersAccounts.FirstOrDefaultAsync(u => u.Id == id);
 
