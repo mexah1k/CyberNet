@@ -1,6 +1,7 @@
 ﻿using Database.Abstractions.Repositories.UnitOfWork;
 using Database.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace UserAccount.Api.Controllers
@@ -20,6 +21,12 @@ namespace UserAccount.Api.Controllers
         public Task<User> Get(int id)
         {
             return unitOfWork.Accounts.Get(id);
+        }
+
+        [HttpGet]
+        public Task<IEnumerable<User>> Get()
+        {
+            return unitOfWork.Accounts.Get();
         }
     }
 }

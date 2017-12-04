@@ -3,6 +3,7 @@ using Database.Abstractions.Repositories;
 using Database.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Database.Core.Repositories
@@ -19,6 +20,11 @@ namespace Database.Core.Repositories
         public async Task<User> Get(int id)
         {
             return await context.UsersAccounts.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public async Task<IEnumerable<User>> Get()
+        {
+            return await context.UsersAccounts.ToListAsync();
         }
 
         public async void Add(User user)
@@ -38,6 +44,8 @@ namespace Database.Core.Repositories
 
         public void Dispose()
         {
+            context?.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

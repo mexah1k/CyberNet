@@ -10,5 +10,6 @@ namespace Database.Abstractions.Context
         DbSet<UserToken> UserTokens { get; set; }
 
         Task<int> SaveChangesAsync();
+        void Dispose();
     }
 }
