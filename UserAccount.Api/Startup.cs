@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Mapper.Profiles;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SimpleInjector;
+using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
 using System;
-using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc.ViewComponents;
-using SimpleInjector.Integration.AspNetCore.Mvc;
 
 namespace UserAccount.Api
 {
@@ -16,11 +18,12 @@ namespace UserAccount.Api
     {
         private readonly Container container;
         public IConfiguration Configuration { get; }
+        private MapperConfiguration _mapperConfiguration { get; set; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            this.container = new Container();
+            container = new Container();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -70,6 +73,15 @@ namespace UserAccount.Api
             // Add application presentation components:
             container.RegisterMvcControllers(app);
             container.RegisterMvcViewComponents(app);
+
+            // Mapper
+            _mapperConfiguration = new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile(new UserAccountProfile());
+                });
+
+            container.RegisterSingleton(_mapperConfiguration);
+            container.Register(() => _mapperConfiguration.CreateMapper(container.GetInstance));
         }
 
         private void RegisterPackages()
