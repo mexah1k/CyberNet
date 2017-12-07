@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace UserAccount.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class UserAccountController : Controller
+    public class UserAccountsController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public UserAccountController(IUnitOfWork unitOfWork, IMapper mapper)
+        public UserAccountsController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
