@@ -11,10 +11,13 @@ namespace Database.Core.Repositories.UnitOfWork
 
         public IUserAccountRepository Accounts { get; }
 
-        public UnitOfWork(IDatabaseContext context, IUserAccountRepository accounts)
+        public ITeamRepository Teams { get; }
+
+        public UnitOfWork(IDatabaseContext context, IUserAccountRepository accounts, ITeamRepository teams)
         {
             this.context = context;
             Accounts = accounts;
+            Teams = teams;
         }
 
         public async Task SaveChangesAsync()

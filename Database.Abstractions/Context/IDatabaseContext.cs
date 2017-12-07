@@ -8,6 +8,7 @@ namespace Database.Abstractions.Context
     {
         DbSet<User> UsersAccounts { get; set; }
         DbSet<UserToken> UserTokens { get; set; }
+        DbSet<Team> Teams { get; set; }
 
         Task<int> SaveChangesAsync();
         void Dispose();

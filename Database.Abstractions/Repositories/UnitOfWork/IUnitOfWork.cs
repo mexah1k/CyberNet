@@ -6,6 +6,8 @@ namespace Database.Abstractions.Repositories.UnitOfWork
     {
         IUserAccountRepository Accounts { get; }
 
+        ITeamRepository Teams { get; }
+
         Task SaveChangesAsync();
     }
 }

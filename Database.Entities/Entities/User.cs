@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database.Entities.Entities
 {
@@ -16,5 +17,10 @@ namespace Database.Entities.Entities
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        [ForeignKey(nameof(Team))]
+        public int? TeamId { get; set; }
+
+        public Team Team { get; set; }
     }
 }

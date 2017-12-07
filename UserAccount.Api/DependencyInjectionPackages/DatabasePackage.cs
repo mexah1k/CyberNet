@@ -16,6 +16,7 @@ namespace UserAccount.Api.DependencyInjectionPackages
             container.Register<IDatabaseContext, ApplicationDbContext>(Lifestyle.Scoped);
             container.Register<IUserAccountRepository, UserAccountRepository>(Lifestyle.Scoped);
             container.Register<IUserTokenRepository, UserTokenRepository>(Lifestyle.Scoped);
+            container.Register<ITeamRepository, TeamRepository>(Lifestyle.Scoped);
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
         }
     }

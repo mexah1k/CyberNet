@@ -2,7 +2,6 @@
 using Database.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 
 namespace Database.Core.Context
 {
@@ -11,6 +10,8 @@ namespace Database.Core.Context
         public DbSet<User> UsersAccounts { get; set; }
 
         public DbSet<UserToken> UserTokens { get; set; }
+
+        public DbSet<Team> Teams { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

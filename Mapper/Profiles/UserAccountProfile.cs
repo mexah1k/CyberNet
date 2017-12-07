@@ -10,6 +10,9 @@ namespace Mapper.Profiles
         {
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
+
+            CreateMap<Team, TeamDto>();
+            CreateMap<TeamDto, Team>();
         }
     }
 }
