@@ -62,7 +62,7 @@ namespace Team.Api
                 {
                     routes.MapRoute(
                         name: "default",
-                        template: "{controller}/{action=Index}/{id?}");
+                        template: "{controller=Teams}/{action=Index}/{id?}");
                 });
         }
 

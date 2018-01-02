@@ -9,18 +9,18 @@ namespace Database.Abstractions.Repositories
     {
         Task Create(Team team);
 
-        Task UpdateAsync(Team team);
+        Task Update(Team team);
 
         Task Delete(int id);
 
-        Task AddTeamate(int id, Player player);
+        Task AddPlayer(int id, Player player);
 
-        Task AddTeamates(int id, IEnumerable<Player> users);
+        Task AddPlayers(int id, IEnumerable<Player> users);
 
         Task<Team> Get(int id);
 
         Task<IEnumerable<Team>> Get();
 
-        Task<IEnumerable<Player>> GetTeammates(int id);
+        Task<IEnumerable<Player>> GetPlayers(int id);
     }
 }
