@@ -4,7 +4,7 @@ namespace Database.Abstractions.Repositories.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        IUserAccountRepository Accounts { get; }
+        IPlayerRepository Players { get; }
 
         ITeamRepository Teams { get; }
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{ACD23E02-F06D-4274-9A51-E6B54F7ADB50}"
 EndProject
@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Abstractions", "Da
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{69920BE7-C83D-4209-BBB2-297C3A271E5B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccount.Api", "UserAccount.Api\UserAccount.Api.csproj", "{CEBC8070-7F45-4D80-BB34-A98B7C8E0BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Team.Api", "UserAccount.Api\Team.Api.csproj", "{CEBC8070-7F45-4D80-BB34-A98B7C8E0BC0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Core", "Database.Core\Database.Core.csproj", "{0FD5ADE9-41A9-45C0-8EAF-EACBA56FFC23}"
 EndProject
@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Entities", "Databa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security.Api", "Security.Api\Security.Api.csproj", "{7B74C049-72D7-4222-A69A-7BCE13B61DE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mapper", "Mapper\Mapper.csproj", "{DF46014F-279B-43CA-A1A9-91D5A00C7661}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mapper", "Mapper\Mapper.csproj", "{DF46014F-279B-43CA-A1A9-91D5A00C7661}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

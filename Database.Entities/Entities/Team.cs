@@ -10,6 +10,6 @@ namespace Database.Entities.Entities
 
         public string Name { get; set; }
 
-        public IEnumerable<User> Users { get; set; }
+        public IEnumerable<Player> Players { get; set; }
     }
 }

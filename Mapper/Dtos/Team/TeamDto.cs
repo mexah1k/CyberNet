@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Mapper.Dtos.UserAccount
+namespace Mapper.Dtos.Team
 {
     public class TeamDto
     {
@@ -8,6 +8,6 @@ namespace Mapper.Dtos.UserAccount
 
         public string Name { get; set; }
 
-        public IEnumerable<UserDto> Users { get; set; }
+        public IEnumerable<PlayerDto> Players { get; set; }
     }
 }

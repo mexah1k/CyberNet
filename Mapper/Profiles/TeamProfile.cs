@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using Database.Entities.Entities;
-using Mapper.Dtos.UserAccount;
+using Mapper.Dtos.Team;
 
 namespace Mapper.Profiles
 {
-    public class UserAccountProfile : Profile
+    public class TeamProfile : Profile
     {
-        public UserAccountProfile()
+        public TeamProfile()
         {
-            CreateMap<User, UserDto>();
-            CreateMap<UserDto, User>();
+            CreateMap<Player, PlayerDto>();
+            CreateMap<PlayerDto, Player>();
 
             CreateMap<Team, TeamDto>();
             CreateMap<TeamDto, Team>();

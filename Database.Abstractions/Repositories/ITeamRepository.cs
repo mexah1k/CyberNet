@@ -13,14 +13,14 @@ namespace Database.Abstractions.Repositories
 
         Task Delete(int id);
 
-        Task AddTeamate(int id, User user);
+        Task AddTeamate(int id, Player player);
 
-        Task AddTeamates(int id, IEnumerable<User> users);
+        Task AddTeamates(int id, IEnumerable<Player> users);
 
         Task<Team> Get(int id);
 
         Task<IEnumerable<Team>> Get();
 
-        Task<IEnumerable<User>> GetTeammates(int id);
+        Task<IEnumerable<Player>> GetTeammates(int id);
     }
 }

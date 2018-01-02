@@ -1,13 +1,12 @@
-﻿using AutoMapper;
-using Database.Abstractions.Repositories.UnitOfWork;
-using Database.Entities.Entities;
-using Mapper.Dtos.UserAccount;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Database.Abstractions.Repositories.UnitOfWork;
+using Mapper.Dtos.Team;
+using Microsoft.AspNetCore.Mvc;
 
-namespace UserAccount.Api.Controllers
+namespace Team.Api.Controllers
 {
     [Route("api/[controller]")]
     public class TeamsController : Controller
@@ -39,14 +38,14 @@ namespace UserAccount.Api.Controllers
             return teams.Select(Map);
         }
 
-        private TeamDto Map(Team source)
+        private TeamDto Map(Database.Entities.Entities.Team source)
         {
             return mapper.Map<TeamDto>(source);
         }
 
-        private Team Map(TeamDto source)
+        private Database.Entities.Entities.Team Map(TeamDto source)
         {
-            return mapper.Map<Team>(source);
+            return mapper.Map<Database.Entities.Entities.Team>(source);
         }
     }
 }

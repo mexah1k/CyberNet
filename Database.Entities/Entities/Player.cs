@@ -3,14 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database.Entities.Entities
 {
-    public class User
+    public class Player
     {
         [Key]
         public int Id { get; set; }
-
-        public string Email { get; set; }
-
-        public string Password { get; set; }
 
         public string NickName { get; set; }
 

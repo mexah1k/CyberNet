@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Mapper.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,9 +11,8 @@ using Microsoft.Extensions.Logging;
 using SimpleInjector;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
-using System;
 
-namespace UserAccount.Api
+namespace Team.Api
 {
     public class Startup
     {
@@ -77,7 +77,7 @@ namespace UserAccount.Api
             // Mapper
             _mapperConfiguration = new MapperConfiguration(cfg =>
                 {
-                    cfg.AddProfile(new UserAccountProfile());
+                    cfg.AddProfile(new TeamProfile());
                 });
 
             container.RegisterSingleton(_mapperConfiguration);

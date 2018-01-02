@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace Database.Abstractions.Repositories
 {
-    public interface IUserAccountRepository : IDisposable
+    public interface IPlayerRepository : IDisposable
     {
-        Task<User> Get(int id);
+        Task<Player> Get(int id);
 
-        Task<IEnumerable<User>> Get();
+        Task<IEnumerable<Player>> Get();
 
-        Task Add(User user);
+        Task Add(Player player);
 
         Task Delete(int id);
     }

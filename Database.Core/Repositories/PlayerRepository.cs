@@ -8,38 +8,38 @@ using System.Threading.Tasks;
 
 namespace Database.Core.Repositories
 {
-    public class UserAccountRepository : IUserAccountRepository
+    public class PlayerRepository : IPlayerRepository
     {
         private readonly IDatabaseContext context;
 
-        public UserAccountRepository(IDatabaseContext context)
+        public PlayerRepository(IDatabaseContext context)
         {
             this.context = context;
         }
 
-        public async Task<User> Get(int id)
+        public async Task<Player> Get(int id)
         {
-            return await context.UsersAccounts.FirstOrDefaultAsync(u => u.Id == id);
+            return await context.Players.FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public async Task<IEnumerable<User>> Get()
+        public async Task<IEnumerable<Player>> Get()
         {
-            return await context.UsersAccounts.ToListAsync();
+            return await context.Players.ToListAsync();
         }
 
-        public async Task Add(User user)
+        public async Task Add(Player player)
         {
-            await context.UsersAccounts.AddAsync(user);
+            await context.Players.AddAsync(player);
         }
 
         public async Task Delete(int id)
         {
-            var user = await context.UsersAccounts.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await context.Players.FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
                 throw new Exception(); // todo: Add UserNotFoundException
 
-            context.UsersAccounts.Remove(user);
+            context.Players.Remove(user);
         }
 
         public void Dispose()

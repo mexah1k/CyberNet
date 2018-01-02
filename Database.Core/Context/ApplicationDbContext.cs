@@ -7,9 +7,7 @@ namespace Database.Core.Context
 {
     public class ApplicationDbContext : DbContext, IDatabaseContext
     {
-        public DbSet<User> UsersAccounts { get; set; }
-
-        public DbSet<UserToken> UserTokens { get; set; }
+        public DbSet<Player> Players { get; set; }
 
         public DbSet<Team> Teams { get; set; }
 
