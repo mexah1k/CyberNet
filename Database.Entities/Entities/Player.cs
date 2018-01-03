@@ -8,10 +8,16 @@ namespace Database.Entities.Entities
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(100)]
         public string NickName { get; set; }
 
+        [Required]
+        [MaxLength(100)]
         public string FirstName { get; set; }
 
+        [Required]
+        [MaxLength(100)]
         public string LastName { get; set; }
 
         [ForeignKey(nameof(Team))]
