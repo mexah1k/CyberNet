@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Teams.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/teams")]
     public class TeamsController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

@@ -59,11 +59,11 @@ namespace Teams.Api
             container.Verify();
 
             app.UseMvc(routes =>
-                {
-                    routes.MapRoute(
-                        name: "default",
-                        template: "{controller=Teams}/{action=Index}/{id?}");
-                });
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Teams}/{action=Index}/{id?}");
+            });
         }
 
         private void InitializeContainer(IApplicationBuilder app)

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Teams.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/teams/{teamId}/players")]
     public class PlayersController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
