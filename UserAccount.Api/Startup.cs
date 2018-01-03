@@ -3,6 +3,7 @@ using AutoMapper;
 using Mapper.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.Configuration;
@@ -54,6 +55,18 @@ namespace Teams.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler(appBuilder =>
+                {
+                    appBuilder.Run(async context =>
+                    {
+                        context.Response.StatusCode = 500;
+                        context.Response.ContentType = "application/json";
+                        await context.Response.WriteAsync("Something unexpected has happened, try again later.");
+                    });
+                });
+            }
 
             InitializeContainer(app);
             container.Verify();
@@ -62,7 +75,7 @@ namespace Teams.Api
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Teams}/{action=Index}/{id?}");
+                    template: "{controller}/{action}/{id?}");
             });
         }
 

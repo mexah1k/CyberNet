@@ -21,7 +21,6 @@ namespace Teams.Api.Controllers
             this.mapper = mapper;
         }
 
-        // GET api/useraccount/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -32,7 +31,6 @@ namespace Teams.Api.Controllers
             return Ok(Map(user));
         }
 
-        // GET api/useraccount
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -43,14 +41,14 @@ namespace Teams.Api.Controllers
             return Ok(users.Select(Map));
         }
 
-        // POST api/useraccount
+        // POST api/players
         [HttpPost]
         public async Task Post([FromBody]PlayerDto player)
         {
             await unitOfWork.Players.Add(Map(player));
         }
 
-        // DELETE api/useraccount/5
+        // DELETE api/players/5
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
