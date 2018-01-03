@@ -7,7 +7,7 @@ using Database.Core.Repositories.UnitOfWork;
 using SimpleInjector;
 using SimpleInjector.Packaging;
 
-namespace Team.Api.DependencyInjectionPackages
+namespace Teams.Api.DependencyInjectionPackages
 {
     public class DatabasePackage : IPackage
     {

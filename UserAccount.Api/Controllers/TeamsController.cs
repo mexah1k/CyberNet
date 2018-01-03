@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Database.Abstractions.Repositories.UnitOfWork;
+using Database.Entities.Entities;
 using Mapper.Dtos.Team;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Team.Api.Controllers
+namespace Teams.Api.Controllers
 {
     [Route("api/[controller]")]
     public class TeamsController : Controller
@@ -22,30 +22,34 @@ namespace Team.Api.Controllers
 
         // GET api/team/5
         [HttpGet("{id}")]
-        public async Task<TeamDto> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var team = await unitOfWork.Teams.Get(id);
 
-            return Map(team);
+            if (team == null) return NotFound();
+
+            return Ok(Map(team));
         }
 
         // GET api/team
         [HttpGet]
-        public async Task<IEnumerable<TeamDto>> Get()
+        public async Task<IActionResult> Get()
         {
             var teams = await unitOfWork.Teams.Get();
 
-            return teams.Select(Map);
+            if (teams == null) return NotFound();
+
+            return Ok(teams.Select(Map));
         }
 
-        private TeamDto Map(Database.Entities.Entities.Team source)
+        private TeamDto Map(Team source)
         {
             return mapper.Map<TeamDto>(source);
         }
 
-        private Database.Entities.Entities.Team Map(TeamDto source)
+        private Team Map(TeamDto source)
         {
-            return mapper.Map<Database.Entities.Entities.Team>(source);
+            return mapper.Map<Team>(source);
         }
     }
 }

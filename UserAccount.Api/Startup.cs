@@ -12,7 +12,7 @@ using SimpleInjector;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
 
-namespace Team.Api
+namespace Teams.Api
 {
     public class Startup
     {

@@ -7,7 +7,7 @@ using Database.Entities.Entities;
 using Mapper.Dtos.Team;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Team.Api.Controllers
+namespace Teams.Api.Controllers
 {
     [Route("api/[controller]")]
     public class PlayersController : Controller
@@ -23,20 +23,24 @@ namespace Team.Api.Controllers
 
         // GET api/useraccount/5
         [HttpGet("{id}")]
-        public async Task<PlayerDto> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var user = await unitOfWork.Players.Get(id);
 
-            return Map(user);
+            if (user == null) return NotFound();
+
+            return Ok(Map(user));
         }
 
         // GET api/useraccount
         [HttpGet]
-        public async Task<IEnumerable<PlayerDto>> Get()
+        public async Task<IActionResult> Get()
         {
             var users = await unitOfWork.Players.Get();
 
-            return users.Select(Map);
+            if (users == null) return NotFound();
+
+            return Ok(users.Select(Map));
         }
 
         // POST api/useraccount

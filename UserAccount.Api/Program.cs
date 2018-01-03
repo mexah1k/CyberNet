@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Team.Api
+namespace Teams.Api
 {
     public class Program
     {
