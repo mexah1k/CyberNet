@@ -22,5 +22,7 @@ namespace Database.Abstractions.Repositories
         Task<IEnumerable<Team>> Get();
 
         Task<IEnumerable<Player>> GetPlayers(int id);
+
+        Task<Player> GetPlayer(int teamId, int playerId);
     }
 }

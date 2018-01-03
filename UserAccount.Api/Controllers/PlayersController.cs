@@ -22,9 +22,9 @@ namespace Teams.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(int teamId, int id)
         {
-            var user = await unitOfWork.Players.Get(id);
+            var user = await unitOfWork.Teams.GetPlayer(teamId, id);
 
             if (user == null) return NotFound();
 
@@ -32,23 +32,21 @@ namespace Teams.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(int teamId)
         {
-            var users = await unitOfWork.Players.Get();
+            var users = await unitOfWork.Teams.GetPlayers(teamId);
 
             if (users == null) return NotFound();
 
             return Ok(users.Select(Map));
         }
 
-        // POST api/players
         [HttpPost]
         public async Task Post([FromBody]PlayerDto player)
         {
             await unitOfWork.Players.Add(Map(player));
         }
 
-        // DELETE api/players/5
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {

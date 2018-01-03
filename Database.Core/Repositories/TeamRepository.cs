@@ -25,7 +25,7 @@ namespace Database.Core.Repositories
 
         public async Task Delete(int id)
         {
-            var team = await context.Teams.FirstOrDefaultAsync(t => t.Id == id);
+            var team = await context.Teams.SingleOrDefaultAsync(t => t.Id == id);
 
             if (team == null)
                 throw new Exception(); // todo: custom exception
@@ -37,7 +37,7 @@ namespace Database.Core.Repositories
         {
             return await context.Teams
                 .Include(t => t.Players)
-                .FirstOrDefaultAsync(t => t.Id == id);
+                .SingleOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task<IEnumerable<Team>> Get()
@@ -47,11 +47,18 @@ namespace Database.Core.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Player>> GetPlayers(int id)
+        public async Task<IEnumerable<Player>> GetPlayers(int teamId)
         {
-            var team = await context.Teams.FirstOrDefaultAsync(t => t.Id == id);
+            var team = await context.Teams.SingleOrDefaultAsync(t => t.Id == teamId);
 
             return team.Players.ToList();
+        }
+
+        public async Task<Player> GetPlayer(int teamId, int playerId)
+        {
+            var player = await context.Players.SingleOrDefaultAsync(p => p.Id == playerId && p.TeamId == teamId);
+
+            return player;
         }
 
         public async Task AddPlayer(int id, Player player)
