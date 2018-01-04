@@ -21,7 +21,7 @@ namespace Teams.Api.Controllers
         }
 
         // GET api/team/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetTeam")]
         public async Task<IActionResult> Get(int id)
         {
             var team = await unitOfWork.Teams.Get(id);
@@ -40,6 +40,19 @@ namespace Teams.Api.Controllers
             if (teams == null) return NotFound();
 
             return Ok(teams.Select(Map));
+        }
+
+        public async Task<IActionResult> Create([FromBody] TeamDto teamDto)
+        {
+            if (teamDto == null)
+                return BadRequest();
+
+            await unitOfWork.Teams.Create(Map(teamDto));
+
+            if (!await unitOfWork.SaveChangesAsync())
+                return BadRequest();
+
+            return CreatedAtRoute("GetTeam", new { id = teamDto.Id }, teamDto);
         }
 
         private TeamDto Map(Team source)

@@ -20,9 +20,9 @@ namespace Database.Core.Repositories.UnitOfWork
             Teams = teams;
         }
 
-        public async Task SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            await context.SaveChangesAsync();
+            return await context.SaveChangesAsync() > 0;
         }
     }
 }

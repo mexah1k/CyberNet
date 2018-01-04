@@ -8,6 +8,6 @@ namespace Database.Abstractions.Repositories.UnitOfWork
 
         ITeamRepository Teams { get; }
 
-        Task SaveChangesAsync();
+        Task<bool> SaveChangesAsync();
     }
 }
