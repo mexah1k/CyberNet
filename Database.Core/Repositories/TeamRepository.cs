@@ -40,25 +40,11 @@ namespace Database.Core.Repositories
                 .SingleOrDefaultAsync(t => t.Id == id);
         }
 
-        public async Task<IEnumerable<Team>> Get()
+        public async Task<ICollection<Team>> Get()
         {
             return await context.Teams
                 .Include(t => t.Players)
                 .ToListAsync();
-        }
-
-        public async Task<IEnumerable<Player>> GetPlayers(int teamId)
-        {
-            var team = await context.Teams.SingleOrDefaultAsync(t => t.Id == teamId);
-
-            return team.Players.ToList();
-        }
-
-        public async Task<Player> GetPlayer(int teamId, int playerId)
-        {
-            var player = await context.Players.SingleOrDefaultAsync(p => p.Id == playerId && p.TeamId == teamId);
-
-            return player;
         }
 
         public async Task AddPlayer(int id, Player player)

@@ -4,16 +4,16 @@ namespace Abstractions.Exceptions
 {
     public abstract class BaseException : Exception
     {
-        public BaseException()
+        protected BaseException()
         {
         }
 
-        public BaseException(string message)
+        protected BaseException(string message)
             : base(message)
         {
         }
 
-        public BaseException(string message, Exception inner)
+        protected BaseException(string message, Exception inner)
             : base(message, inner)
         {
         }

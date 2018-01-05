@@ -13,6 +13,9 @@ namespace Mapper.Profiles
 
             CreateMap<Team, TeamDto>();
             CreateMap<TeamDto, Team>();
+
+            CreateMap<Team, TeamForCreationDto>();
+            CreateMap<TeamForCreationDto, Team>();
         }
     }
 }

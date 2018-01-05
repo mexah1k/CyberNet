@@ -24,21 +24,23 @@ namespace Teams.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int teamId, int id)
         {
-            var user = await unitOfWork.Teams.GetPlayer(teamId, id);
+            var player = await unitOfWork.Players.GetPlayerByTeam(teamId, id);
 
-            if (user == null) return NotFound();
+            if (player == null)
+                return NotFound();
 
-            return Ok(Map(user));
+            return Ok(Map(player));
         }
 
         [HttpGet]
         public async Task<IActionResult> Get(int teamId)
         {
-            var users = await unitOfWork.Teams.GetPlayers(teamId);
+            var players = await unitOfWork.Players.GetPlayersByTeam(teamId);
+            
+            if (players == null || players.Any())
+                return NotFound();
 
-            if (users == null) return NotFound();
-
-            return Ok(users.Select(Map));
+            return Ok(players.Select(Map));
         }
 
         [HttpPost]

@@ -19,10 +19,6 @@ namespace Database.Abstractions.Repositories
 
         Task<Team> Get(int id);
 
-        Task<IEnumerable<Team>> Get();
-
-        Task<IEnumerable<Player>> GetPlayers(int id);
-
-        Task<Player> GetPlayer(int teamId, int playerId);
+        Task<ICollection<Team>> Get();
     }
 }

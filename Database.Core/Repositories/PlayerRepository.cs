@@ -4,6 +4,7 @@ using Database.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Database.Core.Repositories
@@ -19,12 +20,22 @@ namespace Database.Core.Repositories
 
         public async Task<Player> Get(int id)
         {
-            return await context.Players.FirstOrDefaultAsync(u => u.Id == id);
+            return await context.Players.SingleOrDefaultAsync(u => u.Id == id);
         }
 
         public async Task<IEnumerable<Player>> Get()
         {
             return await context.Players.ToListAsync();
+        }
+
+        public async Task<ICollection<Player>> GetPlayersByTeam(int teamId)
+        {
+            return await context.Players.Where(p => p.TeamId == teamId).ToListAsync();
+        }
+
+        public async Task<Player> GetPlayerByTeam(int teamId, int playerId)
+        {
+            return await context.Players.SingleOrDefaultAsync(p => p.Id == playerId && p.TeamId == teamId);
         }
 
         public async Task Add(Player player)
@@ -34,10 +45,10 @@ namespace Database.Core.Repositories
 
         public async Task Delete(int id)
         {
-            var user = await context.Players.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await context.Players.SingleOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
-                throw new Exception(); // todo: Add UserNotFoundException
+                throw new Exception(); // todo: Add PlayerNotFoundException
 
             context.Players.Remove(user);
         }
