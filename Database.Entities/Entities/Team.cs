@@ -11,6 +11,10 @@ namespace Database.Entities.Entities
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
+        
+        public int Points { get; set; }
+
+        public decimal Revenue { get; set; }
 
         public IEnumerable<Player> Players { get; set; }
     }

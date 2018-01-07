@@ -20,6 +20,8 @@ namespace Database.Entities.Entities
         [MaxLength(100)]
         public string LastName { get; set; }
 
+        public int Points { get; set; }
+
         [ForeignKey(nameof(Team))]
         public int? TeamId { get; set; }
 
