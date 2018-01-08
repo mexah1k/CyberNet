@@ -13,7 +13,5 @@ namespace Mapper.Dtos.Team
         public decimal Revenue { get; set; }
 
         public string LogoUrl { get; set; }
-
-        public IEnumerable<PlayerDto> Players { get; set; }
     }
 }
