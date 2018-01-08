@@ -8,6 +8,12 @@ namespace Mapper.Dtos.Team
 
         public string Name { get; set; }
 
+        public int Points { get; set; }
+
+        public decimal Revenue { get; set; }
+
+        public string LogoUrl { get; set; }
+
         public IEnumerable<PlayerDto> Players { get; set; }
     }
 }

@@ -22,6 +22,8 @@ namespace Database.Entities.Entities
 
         public int Points { get; set; }
 
+        public string PhotoUrl { get; set; }
+
         [ForeignKey(nameof(Team))]
         public int? TeamId { get; set; }
 

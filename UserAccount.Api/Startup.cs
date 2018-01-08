@@ -35,6 +35,19 @@ namespace Teams.Api
                 setupAction.ReturnHttpNotAcceptable = true;
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllCors",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                    });
+            });
+
             IntegrateSimpleInjector(services);
         }
 
@@ -73,6 +86,8 @@ namespace Teams.Api
 
             InitializeContainer(app);
             container.Verify();
+
+            app.UseCors("AllowAllCors");
 
             app.UseMvc(routes =>
             {

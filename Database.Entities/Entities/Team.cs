@@ -11,6 +11,8 @@ namespace Database.Entities.Entities
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
+
+        public string PhotoUrl { get; set; }
         
         public int Points { get; set; }
 
