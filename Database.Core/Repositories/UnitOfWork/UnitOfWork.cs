@@ -9,17 +9,20 @@ namespace Database.Core.Repositories.UnitOfWork
     {
         private readonly IDatabaseContext context;
 
-        public IUserAccountRepository Accounts { get; }
+        public IPlayerRepository Players { get; }
 
-        public UnitOfWork(IDatabaseContext context, IUserAccountRepository accounts)
+        public ITeamRepository Teams { get; }
+
+        public UnitOfWork(IDatabaseContext context, IPlayerRepository players, ITeamRepository teams)
         {
             this.context = context;
-            Accounts = accounts;
+            Players = players;
+            Teams = teams;
         }
 
-        public async Task SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            await context.SaveChangesAsync();
+            return await context.SaveChangesAsync() > 0;
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Mapper.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.Configuration;
@@ -10,9 +12,8 @@ using Microsoft.Extensions.Logging;
 using SimpleInjector;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
-using System;
 
-namespace UserAccount.Api
+namespace Teams.Api
 {
     public class Startup
     {
@@ -29,7 +30,23 @@ namespace UserAccount.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(setupAction =>
+            {
+                setupAction.ReturnHttpNotAcceptable = true;
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllCors",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                    });
+            });
 
             IntegrateSimpleInjector(services);
         }
@@ -54,16 +71,30 @@ namespace UserAccount.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler(appBuilder =>
+                {
+                    appBuilder.Run(async context =>
+                    {
+                        context.Response.StatusCode = 500;
+                        context.Response.ContentType = "application/json";
+                        await context.Response.WriteAsync("Something unexpected has happened, try again later.");
+                    });
+                });
+            }
 
             InitializeContainer(app);
             container.Verify();
 
+            app.UseCors("AllowAllCors");
+
             app.UseMvc(routes =>
-                {
-                    routes.MapRoute(
-                        name: "default",
-                        template: "{controller}/{action=Index}/{id?}");
-                });
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action}/{id?}");
+            });
         }
 
         private void InitializeContainer(IApplicationBuilder app)
@@ -77,7 +108,7 @@ namespace UserAccount.Api
             // Mapper
             _mapperConfiguration = new MapperConfiguration(cfg =>
                 {
-                    cfg.AddProfile(new UserAccountProfile());
+                    cfg.AddProfile(new TeamProfile());
                 });
 
             container.RegisterSingleton(_mapperConfiguration);

@@ -4,8 +4,10 @@ namespace Database.Abstractions.Repositories.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        IUserAccountRepository Accounts { get; }
+        IPlayerRepository Players { get; }
 
-        Task SaveChangesAsync();
+        ITeamRepository Teams { get; }
+
+        Task<bool> SaveChangesAsync();
     }
 }

@@ -11,9 +11,10 @@ using System;
 namespace Database.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180102095705_ChangeUserAccountToPlayer")]
+    partial class ChangeUserAccountToPlayer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,21 +26,11 @@ namespace Database.Core.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                    b.Property<string>("LastName");
 
-                    b.Property<string>("NickName")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("PhotoUrl");
-
-                    b.Property<int>("Points");
+                    b.Property<string>("NickName");
 
                     b.Property<int?>("TeamId");
 
@@ -55,15 +46,7 @@ namespace Database.Core.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("PhotoUrl");
-
-                    b.Property<int>("Points");
-
-                    b.Property<decimal>("Revenue");
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
@@ -73,7 +56,7 @@ namespace Database.Core.Migrations
             modelBuilder.Entity("Database.Entities.Entities.Player", b =>
                 {
                     b.HasOne("Database.Entities.Entities.Team", "Team")
-                        .WithMany("Players")
+                        .WithMany("Users")
                         .HasForeignKey("TeamId");
                 });
 #pragma warning restore 612, 618

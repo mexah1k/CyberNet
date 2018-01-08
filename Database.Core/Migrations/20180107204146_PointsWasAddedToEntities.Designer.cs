@@ -11,9 +11,10 @@ using System;
 namespace Database.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180107204146_PointsWasAddedToEntities")]
+    partial class PointsWasAddedToEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,8 +38,6 @@ namespace Database.Core.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<string>("PhotoUrl");
-
                     b.Property<int>("Points");
 
                     b.Property<int?>("TeamId");
@@ -58,8 +57,6 @@ namespace Database.Core.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100);
-
-                    b.Property<string>("PhotoUrl");
 
                     b.Property<int>("Points");
 

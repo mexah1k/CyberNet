@@ -1,17 +1,17 @@
-﻿namespace Mapper.Dtos.UserAccount
+﻿namespace Mapper.Dtos.Team
 {
-    public class UserDto
+    public class PlayerDto
     {
         public int Id { get; set; }
-
-        public string Email { get; set; }
-
-        public string Password { get; set; }
 
         public string NickName { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public int Points { get; set; }
+
+        public string PhotoUrl { get; set; }
     }
 }
