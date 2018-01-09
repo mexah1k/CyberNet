@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Abstractions", "Da
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{69920BE7-C83D-4209-BBB2-297C3A271E5B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teams.Api", "UserAccount.Api\Teams.Api.csproj", "{CEBC8070-7F45-4D80-BB34-A98B7C8E0BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teams.Api", "Teams.Api\Teams.Api.csproj", "{CEBC8070-7F45-4D80-BB34-A98B7C8E0BC0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Core", "Database.Core\Database.Core.csproj", "{0FD5ADE9-41A9-45C0-8EAF-EACBA56FFC23}"
 EndProject
