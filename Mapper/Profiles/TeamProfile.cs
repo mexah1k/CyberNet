@@ -10,7 +10,7 @@ namespace Mapper.Profiles
         {
             CreateMap<Player, PlayerDto>()
                 .ForMember(dest => dest.Position, opt => opt.MapFrom(
-                    src => src.Position.Name.ToString()));
+                    src => src.Position.Name));
             CreateMap<PlayerDto, Player>();
 
             CreateMap<Team, TeamDto>();
@@ -18,6 +18,9 @@ namespace Mapper.Profiles
 
             CreateMap<Team, TeamForCreationDto>();
             CreateMap<TeamForCreationDto, Team>();
+
+            CreateMap<Player, PlayerForCreationDto>();
+            CreateMap<PlayerForCreationDto, Player>();
         }
     }
 }

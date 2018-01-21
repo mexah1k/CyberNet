@@ -20,7 +20,7 @@ namespace Teams.Api.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetPlayerForTeam")]
         public async Task<IActionResult> Get(int teamId, int id)
         {
             var player = await unitOfWork.Players.GetPlayerByTeam(teamId, id);
@@ -43,9 +43,23 @@ namespace Teams.Api.Controllers
         }
 
         [HttpPost]
-        public async Task Post([FromBody]PlayerDto player)
+        public async Task<IActionResult> Create(int teamId, [FromBody]PlayerForCreationDto playerForCreationDto)
         {
-            await unitOfWork.Players.Add(Map(player));
+            if (playerForCreationDto == null)
+                return BadRequest();
+
+            if (!unitOfWork.Teams.IsExist(teamId).Result)
+                return NotFound("Team not found"); // todo: move message to resource file
+
+            var player = Map(playerForCreationDto);
+            await unitOfWork.Players.Add(player);
+
+            if (!await unitOfWork.SaveChangesAsync())
+                return BadRequest("Creaton failed."); // todo: move message to resource file
+
+            return CreatedAtRoute("GetPlayerForTeam",
+                new { teamId, id = player.Id },
+                Map(player));
         }
 
         [HttpDelete("{id}")]
@@ -60,6 +74,11 @@ namespace Teams.Api.Controllers
         }
 
         private Player Map(PlayerDto source)
+        {
+            return mapper.Map<Player>(source);
+        }
+
+        private Player Map(PlayerForCreationDto source)
         {
             return mapper.Map<Player>(source);
         }

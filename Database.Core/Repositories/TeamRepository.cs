@@ -4,7 +4,6 @@ using Database.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Database.Core.Repositories
@@ -16,6 +15,11 @@ namespace Database.Core.Repositories
         public TeamRepository(IDatabaseContext context)
         {
             this.context = context;
+        }
+
+        public async Task<bool> IsExist(int id)
+        {
+            return await context.Teams.AnyAsync(t => t.Id == id);
         }
 
         public async Task Create(Team team)

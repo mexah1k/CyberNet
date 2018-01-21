@@ -7,6 +7,8 @@ namespace Database.Abstractions.Repositories
 {
     public interface ITeamRepository : IDisposable
     {
+        Task<bool> IsExist(int id);
+
         Task Create(Team team);
 
         Task Update(Team team);
