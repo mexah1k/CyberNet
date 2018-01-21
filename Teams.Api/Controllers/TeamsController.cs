@@ -42,12 +42,13 @@ namespace Teams.Api.Controllers
             return Ok(teams.Select(Map));
         }
 
-        public async Task<IActionResult> Create([FromBody] TeamForCreationDto teamDto)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] TeamForCreationDto teamForCreationDto)
         {
-            if (teamDto == null)
+            if (teamForCreationDto == null)
                 return BadRequest();
 
-            var team = Map(teamDto);
+            var team = Map(teamForCreationDto);
             await unitOfWork.Teams.Create(team);
 
             if (!await unitOfWork.SaveChangesAsync())
