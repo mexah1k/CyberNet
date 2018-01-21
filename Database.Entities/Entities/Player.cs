@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database.Entities.Entities
@@ -23,6 +24,15 @@ namespace Database.Entities.Entities
         public int Points { get; set; }
 
         public string PhotoUrl { get; set; }
+
+        public string Country { get; set; } // todo: create table Countries
+
+        public DateTime DateOfBirth { get; set; }
+
+        [ForeignKey(nameof(Position))]
+        public int? PositionId { get; set; }
+
+        public Position Position { get; set; }
 
         [ForeignKey(nameof(Team))]
         public int? TeamId { get; set; }

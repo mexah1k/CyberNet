@@ -1,4 +1,6 @@
-﻿namespace Mapper.Dtos.Team
+﻿using Database.Entities.Entities;
+
+namespace Mapper.Dtos.Team
 {
     public class PlayerDto
     {
@@ -13,5 +15,7 @@
         public int Points { get; set; }
 
         public string PhotoUrl { get; set; }
+
+        public Position Position { get; set; }
     }
 }

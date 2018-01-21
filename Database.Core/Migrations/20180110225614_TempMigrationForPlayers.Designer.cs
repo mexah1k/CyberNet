@@ -11,9 +11,10 @@ using System;
 namespace Database.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180110225614_TempMigrationForPlayers")]
+    partial class TempMigrationForPlayers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,10 +25,6 @@ namespace Database.Core.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Country");
-
-                    b.Property<DateTime>("DateOfBirth");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -45,37 +42,23 @@ namespace Database.Core.Migrations
 
                     b.Property<int>("Points");
 
-                    b.Property<int?>("PositionId");
-
                     b.Property<int?>("TeamId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PositionId");
 
                     b.HasIndex("TeamId");
 
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("Database.Entities.Entities.Position", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Positions");
-                });
-
             modelBuilder.Entity("Database.Entities.Entities.Team", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("Country");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -84,6 +67,8 @@ namespace Database.Core.Migrations
                     b.Property<string>("PhotoUrl");
 
                     b.Property<int>("Points");
+
+                    b.Property<string>("Position");
 
                     b.Property<decimal>("Revenue");
 
@@ -94,10 +79,6 @@ namespace Database.Core.Migrations
 
             modelBuilder.Entity("Database.Entities.Entities.Player", b =>
                 {
-                    b.HasOne("Database.Entities.Entities.Position", "Position")
-                        .WithMany()
-                        .HasForeignKey("PositionId");
-
                     b.HasOne("Database.Entities.Entities.Team", "Team")
                         .WithMany("Players")
                         .HasForeignKey("TeamId");
