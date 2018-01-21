@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Database.Abstractions.Repositories.UnitOfWork;
 using Database.Entities.Entities;
 using Mapper.Dtos.Team;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Teams.Api.Controllers
 {
@@ -36,8 +35,8 @@ namespace Teams.Api.Controllers
         public async Task<IActionResult> Get(int teamId)
         {
             var players = await unitOfWork.Players.GetPlayersByTeam(teamId);
-            
-            if (players == null || players.Any())
+
+            if (players == null) // todo: || !players.Any()
                 return NotFound();
 
             return Ok(players.Select(Map));

@@ -11,6 +11,8 @@ namespace Database.Core.Context
 
         public DbSet<Team> Teams { get; set; }
 
+        public DbSet<Position> Positions { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(ConnectionStringProvider.GetSqlConnection());
