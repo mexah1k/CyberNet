@@ -30,7 +30,10 @@ namespace Database.Core.Repositories
 
         public async Task<ICollection<Player>> GetPlayersByTeam(int teamId)
         {
-            return await context.Players.Where(p => p.TeamId == teamId).ToListAsync();
+            return await context.Players.Where(p => p.TeamId == teamId)
+                .Include(p => p.Position)
+                .Include(p => p.Team)
+                .ToListAsync();
         }
 
         public async Task<Player> GetPlayerByTeam(int teamId, int playerId)

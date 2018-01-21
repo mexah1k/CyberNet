@@ -8,7 +8,9 @@ namespace Mapper.Profiles
     {
         public TeamProfile()
         {
-            CreateMap<Player, PlayerDto>();
+            CreateMap<Player, PlayerDto>()
+                .ForMember(dest => dest.Position, opt => opt.MapFrom(
+                    src => src.Position.Name.ToString()));
             CreateMap<PlayerDto, Player>();
 
             CreateMap<Team, TeamDto>();
