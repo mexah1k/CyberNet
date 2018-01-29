@@ -8,6 +8,8 @@ namespace Database.Abstractions.Repositories.UnitOfWork
 
         ITeamRepository Teams { get; }
 
+        IPositionsRepository Positions { get; }
+
         Task<bool> SaveChangesAsync();
     }
 }

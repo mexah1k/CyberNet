@@ -13,11 +13,17 @@ namespace Database.Core.Repositories.UnitOfWork
 
         public ITeamRepository Teams { get; }
 
-        public UnitOfWork(IDatabaseContext context, IPlayerRepository players, ITeamRepository teams)
+        public IPositionsRepository Positions { get; }
+
+        public UnitOfWork(IDatabaseContext context,
+            IPlayerRepository players,
+            ITeamRepository teams,
+            IPositionsRepository positions)
         {
             this.context = context;
             Players = players;
             Teams = teams;
+            Positions = positions;
         }
 
         public async Task<bool> SaveChangesAsync()

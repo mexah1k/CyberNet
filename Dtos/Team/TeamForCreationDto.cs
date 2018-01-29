@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Database.Entities.Entities;
 
-namespace Mapper.Dtos.Team
+namespace Dtos.Team
 {
     public class TeamForCreationDto
     {
-        [Required]
         public string Name { get; set; }
 
         public string LogoUrl { get; set; }

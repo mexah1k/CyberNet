@@ -1,9 +1,11 @@
 ﻿using Database.Entities.Entities.Enum;
 
-namespace Mapper.Dtos.Team
+namespace Dtos.Team
 {
-    public class PlayerForCreationDto
+    public class PlayerDto
     {
+        public int Id { get; set; }
+
         public string NickName { get; set; }
 
         public string FirstName { get; set; }

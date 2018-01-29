@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Database.Entities.Entities;
-using Mapper.Dtos.Team;
+using Dtos.Team;
 
 namespace Mapper.Profiles
 {
@@ -20,7 +20,13 @@ namespace Mapper.Profiles
             CreateMap<TeamForCreationDto, Team>();
 
             CreateMap<Player, PlayerForCreationDto>();
-            CreateMap<PlayerForCreationDto, Player>();
+            CreateMap<PlayerForCreationDto, Player>()
+                .ForMember(dest => dest.Position, opt => opt.MapFrom(
+                    src => new Position
+                    {
+                        Id = (int)src.Position,
+                        Name = src.Position.ToString()
+                    }));
         }
     }
 }

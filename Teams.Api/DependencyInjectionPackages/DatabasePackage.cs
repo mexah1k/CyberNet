@@ -15,6 +15,7 @@ namespace Teams.Api.DependencyInjectionPackages
         {
             container.Register<IDatabaseContext, ApplicationDbContext>(Lifestyle.Scoped);
             container.Register<IPlayerRepository, PlayerRepository>(Lifestyle.Scoped);
+            container.Register<IPositionsRepository, PositionsRepository>(Lifestyle.Scoped);
             container.Register<ITeamRepository, TeamRepository>(Lifestyle.Scoped);
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
         }

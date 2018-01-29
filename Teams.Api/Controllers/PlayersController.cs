@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Database.Abstractions.Repositories.UnitOfWork;
 using Database.Entities.Entities;
-using Mapper.Dtos.Team;
+using Dtos.Team;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Mapper.Dtos.Team
+﻿namespace Dtos.Team
 {
     public class TeamDto
     {
