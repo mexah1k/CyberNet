@@ -52,6 +52,9 @@ namespace Database.Core.Repositories
 
         public async Task Add(Player player)
         {
+            if (player.Position != null)
+                context.Positions.Attach(player.Position);
+
             await context.Players.AddAsync(player);
         }
 

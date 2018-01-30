@@ -19,7 +19,7 @@ namespace Teams.Api
     {
         private readonly Container container;
         public IConfiguration Configuration { get; }
-        private MapperConfiguration _mapperConfiguration { get; set; }
+        private MapperConfiguration MapperConfiguration { get; set; }
 
         public Startup(IConfiguration configuration)
         {
@@ -110,19 +110,23 @@ namespace Teams.Api
             container.RegisterMvcControllers(app);
             container.RegisterMvcViewComponents(app);
 
-            // Mapper
-            _mapperConfiguration = new MapperConfiguration(cfg =>
-                {
-                    cfg.AddProfile(new TeamProfile());
-                });
+            RegisterMapperProfiles();
 
-            container.RegisterSingleton(_mapperConfiguration);
-            container.Register(() => _mapperConfiguration.CreateMapper(container.GetInstance));
+            container.RegisterSingleton(MapperConfiguration);
+            container.Register(() => MapperConfiguration.CreateMapper(container.GetInstance));
         }
 
         private void RegisterPackages()
         {
             container.RegisterPackages(AppDomain.CurrentDomain.GetAssemblies());
+        }
+
+        private void RegisterMapperProfiles()
+        {
+            MapperConfiguration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new TeamProfile());
+            });
         }
     }
 }

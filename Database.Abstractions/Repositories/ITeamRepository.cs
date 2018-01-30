@@ -15,10 +15,6 @@ namespace Database.Abstractions.Repositories
 
         Task Delete(int id);
 
-        Task AddPlayer(int id, Player player);
-
-        Task AddPlayers(int id, IEnumerable<Player> users);
-
         Task<Team> Get(int id);
 
         Task<ICollection<Team>> Get();
