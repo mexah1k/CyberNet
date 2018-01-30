@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Database.Entities.Entities;
+using Database.Entities.Entities.Enum;
 using Dtos.Team;
 
 namespace Mapper.Profiles
@@ -20,13 +21,11 @@ namespace Mapper.Profiles
             CreateMap<TeamForCreationDto, Team>();
 
             CreateMap<Player, PlayerForCreationDto>();
-            CreateMap<PlayerForCreationDto, Player>()
-                .ForMember(dest => dest.Position, opt => opt.MapFrom(
-                    src => new Position
-                    {
-                        Id = (int)src.Position,
-                        Name = src.Position.ToString()
-                    }));
+            CreateMap<PlayerForCreationDto, Player>();
+
+            CreateMap<PositionEnum, Position>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => (int)src))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ToString()));
         }
     }
 }

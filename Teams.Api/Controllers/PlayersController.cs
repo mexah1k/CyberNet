@@ -55,7 +55,7 @@ namespace Teams.Api.Controllers
             await unitOfWork.Players.Add(player);
 
             if (!await unitOfWork.SaveChangesAsync())
-                return BadRequest("Creaton failed."); // todo: move message to resource file
+                return BadRequest("Creation failed."); // todo: move message to resource file
 
             return CreatedAtRoute("GetPlayerForTeam",
                 new { teamId, id = player.Id },
@@ -71,11 +71,6 @@ namespace Teams.Api.Controllers
         private PlayerDto Map(Player source)
         {
             return mapper.Map<PlayerDto>(source);
-        }
-
-        private Player Map(PlayerDto source)
-        {
-            return mapper.Map<Player>(source);
         }
 
         private Player Map(PlayerForCreationDto source)
