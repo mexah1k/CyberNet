@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Expetions\Teams\**" />
+    <EmbeddedResource Remove="Expetions\Teams\**" />
+    <None Remove="Expetions\Teams\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
   </ItemGroup>
 
@@ -21,10 +27,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Expetions\Teams\" />
   </ItemGroup>
 
 </Project>
