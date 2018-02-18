@@ -8,6 +8,7 @@ namespace Database.Abstractions.Context
     {
         DbSet<Player> Players { get; set; }
         DbSet<Team> Teams { get; set; }
+        DbSet<Position> Positions { get; set; }
 
         Task<int> SaveChangesAsync();
         void Dispose();

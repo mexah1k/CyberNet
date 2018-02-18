@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Database.Entities\Database.Entities.csproj" />
+    <ProjectReference Include="..\Dtos\Dtos.csproj" />
   </ItemGroup>
 
 </Project>

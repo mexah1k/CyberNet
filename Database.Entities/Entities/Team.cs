@@ -18,6 +18,6 @@ namespace Database.Entities.Entities
 
         public decimal Revenue { get; set; }
 
-        public IEnumerable<Player> Players { get; set; }
+        public ICollection<Player> Players { get; set; }
     }
 }

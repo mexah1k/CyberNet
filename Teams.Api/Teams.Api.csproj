@@ -6,14 +6,15 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
     <PackageReference Include="SimpleInjector" Version="4.0.12" />
     <PackageReference Include="SimpleInjector.Integration.AspNetCore" Version="4.0.12" />
     <PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="4.0.12" />
     <PackageReference Include="SimpleInjector.Integration.Web.Mvc" Version="4.0.12" />
     <PackageReference Include="SimpleInjector.Integration.WebApi" Version="4.0.12" />
     <PackageReference Include="SimpleInjector.Packaging" Version="4.0.12" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
     <ProjectReference Include="..\Database.Abstractions\Database.Abstractions.csproj" />
     <ProjectReference Include="..\Database.Core\Database.Core.csproj" />
     <ProjectReference Include="..\Database.Entities\Database.Entities.csproj" />
+    <ProjectReference Include="..\Dtos\Dtos.csproj" />
     <ProjectReference Include="..\Mapper\Mapper.csproj" />
   </ItemGroup>
 

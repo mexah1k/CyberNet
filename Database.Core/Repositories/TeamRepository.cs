@@ -4,6 +4,7 @@ using Database.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Database.Core.Repositories
@@ -24,6 +25,8 @@ namespace Database.Core.Repositories
 
         public async Task Create(Team team)
         {
+            context.Positions.AttachRange(team.Players.Select(p => p.Position));
+
             await context.Teams.AddAsync(team);
         }
 
@@ -49,16 +52,6 @@ namespace Database.Core.Repositories
             return await context.Teams
                 .Include(t => t.Players)
                 .ToListAsync();
-        }
-
-        public async Task AddPlayer(int id, Player player)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task AddPlayers(int id, IEnumerable<Player> users)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task Update(Team updatedTeam)

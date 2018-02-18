@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 
-namespace Mapper.Dtos.Team
+namespace Dtos.Team
 {
     public class TeamForCreationDto
     {
-        [Required]
         public string Name { get; set; }
 
         public string LogoUrl { get; set; }
@@ -12,5 +11,7 @@ namespace Mapper.Dtos.Team
         public int Points { get; set; }
 
         public decimal Revenue { get; set; }
+
+        public ICollection<PlayerForCreationDto> Players { get; set; } = new List<PlayerForCreationDto>();
     }
 }

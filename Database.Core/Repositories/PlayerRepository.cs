@@ -20,12 +20,18 @@ namespace Database.Core.Repositories
 
         public async Task<Player> Get(int id)
         {
-            return await context.Players.SingleOrDefaultAsync(u => u.Id == id);
+            return await context.Players
+                .Include(p => p.Position)
+                .Include(p => p.Team)
+                .SingleOrDefaultAsync(u => u.Id == id);
         }
 
         public async Task<IEnumerable<Player>> Get()
         {
-            return await context.Players.ToListAsync();
+            return await context.Players
+                .Include(p => p.Position)
+                .Include(p => p.Team)
+                .ToListAsync();
         }
 
         public async Task<ICollection<Player>> GetPlayersByTeam(int teamId)
@@ -38,11 +44,17 @@ namespace Database.Core.Repositories
 
         public async Task<Player> GetPlayerByTeam(int teamId, int playerId)
         {
-            return await context.Players.SingleOrDefaultAsync(p => p.Id == playerId && p.TeamId == teamId);
+            return await context.Players
+                .Include(p => p.Position)
+                .Include(p => p.Team)
+                .SingleOrDefaultAsync(p => p.Id == playerId && p.TeamId == teamId);
         }
 
         public async Task Add(Player player)
         {
+            if (player.Position != null)
+                context.Positions.Attach(player.Position);
+
             await context.Players.AddAsync(player);
         }
 
