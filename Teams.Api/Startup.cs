@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using SimpleInjector;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 
 namespace Teams.Api
@@ -67,6 +68,11 @@ namespace Teams.Api
 
             services.EnableSimpleInjectorCrossWiring(container);
             services.UseSimpleInjectorAspNetRequestScoping(container);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Dota 2 Teams Api", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +97,16 @@ namespace Teams.Api
 
             InitializeContainer(app);
             container.Verify();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dota 2 Teams Api V1");
+            });
+
 
             app.UseCors("AllowAllCors");
 
