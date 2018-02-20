@@ -1,9 +1,9 @@
-﻿using Database.Abstractions.Context;
-using Database.Entities.Entities;
+﻿using Data.Abstractions.Context;
+using Data.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
-namespace Database.Core.Context
+namespace Data.Core.Context
 {
     public class ApplicationDbContext : DbContext, IDatabaseContext
     {

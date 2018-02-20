@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Database.Abstractions.Repositories.UnitOfWork;
-using Database.Entities.Entities;
+using Data.Abstractions.Repositories.UnitOfWork;
+using Data.Entities.Entities;
 using Dtos.Team;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -25,9 +25,6 @@ namespace Teams.Api.Controllers
         {
             var player = await unitOfWork.Players.GetPlayerByTeam(teamId, id);
 
-            if (player == null)
-                return NotFound();
-
             return Ok(Map(player));
         }
 
@@ -35,9 +32,6 @@ namespace Teams.Api.Controllers
         public async Task<IActionResult> Get(int teamId)
         {
             var players = await unitOfWork.Players.GetPlayersByTeam(teamId);
-
-            if (players == null) // todo: || !players.Any()
-                return NotFound();
 
             return Ok(players.Select(Map));
         }
@@ -48,7 +42,7 @@ namespace Teams.Api.Controllers
             if (playerForCreationDto == null)
                 return BadRequest();
 
-            if (!unitOfWork.Teams.IsExist(teamId).Result)
+            if (!await unitOfWork.Teams.IsExist(teamId))
                 return NotFound("Team not found"); // todo: move message to resource file
 
             var player = Map(playerForCreationDto);
@@ -63,10 +57,27 @@ namespace Teams.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task<IActionResult> Delete(int teamId, int id)
         {
+            if (!await unitOfWork.Teams.IsExist(teamId))
+                return NotFound("Team not found");
+
             await unitOfWork.Players.Delete(id);
+
+            if (!await unitOfWork.SaveChangesAsync())
+                return BadRequest("Deleting failed."); // todo: move message to resource file
+
+            return NoContent();
         }
+
+        /*
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int teamId, int id, [FromBody] PlayerForUpdateDto player)
+        {
+            if (player == null)
+                return BadRequest();
+            
+        }*/
 
         private PlayerDto Map(Player source)
         {

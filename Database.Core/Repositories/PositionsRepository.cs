@@ -1,10 +1,10 @@
-﻿using Database.Abstractions.Context;
-using Database.Abstractions.Repositories;
-using Database.Entities.Entities;
+﻿using Data.Abstractions.Context;
+using Data.Abstractions.Repositories;
+using Data.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
-namespace Database.Core.Repositories
+namespace Data.Core.Repositories
 {
     public class PositionsRepository : IPositionsRepository
     {

@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.IO;
+﻿using System.IO;
+using Microsoft.Extensions.Configuration;
 
-namespace Database.Core
+namespace Data.Core
 {
     public static class ConnectionStringProvider
     {

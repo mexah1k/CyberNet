@@ -2,7 +2,7 @@
 
 namespace Dtos.Team
 {
-    public class PlayerForCreationDto
+    public class PlayerForUpdateDto
     {
         public string NickName { get; set; }
 

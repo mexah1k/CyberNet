@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Database.Abstractions.Repositories.UnitOfWork
+namespace Data.Abstractions.Repositories.UnitOfWork
 {
     public interface IUnitOfWork
     {

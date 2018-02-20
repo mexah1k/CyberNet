@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Database.Abstractions.Repositories.UnitOfWork;
-using Database.Entities.Entities;
+using Data.Abstractions.Repositories.UnitOfWork;
+using Data.Entities.Entities;
 using Dtos.Team;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -25,9 +25,6 @@ namespace Teams.Api.Controllers
         {
             var team = await unitOfWork.Teams.Get(id);
 
-            if (team == null)
-                return NotFound();
-
             return Ok(Map(team));
         }
 
@@ -35,9 +32,6 @@ namespace Teams.Api.Controllers
         public async Task<IActionResult> Get()
         {
             var teams = await unitOfWork.Teams.Get();
-
-            if (teams == null) // todo: || !teams.Any()
-                return NotFound();
 
             return Ok(teams.Select(Map));
         }

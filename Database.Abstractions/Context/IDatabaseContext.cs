@@ -1,8 +1,8 @@
-﻿using Database.Entities.Entities;
+﻿using Data.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
-namespace Database.Abstractions.Context
+namespace Data.Abstractions.Context
 {
     public interface IDatabaseContext
     {

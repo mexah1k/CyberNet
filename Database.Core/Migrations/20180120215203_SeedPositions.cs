@@ -1,7 +1,7 @@
-﻿using Database.Entities.Entities.Enum;
+﻿using Data.Entities.Entities.Enum;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Database.Core.Migrations
+namespace Data.Core.Migrations
 {
     public partial class SeedPositions : Migration
     {

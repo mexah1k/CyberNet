@@ -1,9 +1,9 @@
-﻿using Database.Abstractions.Context;
-using Database.Abstractions.Repositories;
-using Database.Abstractions.Repositories.UnitOfWork;
-using Database.Core.Context;
-using Database.Core.Repositories;
-using Database.Core.Repositories.UnitOfWork;
+﻿using Data.Abstractions.Context;
+using Data.Abstractions.Repositories;
+using Data.Abstractions.Repositories.UnitOfWork;
+using Data.Core.Context;
+using Data.Core.Repositories;
+using Data.Core.Repositories.UnitOfWork;
 using SimpleInjector;
 using SimpleInjector.Packaging;
 

@@ -5,21 +5,21 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{ACD23E02-F06D-4274-9A51-E6B54F7ADB50}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{29412CAC-CA25-4AA8-BE70-E5725C1BA05D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{29412CAC-CA25-4AA8-BE70-E5725C1BA05D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B2DBFE4A-51CC-48F2-9CE8-B93F2B84A583}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Abstarctions", "Abstarctions", "{3C5E2AC1-026E-4262-A9F8-B4CC3690E1CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Abstractions", "Database.Abstractions\Database.Abstractions.csproj", "{3F899872-7DD1-44D6-8A9C-EEF36CD5BBF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Abstractions", "Database.Abstractions\Data.Abstractions.csproj", "{3F899872-7DD1-44D6-8A9C-EEF36CD5BBF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{69920BE7-C83D-4209-BBB2-297C3A271E5B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teams.Api", "Teams.Api\Teams.Api.csproj", "{CEBC8070-7F45-4D80-BB34-A98B7C8E0BC0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Core", "Database.Core\Database.Core.csproj", "{0FD5ADE9-41A9-45C0-8EAF-EACBA56FFC23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Core", "Database.Core\Data.Core.csproj", "{0FD5ADE9-41A9-45C0-8EAF-EACBA56FFC23}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Entities", "Database.Entities\Database.Entities.csproj", "{B1BAE5EC-7AF6-4D05-A8BD-02CA6B7E4A0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Entities", "Database.Entities\Data.Entities.csproj", "{B1BAE5EC-7AF6-4D05-A8BD-02CA6B7E4A0E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security.Api", "Security.Api\Security.Api.csproj", "{7B74C049-72D7-4222-A69A-7BCE13B61DE2}"
 EndProject

@@ -1,9 +1,9 @@
-﻿using Database.Abstractions.Context;
-using Database.Abstractions.Repositories;
-using Database.Abstractions.Repositories.UnitOfWork;
+﻿using Data.Abstractions.Context;
+using Data.Abstractions.Repositories;
+using Data.Abstractions.Repositories.UnitOfWork;
 using System.Threading.Tasks;
 
-namespace Database.Core.Repositories.UnitOfWork
+namespace Data.Core.Repositories.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Database.Entities.Entities
+namespace Data.Entities.Entities
 {
     public class Team
     {
@@ -13,7 +13,7 @@ namespace Database.Entities.Entities
         public string Name { get; set; }
 
         public string PhotoUrl { get; set; }
-        
+
         public int Points { get; set; }
 
         public decimal Revenue { get; set; }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Database.Entities.Entities
+namespace Data.Entities.Entities
 {
     public class Position
     {

@@ -1,4 +1,4 @@
-﻿namespace Database.Entities.Entities.Enum
+﻿namespace Data.Entities.Entities.Enum
 {
     public enum PositionEnum
     {

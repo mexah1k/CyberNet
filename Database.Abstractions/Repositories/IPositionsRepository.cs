@@ -1,7 +1,7 @@
-﻿using Database.Entities.Entities;
+﻿using Data.Entities.Entities;
 using System.Threading.Tasks;
 
-namespace Database.Abstractions.Repositories
+namespace Data.Abstractions.Repositories
 {
     public interface IPositionsRepository
     {

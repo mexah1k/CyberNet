@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Database.Entities.Entities
+namespace Data.Entities.Entities
 {
     public class Player
     {
