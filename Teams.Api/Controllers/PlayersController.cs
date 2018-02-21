@@ -70,14 +70,27 @@ namespace Teams.Api.Controllers
             return NoContent();
         }
 
-        /*
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int teamId, int id, [FromBody] PlayerForUpdateDto player)
+        public async Task<IActionResult> Update(int teamId, int id, [FromBody] PlayerForUpdateDto playerDto)
         {
-            if (player == null)
+            if (playerDto == null)
                 return BadRequest();
-            
-        }*/
+
+            if (!await unitOfWork.Teams.IsExist(teamId))
+                return NotFound("Team not found");
+
+            var player = unitOfWork.Players.GetPlayerByTeam(teamId, id);
+            if (player == null)
+                return NotFound("Player not found");
+
+            await mapper.Map(playerDto, player);
+
+            if (!await unitOfWork.SaveChangesAsync())
+                return BadRequest("Deleting failed.");
+
+            return NoContent();
+        }
 
         private PlayerDto Map(Player source)
         {
