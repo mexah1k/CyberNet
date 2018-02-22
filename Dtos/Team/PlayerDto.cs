@@ -16,6 +16,8 @@ namespace Dtos.Team
 
         public string PhotoUrl { get; set; }
 
+        public string Team { get; set; }
+
         public PositionEnum Position { get; set; }
     }
 }

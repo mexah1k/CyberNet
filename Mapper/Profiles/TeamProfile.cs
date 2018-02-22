@@ -11,7 +11,9 @@ namespace Mapper.Profiles
         {
             CreateMap<Player, PlayerDto>()
                 .ForMember(dest => dest.Position, opt => opt.MapFrom(
-                    src => src.Position.Name));
+                    src => src.Position.Name))
+                .ForMember(dest => dest.Team, opt => opt.MapFrom(
+                    src => src.Team.Name));
             CreateMap<PlayerDto, Player>();
 
             CreateMap<Team, TeamDto>();
