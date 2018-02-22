@@ -1,4 +1,4 @@
-﻿using Data.Entities.Entities.Enum;
+﻿using Data.Entities.Team.Enum;
 
 namespace Dtos.Team
 {

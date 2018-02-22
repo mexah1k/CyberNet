@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Data.Entities.Entities;
-using Data.Entities.Entities.Enum;
+using Data.Entities.Team;
+using Data.Entities.Team.Enum;
 using Dtos.Team;
 
 namespace Mapper.Profiles

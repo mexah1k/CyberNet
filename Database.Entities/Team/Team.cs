@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Data.Entities.Entities
+namespace Data.Entities.Team
 {
     public class Team
     {

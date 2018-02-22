@@ -1,4 +1,4 @@
-﻿using Data.Entities.Entities;
+﻿using Data.Entities.Team;
 using System.Threading.Tasks;
 
 namespace Data.Abstractions.Repositories

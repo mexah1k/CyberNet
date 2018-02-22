@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Data.Abstractions.Repositories.UnitOfWork;
-using Data.Entities.Entities;
+using Data.Entities.Team;
 using Dtos.Team;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;

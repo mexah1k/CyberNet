@@ -1,4 +1,4 @@
-﻿using Data.Entities.Entities;
+﻿using Data.Entities.Team;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 

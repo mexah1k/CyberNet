@@ -1,4 +1,4 @@
-﻿using Data.Entities.Entities.Enum;
+﻿using Data.Entities.Team.Enum;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Core.Migrations
