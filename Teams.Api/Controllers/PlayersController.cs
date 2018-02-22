@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Data.Abstractions.Repositories.UnitOfWork;
 using Data.Entities.Team;
+using Domain;
 using Dtos.Team;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -43,13 +44,13 @@ namespace Teams.Api.Controllers
                 return BadRequest();
 
             if (!await unitOfWork.Teams.IsExist(teamId))
-                return NotFound("Team not found"); // todo: move message to resource file
+                return NotFound(ExceptionMessages.TeamNotFound); // todo: move message to resource file
 
             var player = Map(playerForCreationDto);
             await unitOfWork.Players.Add(player);
 
             if (!await unitOfWork.SaveChangesAsync())
-                return BadRequest("Creation failed."); // todo: move message to resource file
+                return BadRequest(ExceptionMessages.CreationFailed); // todo: move message to resource file
 
             return CreatedAtRoute("GetPlayerForTeam",
                 new { teamId, id = player.Id },
@@ -60,12 +61,12 @@ namespace Teams.Api.Controllers
         public async Task<IActionResult> Delete(int teamId, int id)
         {
             if (!await unitOfWork.Teams.IsExist(teamId))
-                return NotFound("Team not found");
+                return NotFound(ExceptionMessages.TeamNotFound);
 
             await unitOfWork.Players.Delete(id);
 
             if (!await unitOfWork.SaveChangesAsync())
-                return BadRequest("Deleting failed."); // todo: move message to resource file
+                return BadRequest(ExceptionMessages.DeletingFailed); // todo: move message to resource file
 
             return NoContent();
         }
@@ -78,16 +79,16 @@ namespace Teams.Api.Controllers
                 return BadRequest();
 
             if (!await unitOfWork.Teams.IsExist(teamId))
-                return NotFound("Team not found");
+                return NotFound(ExceptionMessages.TeamNotFound);
 
             var player = unitOfWork.Players.GetPlayerByTeam(teamId, id);
             if (player == null)
-                return NotFound("Player not found");
+                return NotFound(ExceptionMessages.PlayerNotFound);
 
             await mapper.Map(playerDto, player);
 
             if (!await unitOfWork.SaveChangesAsync())
-                return BadRequest("Deleting failed.");
+                return BadRequest(ExceptionMessages.UpdatingFailed);
 
             return NoContent();
         }

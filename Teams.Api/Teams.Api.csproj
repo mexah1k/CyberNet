@@ -25,6 +25,7 @@
     <ProjectReference Include="..\Database.Abstractions\Data.Abstractions.csproj" />
     <ProjectReference Include="..\Database.Core\Data.Core.csproj" />
     <ProjectReference Include="..\Database.Entities\Data.Entities.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Dtos\Dtos.csproj" />
     <ProjectReference Include="..\Mapper\Mapper.csproj" />
   </ItemGroup>

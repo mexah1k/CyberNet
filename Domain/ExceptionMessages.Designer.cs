@@ -61,11 +61,47 @@ namespace Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User was not found..
+        ///   Looks up a localized string similar to Create action failed..
         /// </summary>
-        public static string UserNotFoundException {
+        public static string CreationFailed {
             get {
-                return ResourceManager.GetString("UserNotFoundException", resourceCulture);
+                return ResourceManager.GetString("CreationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete action failed..
+        /// </summary>
+        public static string DeletingFailed {
+            get {
+                return ResourceManager.GetString("DeletingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player was not found..
+        /// </summary>
+        public static string PlayerNotFound {
+            get {
+                return ResourceManager.GetString("PlayerNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team was not found..
+        /// </summary>
+        public static string TeamNotFound {
+            get {
+                return ResourceManager.GetString("TeamNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update action failed..
+        /// </summary>
+        public static string UpdatingFailed {
+            get {
+                return ResourceManager.GetString("UpdatingFailed", resourceCulture);
             }
         }
     }
