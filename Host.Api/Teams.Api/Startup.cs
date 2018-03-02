@@ -11,7 +11,7 @@ using SimpleInjector;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
 using Swashbuckle.AspNetCore.Swagger;
-using System;
+using Teams.Data.Core;
 using Teams.Domain.MapperProfiles;
 
 namespace Teams.Api
@@ -98,18 +98,13 @@ namespace Teams.Api
             InitializeContainer(app);
             container.Verify();
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dota 2 Teams Api V1");
-            });
-
+            app.UseSwagger()
+                .UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dota 2 Teams Api V1");
+                });
 
             app.UseCors("AllowAllCors");
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -121,20 +116,17 @@ namespace Teams.Api
         private void InitializeContainer(IApplicationBuilder app)
         {
             RegisterPackages();
-
-            // Add application presentation components:
-            container.RegisterMvcControllers(app);
-            container.RegisterMvcViewComponents(app);
-
             RegisterMapperProfiles();
 
+            container.RegisterMvcControllers(app);
+            container.RegisterMvcViewComponents(app);
             container.RegisterSingleton(MapperConfiguration);
             container.Register(() => MapperConfiguration.CreateMapper(container.GetInstance));
         }
 
         private void RegisterPackages()
         {
-            container.RegisterPackages(AppDomain.CurrentDomain.GetAssemblies());
+            container.RegisterTeamDataServices();
         }
 
         private void RegisterMapperProfiles()

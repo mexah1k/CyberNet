@@ -36,7 +36,7 @@ namespace Teams.Api.Controllers
         {
             var players = await unitOfWork.Players.GetPlayersByTeam(teamId);
 
-            if (players == null) // todo: || !players.Any()
+            if (players == null)
                 return NotFound();
 
             return Ok(players.Select(Map));

@@ -1,5 +1,4 @@
 ﻿using SimpleInjector;
-using SimpleInjector.Packaging;
 using Teams.Data.Contracts.Context;
 using Teams.Data.Contracts.Repositories;
 using Teams.Data.Contracts.Repositories.UnitOfWork;
@@ -7,11 +6,11 @@ using Teams.Data.Core.Context;
 using Teams.Data.Core.Repositories;
 using Teams.Data.Core.Repositories.UnitOfWork;
 
-namespace Teams.Api.DependencyInjectionPackages
+namespace Teams.Data.Core
 {
-    public class DatabasePackage : IPackage
+    public static class RegisterTeamDataModule
     {
-        public void RegisterServices(Container container)
+        public static void RegisterTeamDataServices(this Container container)
         {
             container.Register<IDatabaseContext, ApplicationDbContext>(Lifestyle.Scoped);
             container.Register<IPlayerRepository, PlayerRepository>(Lifestyle.Scoped);
