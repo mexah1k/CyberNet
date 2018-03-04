@@ -11,6 +11,7 @@ using SimpleInjector;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
 using Swashbuckle.AspNetCore.Swagger;
+using Teams.Api.Middlewares;
 using Teams.Data.Core;
 using Teams.Domain.MapperProfiles;
 
@@ -98,19 +99,19 @@ namespace Teams.Api
             InitializeContainer(app);
             container.Verify();
 
-            app.UseSwagger()
+            app.UseMiddleware<ExceptionHandlingMiddleware>()
+                .UseSwagger()
                 .UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dota 2 Teams Api V1");
+                })
+                .UseCors("AllowAllCors")
+                .UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller}/{action}/{id?}");
                 });
-
-            app.UseCors("AllowAllCors");
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action}/{id?}");
-            });
         }
 
         private void InitializeContainer(IApplicationBuilder app)

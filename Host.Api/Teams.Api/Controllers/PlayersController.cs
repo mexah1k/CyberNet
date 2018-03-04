@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,6 +48,9 @@ namespace Teams.Api.Controllers
         {
             if (playerForCreationDto == null)
                 return BadRequest();
+
+            if (!ModelState.IsValid)
+                return new UnprocessableEnttyObjectResult(ModelState);
 
             if (!unitOfWork.Teams.IsExist(teamId).Result)
                 return NotFound("Team not found"); // todo: move message to resource file

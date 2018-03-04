@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DependencyInjectionPackages\**" />
+    <Content Remove="DependencyInjectionPackages\**" />
+    <EmbeddedResource Remove="DependencyInjectionPackages\**" />
+    <None Remove="DependencyInjectionPackages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
     <PackageReference Include="FluentValidation" Version="7.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
@@ -21,14 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\..\Services\Teams\Data\Teams.Data.Contracts\Teams.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\Teams\Data\Teams.Data.Core\Teams.Data.Core.csproj" />
     <ProjectReference Include="..\..\Services\Teams\Teams.Domain\Teams.Domain.csproj" />
     <ProjectReference Include="..\..\Services\Teams\Teams.Dtos\Teams.Dtos.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DependencyInjectionPackages\" />
   </ItemGroup>
 
 </Project>
