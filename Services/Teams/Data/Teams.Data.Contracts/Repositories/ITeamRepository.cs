@@ -11,12 +11,10 @@ namespace Teams.Data.Contracts.Repositories
 
         Task Create(Team team);
 
-        Task Update(Entities.Team team);
-
         Task Delete(int id);
 
-        Task<Entities.Team> Get(int id);
+        Task<Team> Get(int id);
 
-        Task<ICollection<Entities.Team>> Get();
+        Task<ICollection<Team>> Get();
     }
 }

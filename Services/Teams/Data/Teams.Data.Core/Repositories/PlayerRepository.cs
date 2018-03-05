@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Exceptions;
+using Remotion.Linq.Parsing;
 using Teams.Data.Contracts.Context;
 using Teams.Data.Contracts.Repositories;
 using Teams.Data.Entities;
@@ -52,6 +54,8 @@ namespace Teams.Data.Core.Repositories
 
         public async Task Add(Player player)
         {
+            Throw.IfNull(player);
+
             if (player.Position != null)
                 context.Positions.Attach(player.Position);
 

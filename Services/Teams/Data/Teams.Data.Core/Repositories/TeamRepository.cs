@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Exceptions;
 using Teams.Data.Contracts.Context;
 using Teams.Data.Contracts.Repositories;
 using Teams.Data.Entities;
@@ -23,8 +24,10 @@ namespace Teams.Data.Core.Repositories
             return await context.Teams.AnyAsync(t => t.Id == id);
         }
 
-        public async Task Create(Entities.Team team)
+        public async Task Create(Team team)
         {
+            Throw.IfNull(team);
+            
             context.Positions.AttachRange(team.Players.Select(p => p.Position));
 
             await context.Teams.AddAsync(team);
@@ -52,11 +55,6 @@ namespace Teams.Data.Core.Repositories
             return await context.Teams
                 .Include(t => t.Players)
                 .ToListAsync();
-        }
-
-        public async Task Update(Team updatedTeam)
-        {
-            // todo: implement
         }
 
         public void Dispose()
