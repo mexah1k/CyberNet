@@ -50,7 +50,7 @@ namespace Teams.Api.Controllers
                 return BadRequest();
 
             if (!ModelState.IsValid)
-                return new UnprocessableEnttyObjectResult(ModelState);
+                return new UnprocessableEntityObjectResult(ModelState);
 
             if (!unitOfWork.Teams.IsExist(teamId).Result)
                 return NotFound("Team not found"); // todo: move message to resource file

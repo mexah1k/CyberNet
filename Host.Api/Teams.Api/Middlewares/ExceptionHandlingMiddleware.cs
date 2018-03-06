@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Infrastructure.Exceptions;
 
 namespace Teams.Api.Middlewares
 {
@@ -32,7 +33,7 @@ namespace Teams.Api.Middlewares
         {
             var code = HttpStatusCode.InternalServerError;
 
-            if (exception is ArgumentNullException) code = HttpStatusCode.NotFound;
+            if (exception is ItemNotFoundException) code = HttpStatusCode.NotFound;
             else if (exception is UnauthorizedAccessException) code = HttpStatusCode.Unauthorized;
             else if (exception is ValidationException) code = HttpStatusCode.BadRequest;
 
