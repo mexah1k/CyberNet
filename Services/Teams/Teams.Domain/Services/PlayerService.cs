@@ -24,8 +24,7 @@ namespace Teams.Domain.Services
         public async Task<PlayerDto> Get(int teamId, int id)
         {
             var player = await unitOfWork.Players.GetPlayerByTeam(teamId, id);
-            Throw.IfEntityNotFound(player);
-
+            
             return Map(player);
         }
 

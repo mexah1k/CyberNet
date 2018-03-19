@@ -4,11 +4,19 @@ namespace Infrastructure.Exceptions
 {
     public class ItemNotFoundException : Exception
     {
-        public object Item { get; set; }
+        public string ItemName { get; set; }
 
-        public ItemNotFoundException(object item) : base($"Item {nameof(Item)} was not found")
+        public int Identifier { get; set; }
+
+        public ItemNotFoundException(string itemName) : base($"Item {itemName} was not found")
         {
-            Item = item;
+            ItemName = itemName;
+        }
+
+        public ItemNotFoundException(string itemName, int identifier) : base($"Item {itemName} with identifier {identifier} was not found")
+        {
+            ItemName = itemName;
+            Identifier = identifier;
         }
     }
 }

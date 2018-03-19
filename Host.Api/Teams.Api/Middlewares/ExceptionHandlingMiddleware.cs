@@ -1,10 +1,10 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 using Infrastructure.Exceptions;
+using Microsoft.Extensions.Logging;
 
 namespace Teams.Api.Middlewares
 {
@@ -17,30 +17,38 @@ namespace Teams.Api.Middlewares
             this.next = next;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context, ILogger<ExceptionHandlingMiddleware> logger)
         {
             try
             {
                 await next(context);
             }
+            catch (ItemNotFoundException ex)
+            {
+                await HandleExceptionAsync(context, ex.Message, HttpStatusCode.NotFound);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                await HandleExceptionAsync(context, ex.Message, HttpStatusCode.Unauthorized);
+            }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex);
+                await HandleExceptionAsync(context, ex.Message, HttpStatusCode.InternalServerError);
+                logger.LogError(default(EventId), ex, ex.Message); // todo: implement Logger (Sentry.io)
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private static Task HandleExceptionAsync(HttpContext context, string exceptionMessage, HttpStatusCode code)
         {
-            var code = HttpStatusCode.InternalServerError;
+            return context.Response.WriteAsync(GetResponseBody(context, exceptionMessage, code));
+        }
 
-            if (exception is ItemNotFoundException) code = HttpStatusCode.NotFound;
-            else if (exception is UnauthorizedAccessException) code = HttpStatusCode.Unauthorized;
-            else if (exception is ValidationException) code = HttpStatusCode.BadRequest;
-
-            var result = JsonConvert.SerializeObject(new { error = exception.Message });
+        private static string GetResponseBody(HttpContext context, string exceptionMessage, HttpStatusCode code)
+        {
+            var result = JsonConvert.SerializeObject(new { error = exceptionMessage });
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
-            return context.Response.WriteAsync(result);
+            return result;
         }
     }
 }

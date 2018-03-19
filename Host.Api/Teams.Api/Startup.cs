@@ -12,6 +12,7 @@ using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
 using Swashbuckle.AspNetCore.Swagger;
 using Teams.Api.Middlewares;
+using Teams.Api.Validators;
 using Teams.Data.Core;
 using Teams.Domain.MapperProfiles;
 
@@ -35,6 +36,7 @@ namespace Teams.Api
             services.AddMvc(setupAction =>
             {
                 setupAction.ReturnHttpNotAcceptable = true;
+                setupAction.Filters.Add(typeof(ModelStateValidationActionFilter));
             })
             .AddJsonOptions(options =>
             {
@@ -75,8 +77,7 @@ namespace Teams.Api
                 c.SwaggerDoc("v1", new Info { Title = "Dota 2 Teams Api", Version = "v1" });
             });
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
         {
             if (env.IsDevelopment())

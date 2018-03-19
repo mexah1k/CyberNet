@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Exceptions;
 using Teams.Data.Contracts.Repositories.UnitOfWork;
 using Teams.Data.Entities;
 using Teams.Dtos;
