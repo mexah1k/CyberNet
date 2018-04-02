@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Infrastructure.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Infrastructure.Exceptions;
-using Remotion.Linq.Parsing;
 using Teams.Data.Contracts.Context;
 using Teams.Data.Contracts.Repositories;
 using Teams.Data.Entities;
@@ -38,7 +37,10 @@ namespace Teams.Data.Core.Repositories
 
         public async Task<ICollection<Player>> GetPlayersByTeam(int teamId)
         {
-            return await context.Players.Where(p => p.TeamId == teamId)
+            return await context.Players
+                .Where(p => p.TeamId == teamId)
+                .OrderBy(p => p.Points)
+                .ThenBy(p => p.NickName)
                 .Include(p => p.Position)
                 .Include(p => p.Team)
                 .ToListAsync();
