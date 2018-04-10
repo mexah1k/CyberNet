@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Infrastructure.Exceptions;
+using Infrastructure.Pagination;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,9 +34,9 @@ namespace Teams.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int teamId)
+        public async Task<IActionResult> Get(PagingParameter paging, int teamId)
         {
-            var players = await unitOfWork.Players.GetPlayersByTeam(teamId);
+            var players = await unitOfWork.Players.GetPlayersByTeam(paging, teamId);
 
             if (players == null)
                 return NotFound();

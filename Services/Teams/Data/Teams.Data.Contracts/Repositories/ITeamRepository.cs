@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Infrastructure.Pagination;
+using System;
 using System.Threading.Tasks;
 using Teams.Data.Entities;
 
@@ -15,6 +15,6 @@ namespace Teams.Data.Contracts.Repositories
 
         Task<Team> Get(int id);
 
-        Task<ICollection<Team>> Get();
+        Task<PagedList<Team>> Get(PagingParameter paging);
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using Infrastructure.Pagination;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using Infrastructure.Exceptions;
 using Teams.Data.Contracts.Repositories.UnitOfWork;
 using Teams.Data.Entities;
 using Teams.Dtos;
@@ -24,13 +24,13 @@ namespace Teams.Domain.Services
         public async Task<PlayerDto> Get(int teamId, int id)
         {
             var player = await unitOfWork.Players.GetPlayerByTeam(teamId, id);
-            
+
             return Map(player);
         }
 
-        public async Task<IEnumerable<PlayerDto>> Get(int teamId)
+        public async Task<IEnumerable<PlayerDto>> Get(PagingParameter paging, int teamId)
         {
-            var players = await unitOfWork.Players.GetPlayersByTeam(teamId);
+            var players = await unitOfWork.Players.GetPlayersByTeam(paging, teamId);
 
             return players.Select(Map);
         }

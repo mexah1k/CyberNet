@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using Infrastructure.Pagination;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
-using Infrastructure.Exceptions;
 using Teams.Data.Contracts.Repositories.UnitOfWork;
 using Teams.Data.Entities;
 using Teams.Dtos;
@@ -14,11 +14,13 @@ namespace Teams.Api.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
+        private readonly IUrlHelper urlHelper;
 
-        public TeamsController(IUnitOfWork unitOfWork, IMapper mapper)
+        public TeamsController(IUnitOfWork unitOfWork, IMapper mapper, IUrlHelper urlHelper)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
+            this.urlHelper = urlHelper;
         }
 
         [HttpGet("{id}", Name = "GetTeam")]
@@ -32,10 +34,10 @@ namespace Teams.Api.Controllers
             return Ok(Map(team));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet(Name = "GetTeams")]
+        public async Task<IActionResult> Get(PagingParameter paging)
         {
-            var teams = await unitOfWork.Teams.Get();
+            var teams = await unitOfWork.Teams.Get(paging);
 
             if (teams == null) // todo: || !teams.Any()
                 return NotFound();

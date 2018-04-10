@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Core\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\Teams.Data.Entities\Teams.Data.Entities.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,8 @@
 ﻿using Infrastructure.Exceptions;
+using Infrastructure.Extensions;
+using Infrastructure.Pagination;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Teams.Data.Contracts.Context;
@@ -27,23 +28,25 @@ namespace Teams.Data.Core.Repositories
                 .SingleOrDefaultAsync(u => u.Id == id);
         }
 
-        public async Task<IEnumerable<Player>> Get()
+        public async Task<PagedList<Player>> Get(PagingParameter paging)
         {
-            return await context.Players
+            var productList = context.Players
                 .Include(p => p.Position)
-                .Include(p => p.Team)
-                .ToListAsync();
+                .Include(p => p.Team);
+
+            return await productList.ToPaginatedResult(paging);
         }
 
-        public async Task<ICollection<Player>> GetPlayersByTeam(int teamId)
+        public async Task<PagedList<Player>> GetPlayersByTeam(PagingParameter paging, int teamId)
         {
-            return await context.Players
+            var players = context.Players
                 .Where(p => p.TeamId == teamId)
                 .OrderBy(p => p.Points)
                 .ThenBy(p => p.NickName)
                 .Include(p => p.Position)
-                .Include(p => p.Team)
-                .ToListAsync();
+                .Include(p => p.Team);
+
+            return await players.ToPaginatedResult(paging);
         }
 
         public async Task<Player> GetPlayerByTeam(int teamId, int playerId)

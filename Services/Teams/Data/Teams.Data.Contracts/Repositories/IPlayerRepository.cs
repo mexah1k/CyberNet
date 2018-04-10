@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Infrastructure.Pagination;
+using System;
 using System.Threading.Tasks;
 using Teams.Data.Entities;
 
@@ -9,11 +9,11 @@ namespace Teams.Data.Contracts.Repositories
     {
         Task<Player> Get(int id);
 
-        Task<IEnumerable<Player>> Get();
+        Task<PagedList<Player>> Get(PagingParameter paging);
 
         Task<Player> GetPlayerByTeam(int teamId, int playerId);
 
-        Task<ICollection<Player>> GetPlayersByTeam(int teamId);
+        Task<PagedList<Player>> GetPlayersByTeam(PagingParameter paging, int teamId);
 
         Task Add(Player player);
 

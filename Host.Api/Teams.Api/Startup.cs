@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +33,6 @@ namespace Teams.Api
             container = new Container();
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(setupAction =>
@@ -77,7 +79,7 @@ namespace Teams.Api
                 c.SwaggerDoc("v1", new Info { Title = "Dota 2 Teams Api", Version = "v1" });
             });
         }
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
         {
             if (env.IsDevelopment())
@@ -119,6 +121,7 @@ namespace Teams.Api
         {
             RegisterPackages();
             RegisterMapperProfiles();
+            RegisterUriExtensions();
 
             container.RegisterMvcControllers(app);
             container.RegisterMvcViewComponents(app);
@@ -137,6 +140,16 @@ namespace Teams.Api
             {
                 cfg.AddProfile(new TeamProfile());
             });
+        }
+
+        private void RegisterUriExtensions()
+        {
+            container.RegisterSingleton<IActionContextAccessor, ActionContextAccessor>();
+            container.Register<IUrlHelper>(() =>
+            {
+                var actionContext = container.GetInstance<IActionContextAccessor>().ActionContext;
+                return new UrlHelper(actionContext);
+            }, Lifestyle.Scoped);
         }
     }
 }

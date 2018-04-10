@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Infrastructure.Exceptions;
+using Infrastructure.Extensions;
+using Infrastructure.Pagination;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Infrastructure.Exceptions;
 using Teams.Data.Contracts.Context;
 using Teams.Data.Contracts.Repositories;
 using Teams.Data.Entities;
@@ -27,7 +28,7 @@ namespace Teams.Data.Core.Repositories
         public async Task Create(Team team)
         {
             Throw.IfNull(team);
-            
+
             context.Positions.AttachRange(team.Players.Select(p => p.Position));
 
             await context.Teams.AddAsync(team);
@@ -50,11 +51,12 @@ namespace Teams.Data.Core.Repositories
                 .SingleOrDefaultAsync(t => t.Id == id);
         }
 
-        public async Task<ICollection<Team>> Get()
+        public async Task<PagedList<Team>> Get(PagingParameter paging)
         {
-            return await context.Teams
-                .Include(t => t.Players)
-                .ToListAsync();
+            var teams = context.Teams
+                .Include(t => t.Players);
+
+            return await teams.ToPaginatedResult(paging);
         }
 
         public void Dispose()

@@ -16,7 +16,7 @@ namespace Infrastructure.Pagination
 
         public bool HasPrevios => CurrentPage > 1;
 
-        public PagedList(List<T> listItems, int pageNumber, int pageSize, int count)
+        public PagedList(IEnumerable<T> listItems, int pageNumber, int pageSize, int count)
         {
             CurrentPage = pageNumber;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
