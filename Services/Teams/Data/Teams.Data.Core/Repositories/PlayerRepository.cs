@@ -30,23 +30,21 @@ namespace Teams.Data.Core.Repositories
 
         public async Task<PagedList<Player>> Get(PagingParameter paging)
         {
-            var productList = context.Players
+            return await context.Players
                 .Include(p => p.Position)
-                .Include(p => p.Team);
-
-            return await productList.ToPaginatedResult(paging);
+                .Include(p => p.Team)
+                .ToPaginatedResult(paging);
         }
 
         public async Task<PagedList<Player>> GetPlayersByTeam(PagingParameter paging, int teamId)
         {
-            var players = context.Players
+            return await context.Players
                 .Where(p => p.TeamId == teamId)
                 .OrderBy(p => p.Points)
                 .ThenBy(p => p.NickName)
                 .Include(p => p.Position)
-                .Include(p => p.Team);
-
-            return await players.ToPaginatedResult(paging);
+                .Include(p => p.Team)
+                .ToPaginatedResult(paging);
         }
 
         public async Task<Player> GetPlayerByTeam(int teamId, int playerId)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Infrastructure.Pagination
 {
@@ -24,16 +23,6 @@ namespace Infrastructure.Pagination
             TotalCount = count;
 
             AddRange(listItems);
-        }
-
-        public static PagedList<T> CreatePagedList(IQueryable<T> source, int pageNumber, int pageSize)
-        {
-            var items = source
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-
-            return new PagedList<T>(items, pageNumber, pageSize, source.Count());
         }
     }
 }

@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
 using Infrastructure.Pagination;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Teams.Data.Contracts.Repositories.UnitOfWork;
 using Teams.Data.Entities;
+using Teams.Domain.Contracts;
 using Teams.Dtos;
 
 namespace Teams.Domain.Services
 {
-    public class PlayerService
+    public class PlayerService : IPlayerService
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
@@ -28,11 +27,11 @@ namespace Teams.Domain.Services
             return Map(player);
         }
 
-        public async Task<IEnumerable<PlayerDto>> Get(PagingParameter paging, int teamId)
+        public async Task<PagedList<PlayerDto>> Get(PagingParameter paging, int teamId)
         {
             var players = await unitOfWork.Players.GetPlayersByTeam(paging, teamId);
 
-            return players.Select(Map);
+            return mapper.Map<PagedList<PlayerDto>>(players);
         }
 
         private async void SaveDbChangesAsync()
@@ -44,11 +43,6 @@ namespace Teams.Domain.Services
         private PlayerDto Map(Player source)
         {
             return mapper.Map<PlayerDto>(source);
-        }
-
-        private Player Map(PlayerForCreationDto source)
-        {
-            return mapper.Map<Player>(source);
         }
     }
 }

@@ -53,10 +53,9 @@ namespace Teams.Data.Core.Repositories
 
         public async Task<PagedList<Team>> Get(PagingParameter paging)
         {
-            var teams = context.Teams
-                .Include(t => t.Players);
-
-            return await teams.ToPaginatedResult(paging);
+            return await context.Teams
+                .Include(t => t.Players)
+                .ToPaginatedResult(paging);
         }
 
         public void Dispose()

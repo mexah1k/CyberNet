@@ -14,13 +14,11 @@ namespace Teams.Api.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
-        private readonly IUrlHelper urlHelper;
 
-        public TeamsController(IUnitOfWork unitOfWork, IMapper mapper, IUrlHelper urlHelper)
+        public TeamsController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
-            this.urlHelper = urlHelper;
         }
 
         [HttpGet("{id}", Name = "GetTeam")]
