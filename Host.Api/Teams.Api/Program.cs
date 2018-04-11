@@ -18,7 +18,7 @@ namespace Teams.Api
                 .UseStartup<Startup>()
                 .UseKestrel(options =>
                 {
-                    options.Limits.MaxConcurrentConnections = 100;
+                    options.Limits.MaxConcurrentConnections = 1000;
                     options.Limits.MaxRequestBodySize = 10 * 1024;
                     options.Limits.MinRequestBodyDataRate =
                         new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));

@@ -1,49 +1,33 @@
-﻿using AutoMapper;
-using Infrastructure.Exceptions;
-using Infrastructure.Pagination;
+﻿using Infrastructure.Pagination;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Threading.Tasks;
-using Teams.Data.Contracts.Repositories.UnitOfWork;
-using Teams.Data.Entities;
-using Teams.Dtos;
+using Teams.Domain.Contracts;
 
 namespace Teams.Api.Controllers
 {
     [Route("api/teams/{teamId}/players")]
     public class PlayersController : Controller
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IMapper mapper;
+        private readonly IPlayerService players;
 
-        public PlayersController(IUnitOfWork unitOfWork, IMapper mapper)
+        public PlayersController(IPlayerService players)
         {
-            this.unitOfWork = unitOfWork;
-            this.mapper = mapper;
+            this.players = players;
         }
 
         [HttpGet("{id}", Name = "GetPlayerForTeam")]
         public async Task<IActionResult> Get(int teamId, int id)
         {
-            var player = await unitOfWork.Players.GetPlayerByTeam(teamId, id);
-
-            if (player == null)
-                return NotFound();
-
-            return Ok(Map(player));
+            return Ok(await players.Get(teamId, id));
         }
 
         [HttpGet]
         public async Task<IActionResult> Get(PagingParameter paging, int teamId)
         {
-            var players = await unitOfWork.Players.GetPlayersByTeam(paging, teamId);
-
-            if (players == null)
-                return NotFound();
-
-            return Ok(players.Select(Map));
+            return Ok(await players.Get(paging, teamId));
         }
 
+        /*
         [HttpPost]
         public async Task<IActionResult> Create(int teamId, [FromBody]PlayerForCreationDto playerForCreationDto)
         {
@@ -71,16 +55,6 @@ namespace Teams.Api.Controllers
         public async Task Delete(int id)
         {
             await unitOfWork.Players.Delete(id);
-        }
-
-        private PlayerDto Map(Player source)
-        {
-            return mapper.Map<PlayerDto>(source);
-        }
-
-        private Player Map(PlayerForCreationDto source)
-        {
-            return mapper.Map<Player>(source);
-        }
+        }*/
     }
 }

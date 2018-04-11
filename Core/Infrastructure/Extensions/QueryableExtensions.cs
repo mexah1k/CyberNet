@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Pagination;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +16,14 @@ namespace Infrastructure.Extensions
                 .Take(paging.PageSize)
                 .ToListAsync();
 
-            return new PagedList<T>(items, paging.PageNumber, paging.PageSize, query.Count());
+            return new PagedList<T>
+            {
+                Result = items,
+                CurrentPage = paging.PageNumber,
+                TotalPages = (int)Math.Ceiling(items.Count / (double)paging.PageSize),
+                PageSize = paging.PageSize,
+                TotalCount = items.Count
+            };
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using Teams.Api.Validators;
 using Teams.Data.Core;
+using Teams.Domain;
 
 namespace Teams.Api.ApiConfigurations
 {
@@ -27,7 +28,10 @@ namespace Teams.Api.ApiConfigurations
             ConfigureCors(services);
             ConfigureSwagger(services);
             services.AddAutoMapper();
-            services.RegisterTeamDataServices();
+            services
+                .RegisterTeamDataServices()
+                .RegisterTeamServices();
+
             RegisterUrlHelper(services);
 
             return services;

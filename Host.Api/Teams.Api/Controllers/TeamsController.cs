@@ -40,7 +40,7 @@ namespace Teams.Api.Controllers
             if (teams == null) // todo: || !teams.Any()
                 return NotFound();
 
-            return Ok(teams.Select(Map));
+            return Ok(teams.Result.Select(Map));
         }
 
         [HttpPost]

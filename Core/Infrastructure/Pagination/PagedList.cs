@@ -1,28 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Infrastructure.Pagination
 {
-    public class PagedList<T> : List<T>
+    public class PagedList<T>
     {
-        public int CurrentPage { get; }
+        public int CurrentPage { get; set; }
 
-        public int TotalPages { get; }
+        public int PageSize { get; set; }
 
-        public int PageSize { get; }
+        public int TotalPages { get; set; }
 
-        public int TotalCount { get; }
+        public int TotalCount { get; set; }
 
-        public bool HasPrevios => CurrentPage > 1;
+        public bool HasPrevious => CurrentPage > 1;
 
-        public PagedList(IEnumerable<T> listItems, int pageNumber, int pageSize, int count)
-        {
-            CurrentPage = pageNumber;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-            PageSize = pageSize;
-            TotalCount = count;
-
-            AddRange(listItems);
-        }
+        public IEnumerable<T> Result { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace Teams.Domain.Services
         {
             var players = await unitOfWork.Players.GetPlayersByTeam(paging, teamId);
 
-            return mapper.Map<PagedList<PlayerDto>>(players);
+            return Map(players);
         }
 
         private async void SaveDbChangesAsync()
@@ -43,6 +43,11 @@ namespace Teams.Domain.Services
         private PlayerDto Map(Player source)
         {
             return mapper.Map<PlayerDto>(source);
+        }
+
+        private PagedList<PlayerDto> Map(PagedList<Player> source)
+        {
+            return mapper.Map<PagedList<PlayerDto>>(source);
         }
     }
 }

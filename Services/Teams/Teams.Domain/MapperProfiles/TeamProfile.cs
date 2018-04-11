@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Infrastructure.Pagination;
 using Teams.Data.Entities;
 using Teams.Data.Entities.Enum;
 using Teams.Dtos;
@@ -22,6 +23,9 @@ namespace Teams.Domain.MapperProfiles
 
             CreateMap<Player, PlayerForCreationDto>();
             CreateMap<PlayerForCreationDto, Player>();
+
+            CreateMap<PagedList<Player>, PagedList<PlayerDto>>();
+            CreateMap<PagedList<PlayerDto>, PagedList<Player>>();
 
             CreateMap<PositionEnum, Position>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => (int)src))
