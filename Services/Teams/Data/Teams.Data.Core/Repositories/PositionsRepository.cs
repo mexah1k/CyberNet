@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 using Teams.Data.Contracts.Context;
 using Teams.Data.Contracts.Repositories;
@@ -9,16 +9,16 @@ namespace Teams.Data.Core.Repositories
 {
     public class PositionsRepository : IPositionsRepository
     {
-        private readonly IDatabaseContext context;
+        private readonly IDataContext context;
 
-        public PositionsRepository(IDatabaseContext context)
+        public PositionsRepository(IDataContext context)
         {
             this.context = context;
         }
 
         public async Task<Position> Get(int id)
         {
-            return await context.Positions.SingleOrDefaultAsync(p => p.Id == id);
+            return await context.Positions.SingleAsync(p => p.Id == id);
         }
 
         public void Dispose()

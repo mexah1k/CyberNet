@@ -13,9 +13,9 @@ namespace Teams.Data.Core.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
-        private readonly IDatabaseContext context;
+        private readonly IDataContext context;
 
-        public PlayerRepository(IDatabaseContext context)
+        public PlayerRepository(IDataContext context)
         {
             this.context = context;
         }
@@ -25,7 +25,15 @@ namespace Teams.Data.Core.Repositories
             return await context.Players
                 .Include(p => p.Position)
                 .Include(p => p.Team)
-                .SingleOrDefaultAsync(u => u.Id == id);
+                .SingleAsync(u => u.Id == id);
+        }
+
+        public async Task<Player> Get(int teamId, int playerId)
+        {
+            return await context.Players
+                .Include(p => p.Position)
+                .Include(p => p.Team)
+                .SingleAsync(p => p.Id == playerId && p.TeamId == teamId);
         }
 
         public async Task<PagedList<Player>> Get(PagingParameter paging)
@@ -36,7 +44,7 @@ namespace Teams.Data.Core.Repositories
                 .ToPaginatedResult(paging);
         }
 
-        public async Task<PagedList<Player>> GetPlayersByTeam(PagingParameter paging, int teamId)
+        public async Task<PagedList<Player>> Get(PagingParameter paging, int teamId)
         {
             return await context.Players
                 .Where(p => p.TeamId == teamId)
@@ -47,15 +55,7 @@ namespace Teams.Data.Core.Repositories
                 .ToPaginatedResult(paging);
         }
 
-        public async Task<Player> GetPlayerByTeam(int teamId, int playerId)
-        {
-            return await context.Players
-                .Include(p => p.Position)
-                .Include(p => p.Team)
-                .SingleOrDefaultAsync(p => p.Id == playerId && p.TeamId == teamId);
-        }
-
-        public async Task Add(Player player)
+        public async Task Create(Player player)
         {
             Throw.IfNull(player);
 
@@ -65,13 +65,17 @@ namespace Teams.Data.Core.Repositories
             await context.Players.AddAsync(player);
         }
 
+        public async Task AddToTeam(int teamId, int playerId)
+        {
+            var team = await context.Teams.SingleAsync(t => t.Id == teamId);
+            var player = await context.Players.SingleAsync(p => p.Id == playerId);
+
+            team.Players.Add(player);
+        }
+
         public async Task Delete(int id)
         {
-            var user = await context.Players.SingleOrDefaultAsync(u => u.Id == id);
-
-            if (user == null)
-                throw new Exception(); // todo: Add PlayerNotFoundException
-
+            var user = await Get(id);
             context.Players.Remove(user);
         }
 

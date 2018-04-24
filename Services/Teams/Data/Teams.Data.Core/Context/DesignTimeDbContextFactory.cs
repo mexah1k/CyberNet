@@ -2,11 +2,11 @@
 
 namespace Teams.Data.Core.Context
 {
-    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
+    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DataContext>
     {
-        public ApplicationDbContext CreateDbContext(string[] args)
+        public DataContext CreateDbContext(string[] args)
         {
-            return new ApplicationDbContext();
+            return new DataContext();
         }
 
         public static void Main(string[] args)

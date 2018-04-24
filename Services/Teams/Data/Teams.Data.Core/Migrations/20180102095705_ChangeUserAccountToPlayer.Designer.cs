@@ -8,7 +8,7 @@ using Teams.Data.Core.Context;
 
 namespace Teams.Data.Core.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20180102095705_ChangeUserAccountToPlayer")]
     partial class ChangeUserAccountToPlayer
     {

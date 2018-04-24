@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Teams.Domain.Contracts;
+using Teams.Dtos;
 
 namespace Teams.Api.Controllers
 {
@@ -27,34 +28,20 @@ namespace Teams.Api.Controllers
             return Ok(await players.Get(paging, teamId));
         }
 
-        /*
         [HttpPost]
         public async Task<IActionResult> Create(int teamId, [FromBody]PlayerForCreationDto playerForCreationDto)
         {
-            if (playerForCreationDto == null)
-                return BadRequest();
-
-            if (!ModelState.IsValid)
-                return new UnprocessableEntityObjectResult(ModelState);
-
-            if (!unitOfWork.Teams.IsExist(teamId).Result)
-                return NotFound("Team not found"); // todo: move message to resource file
-
-            var player = Map(playerForCreationDto);
-            await unitOfWork.Players.Add(player);
-
-            if (!await unitOfWork.SaveChangesAsync())
-                return BadRequest("Creation failed."); // todo: move message to resource file
+            var createdPlayer = await players.Create(playerForCreationDto, teamId);
 
             return CreatedAtRoute("GetPlayerForTeam",
-                new { teamId, id = player.Id },
-                Map(player));
+                new { teamId, id = createdPlayer.Id },
+                createdPlayer);
         }
 
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
-            await unitOfWork.Players.Delete(id);
-        }*/
+            await players.Delete(id);
+        }
     }
 }

@@ -7,8 +7,6 @@ namespace Teams.Data.Contracts.Repositories
 {
     public interface ITeamRepository : IDisposable
     {
-        Task<bool> IsExist(int id);
-
         Task Create(Team team);
 
         Task Delete(int id);

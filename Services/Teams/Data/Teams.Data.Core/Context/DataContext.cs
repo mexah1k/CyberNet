@@ -5,11 +5,11 @@ using Teams.Data.Entities;
 
 namespace Teams.Data.Core.Context
 {
-    public class ApplicationDbContext : DbContext, IDatabaseContext
+    public class DataContext : DbContext, IDataContext
     {
         public DbSet<Player> Players { get; set; }
 
-        public DbSet<Entities.Team> Teams { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
         public DbSet<Position> Positions { get; set; }
 

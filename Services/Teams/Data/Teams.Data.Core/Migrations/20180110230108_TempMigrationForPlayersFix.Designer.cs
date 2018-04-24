@@ -8,7 +8,7 @@ using Teams.Data.Core.Context;
 
 namespace Teams.Data.Core.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20180110230108_TempMigrationForPlayersFix")]
     partial class TempMigrationForPlayersFix
     {

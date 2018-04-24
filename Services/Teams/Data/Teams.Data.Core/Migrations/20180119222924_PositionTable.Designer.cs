@@ -9,7 +9,7 @@ using Teams.Data.Core.Context;
 
 namespace Teams.Data.Core.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20180119222924_PositionTable")]
     partial class PositionTable
     {

@@ -13,7 +13,7 @@ namespace Teams.Data.Core
         public static IServiceCollection RegisterTeamDataServices(this IServiceCollection services)
         {
             services
-                .AddScoped<IDatabaseContext, ApplicationDbContext>()
+                .AddScoped<IDataContext, DataContext>()
                 .AddScoped<IPlayerRepository, PlayerRepository>()
                 .AddScoped<IPositionsRepository, PositionsRepository>()
                 .AddScoped<ITeamRepository, TeamRepository>()

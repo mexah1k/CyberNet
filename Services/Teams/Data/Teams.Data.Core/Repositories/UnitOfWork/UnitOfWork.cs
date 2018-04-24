@@ -7,7 +7,7 @@ namespace Teams.Data.Core.Repositories.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IDatabaseContext context;
+        private readonly IDataContext context;
 
         public IPlayerRepository Players { get; }
 
@@ -15,12 +15,12 @@ namespace Teams.Data.Core.Repositories.UnitOfWork
 
         public IPositionsRepository Positions { get; }
 
-        public UnitOfWork(IDatabaseContext context,
+        public UnitOfWork(IDataContext dbcontext,
             IPlayerRepository players,
             ITeamRepository teams,
             IPositionsRepository positions)
         {
-            this.context = context;
+            context = dbcontext;
             Players = players;
             Teams = teams;
             Positions = positions;

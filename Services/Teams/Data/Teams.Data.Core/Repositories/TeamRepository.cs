@@ -13,16 +13,11 @@ namespace Teams.Data.Core.Repositories
 {
     public class TeamRepository : ITeamRepository
     {
-        private readonly IDatabaseContext context;
+        private readonly IDataContext context;
 
-        public TeamRepository(IDatabaseContext context)
+        public TeamRepository(IDataContext context)
         {
             this.context = context;
-        }
-
-        public async Task<bool> IsExist(int id)
-        {
-            return await context.Teams.AnyAsync(t => t.Id == id);
         }
 
         public async Task Create(Team team)
@@ -36,11 +31,7 @@ namespace Teams.Data.Core.Repositories
 
         public async Task Delete(int id)
         {
-            var team = await context.Teams.SingleOrDefaultAsync(t => t.Id == id);
-
-            if (team == null)
-                throw new Exception(); // todo: custom exception
-
+            var team = await Get(id);
             context.Teams.Remove(team);
         }
 
@@ -48,7 +39,7 @@ namespace Teams.Data.Core.Repositories
         {
             return await context.Teams
                 .Include(t => t.Players)
-                .SingleOrDefaultAsync(t => t.Id == id);
+                .SingleAsync(t => t.Id == id);
         }
 
         public async Task<PagedList<Team>> Get(PagingParameter paging)

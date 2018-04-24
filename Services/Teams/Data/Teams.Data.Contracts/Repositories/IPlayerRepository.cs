@@ -9,13 +9,15 @@ namespace Teams.Data.Contracts.Repositories
     {
         Task<Player> Get(int id);
 
+        Task<Player> Get(int teamId, int playerId);
+
         Task<PagedList<Player>> Get(PagingParameter paging);
 
-        Task<Player> GetPlayerByTeam(int teamId, int playerId);
+        Task<PagedList<Player>> Get(PagingParameter paging, int teamId);
 
-        Task<PagedList<Player>> GetPlayersByTeam(PagingParameter paging, int teamId);
+        Task AddToTeam(int teamId, int playerId);
 
-        Task Add(Player player);
+        Task Create(Player player);
 
         Task Delete(int id);
     }

@@ -4,7 +4,7 @@ using Teams.Data.Entities;
 
 namespace Teams.Data.Contracts.Context
 {
-    public interface IDatabaseContext
+    public interface IDataContext
     {
         DbSet<Player> Players { get; set; }
         DbSet<Team> Teams { get; set; }

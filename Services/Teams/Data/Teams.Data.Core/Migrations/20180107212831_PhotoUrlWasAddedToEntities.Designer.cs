@@ -8,7 +8,7 @@ using Teams.Data.Core.Context;
 
 namespace Teams.Data.Core.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20180107212831_PhotoUrlWasAddedToEntities")]
     partial class PhotoUrlWasAddedToEntities
     {
