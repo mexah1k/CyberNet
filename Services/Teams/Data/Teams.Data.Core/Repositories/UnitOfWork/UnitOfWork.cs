@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Teams.Data.Contracts.Context;
 using Teams.Data.Contracts.Repositories;
 using Teams.Data.Contracts.Repositories.UnitOfWork;
@@ -29,6 +30,15 @@ namespace Teams.Data.Core.Repositories.UnitOfWork
         public async Task<bool> SaveChangesAsync()
         {
             return await context.SaveChangesAsync() > 0;
+        }
+
+        public void Dispose()
+        {
+            Players?.Dispose();
+            Teams?.Dispose();
+            Positions?.Dispose();
+            context?.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

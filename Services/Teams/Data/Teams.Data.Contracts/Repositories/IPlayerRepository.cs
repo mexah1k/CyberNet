@@ -17,7 +17,9 @@ namespace Teams.Data.Contracts.Repositories
 
         Task AddToTeam(int teamId, int playerId);
 
-        Task Create(Player player);
+        Task RemoveFromTeam(int teamId, int playerId);
+
+        Task Create(Player player, int teamId);
 
         Task Delete(int id);
     }

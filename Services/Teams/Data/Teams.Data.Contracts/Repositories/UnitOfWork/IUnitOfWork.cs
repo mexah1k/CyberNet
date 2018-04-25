@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Teams.Data.Contracts.Repositories.UnitOfWork
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IPlayerRepository Players { get; }
 

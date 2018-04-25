@@ -1,9 +1,9 @@
-﻿using Infrastructure.Pagination;
+﻿using Infrastructure.Exceptions;
+using Infrastructure.Pagination;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-
 
 namespace Infrastructure.Extensions
 {
@@ -24,6 +24,18 @@ namespace Infrastructure.Extensions
                 PageSize = paging.PageSize,
                 TotalCount = items.Count
             };
+        }
+
+        public static async Task<T> GetOrThrow<T>(this IQueryable<T> query, int itemId) where T : IKeyIdentifier
+        {
+            T result = await query.FirstOrDefaultAsync(x => x.Id == itemId);
+
+            if (result == null)
+            {
+                throw new ItemNotFoundException(typeof(T).ToString(), itemId);
+            }
+
+            return result;
         }
     }
 }

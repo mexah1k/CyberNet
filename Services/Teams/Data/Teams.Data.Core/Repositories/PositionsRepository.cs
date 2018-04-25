@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Infrastructure.Extensions;
 using System;
 using System.Threading.Tasks;
 using Teams.Data.Contracts.Context;
@@ -18,7 +18,7 @@ namespace Teams.Data.Core.Repositories
 
         public async Task<Position> Get(int id)
         {
-            return await context.Positions.SingleAsync(p => p.Id == id);
+            return await context.Positions.GetOrThrow(id);
         }
 
         public void Dispose()

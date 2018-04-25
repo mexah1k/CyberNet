@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Infrastructure.Extensions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Teams.Data.Entities
 {
-    public class Position
+    public class Position : IKeyIdentifier
     {
         [Key]
         public int Id { get; set; }

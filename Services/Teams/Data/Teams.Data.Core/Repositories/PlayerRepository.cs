@@ -25,7 +25,7 @@ namespace Teams.Data.Core.Repositories
             return await context.Players
                 .Include(p => p.Position)
                 .Include(p => p.Team)
-                .SingleAsync(u => u.Id == id);
+                .GetOrThrow(id);
         }
 
         public async Task<Player> Get(int teamId, int playerId)
@@ -38,6 +38,8 @@ namespace Teams.Data.Core.Repositories
 
         public async Task<PagedList<Player>> Get(PagingParameter paging)
         {
+            Throw.IfNull(paging, nameof(paging));
+
             return await context.Players
                 .Include(p => p.Position)
                 .Include(p => p.Team)
@@ -46,6 +48,8 @@ namespace Teams.Data.Core.Repositories
 
         public async Task<PagedList<Player>> Get(PagingParameter paging, int teamId)
         {
+            Throw.IfNull(paging, nameof(paging));
+
             return await context.Players
                 .Where(p => p.TeamId == teamId)
                 .OrderBy(p => p.Points)
@@ -55,9 +59,11 @@ namespace Teams.Data.Core.Repositories
                 .ToPaginatedResult(paging);
         }
 
-        public async Task Create(Player player)
+        public async Task Create(Player player, int teamId)
         {
-            Throw.IfNull(player);
+            Throw.IfNull(player, nameof(player));
+
+            player.Team = await context.Teams.GetOrThrow(teamId);
 
             if (player.Position != null)
                 context.Positions.Attach(player.Position);
@@ -67,16 +73,24 @@ namespace Teams.Data.Core.Repositories
 
         public async Task AddToTeam(int teamId, int playerId)
         {
-            var team = await context.Teams.SingleAsync(t => t.Id == teamId);
-            var player = await context.Players.SingleAsync(p => p.Id == playerId);
+            var team = await context.Teams.GetOrThrow(teamId);
+            var player = await context.Players.GetOrThrow(playerId);
 
             team.Players.Add(player);
         }
 
+        public async Task RemoveFromTeam(int teamId, int playerId)
+        {
+            var team = await context.Teams.GetOrThrow(teamId);
+            var player = await context.Players.GetOrThrow(playerId);
+
+            team.Players.Remove(player);
+        }
+
         public async Task Delete(int id)
         {
-            var user = await Get(id);
-            context.Players.Remove(user);
+            var player = await Get(id);
+            context.Players.Remove(player);
         }
 
         public void Dispose()

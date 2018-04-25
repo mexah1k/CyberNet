@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Infrastructure.Extensions;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Teams.Data.Entities
 {
-    public class Player
+    public class Player : IKeyIdentifier
     {
         [Key]
         public int Id { get; set; }

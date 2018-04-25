@@ -22,7 +22,7 @@ namespace Teams.Data.Core.Repositories
 
         public async Task Create(Team team)
         {
-            Throw.IfNull(team);
+            Throw.IfNull(team, nameof(team));
 
             context.Positions.AttachRange(team.Players.Select(p => p.Position));
 
@@ -39,11 +39,13 @@ namespace Teams.Data.Core.Repositories
         {
             return await context.Teams
                 .Include(t => t.Players)
-                .SingleAsync(t => t.Id == id);
+                .GetOrThrow(id);
         }
 
         public async Task<PagedList<Team>> Get(PagingParameter paging)
         {
+            Throw.IfNull(paging, nameof(paging));
+
             return await context.Teams
                 .Include(t => t.Players)
                 .ToPaginatedResult(paging);

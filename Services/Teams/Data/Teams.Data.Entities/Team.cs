@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Infrastructure.Extensions;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Teams.Data.Entities
 {
-    public class Team
+    public class Team : IKeyIdentifier
     {
         [Key]
         public int Id { get; set; }

@@ -40,10 +40,10 @@ namespace Teams.Domain.Services
 
         public async Task<PlayerDto> Create(PlayerForCreationDto playerDto, int teamId)
         {
-            await unitOfWork.Players.Create(Map(playerDto));
+            await unitOfWork.Players.Create(Map(playerDto), teamId);
 
             var player = Map(playerDto);
-            SaveDbChangesAsync();
+            await SaveDbChangesAsync();
 
             return Map(player);
         }
@@ -51,10 +51,10 @@ namespace Teams.Domain.Services
         public async Task Delete(int playerId)
         {
             await unitOfWork.Players.Delete(playerId);
-            SaveDbChangesAsync();
+            await SaveDbChangesAsync();
         }
 
-        private async void SaveDbChangesAsync()
+        private async Task SaveDbChangesAsync()
         {
             if (!await unitOfWork.SaveChangesAsync())
                 throw new Exception("Something went wrong."); // todo: move message to resource file

@@ -8,12 +8,12 @@ namespace Infrastructure.Exceptions
 
         public int Identifier { get; set; }
 
-        public ItemNotFoundException(string itemName) : base($"Item {itemName} was not found")
+        public ItemNotFoundException(string itemName) : base($"{itemName} was not found")
         {
             ItemName = itemName;
         }
 
-        public ItemNotFoundException(string itemName, int identifier) : base($"Item {itemName} with identifier {identifier} was not found")
+        public ItemNotFoundException(string itemName, int identifier) : base($"{itemName} with identifier {identifier} was not found")
         {
             ItemName = itemName;
             Identifier = identifier;

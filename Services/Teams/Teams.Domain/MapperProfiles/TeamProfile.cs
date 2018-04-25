@@ -10,6 +10,12 @@ namespace Teams.Domain.MapperProfiles
     {
         public TeamProfile()
         {
+            MapEntities();
+            MapPagedLists();
+        }
+
+        private void MapEntities()
+        {
             CreateMap<Player, PlayerDto>()
                 .ForMember(dest => dest.Position, opt => opt.MapFrom(
                     src => src.Position.Name));
@@ -24,12 +30,15 @@ namespace Teams.Domain.MapperProfiles
             CreateMap<Player, PlayerForCreationDto>();
             CreateMap<PlayerForCreationDto, Player>();
 
-            CreateMap<PagedList<Player>, PagedList<PlayerDto>>();
-            CreateMap<PagedList<PlayerDto>, PagedList<Player>>();
-
             CreateMap<PositionEnum, Position>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => (int)src))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ToString()));
+        }
+
+        private void MapPagedLists()
+        {
+            CreateMap<PagedList<Player>, PagedList<PlayerDto>>();
+            CreateMap<PagedList<PlayerDto>, PagedList<Player>>();
         }
     }
 }
