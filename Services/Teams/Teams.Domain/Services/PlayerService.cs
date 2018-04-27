@@ -26,21 +26,15 @@ namespace Teams.Domain.Services
             return Map(player);
         }
 
-        public async Task<PlayerDto> Get(int teamId, int id)
+        public async Task<PagedList<PlayerDto>> Get(PagingParameter paging)
         {
-            var player = await unitOfWork.Players.Get(teamId, id);
-            return Map(player);
-        }
-
-        public async Task<PagedList<PlayerDto>> Get(PagingParameter paging, int teamId)
-        {
-            var players = await unitOfWork.Players.Get(paging, teamId);
+            var players = await unitOfWork.Players.Get(paging);
             return Map(players);
         }
 
-        public async Task<PlayerDto> Create(PlayerForCreationDto playerDto, int teamId)
+        public async Task<PlayerDto> Create(PlayerForCreationDto playerDto)
         {
-            await unitOfWork.Players.Create(Map(playerDto), teamId);
+            await unitOfWork.Players.Create(Map(playerDto));
 
             var player = Map(playerDto);
             await SaveDbChangesAsync();
@@ -48,10 +42,15 @@ namespace Teams.Domain.Services
             return Map(player);
         }
 
-        public async Task Delete(int playerId)
+        public async Task Delete(int id)
         {
-            await unitOfWork.Players.Delete(playerId);
+            await unitOfWork.Players.Delete(id);
             await SaveDbChangesAsync();
+        }
+
+        public Task Update(int id)
+        {
+            throw new NotImplementedException();
         }
 
         private async Task SaveDbChangesAsync()
@@ -63,11 +62,6 @@ namespace Teams.Domain.Services
         private PlayerDto Map(Player source)
         {
             return mapper.Map<PlayerDto>(source);
-        }
-
-        private Player Map(PlayerDto source)
-        {
-            return mapper.Map<Player>(source);
         }
 
         private Player Map(PlayerForCreationDto source)

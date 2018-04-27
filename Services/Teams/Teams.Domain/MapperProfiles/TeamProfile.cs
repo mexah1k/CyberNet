@@ -39,6 +39,9 @@ namespace Teams.Domain.MapperProfiles
         {
             CreateMap<PagedList<Player>, PagedList<PlayerDto>>();
             CreateMap<PagedList<PlayerDto>, PagedList<Player>>();
+
+            CreateMap<PagedList<Team>, PagedList<TeamDto>>();
+            CreateMap<PagedList<TeamDto>, PagedList<Team>>();
         }
     }
 }

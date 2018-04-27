@@ -21,5 +21,7 @@ namespace Teams.Dtos
 
         [Required]
         public PositionEnum Position { get; set; }
+
+        public int TeamId { get; set; }
     }
 }

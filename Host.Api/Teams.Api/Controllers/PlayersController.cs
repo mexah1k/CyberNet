@@ -6,42 +6,43 @@ using Teams.Dtos;
 
 namespace Teams.Api.Controllers
 {
-    [Route("api/teams/{teamId}/players")]
+    [Route("api/players")]
     public class PlayersController : Controller
     {
         private readonly IPlayerService players;
 
-        public PlayersController(IPlayerService players)
+        public PlayersController(IPlayerService playerService)
         {
-            this.players = players;
+            players = playerService;
         }
 
         [HttpGet("{id}", Name = "GetPlayerForTeam")]
-        public async Task<IActionResult> Get(int teamId, int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return Ok(await players.Get(teamId, id));
+            return Ok(await players.Get(id));
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(PagingParameter paging, int teamId)
+        public async Task<IActionResult> Get(PagingParameter paging)
         {
-            return Ok(await players.Get(paging, teamId));
+            return Ok(await players.Get(paging));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(int teamId, [FromBody]PlayerForCreationDto playerForCreationDto)
+        public async Task<IActionResult> Create([FromBody]PlayerForCreationDto playerForCreationDto)
         {
-            var createdPlayer = await players.Create(playerForCreationDto, teamId);
+            var createdPlayer = await players.Create(playerForCreationDto);
 
             return CreatedAtRoute("GetPlayerForTeam",
-                new { teamId, id = createdPlayer.Id },
+                new { id = createdPlayer.Id },
                 createdPlayer);
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             await players.Delete(id);
+            return NoContent();
         }
     }
 }

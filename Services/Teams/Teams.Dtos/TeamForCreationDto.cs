@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Teams.Dtos
 {
@@ -9,13 +8,5 @@ namespace Teams.Dtos
         public string Name { get; set; }
 
         public string LogoUrl { get; set; }
-
-        [Required]
-        public int Points { get; set; }
-
-        [Required]
-        public decimal Revenue { get; set; }
-
-        public ICollection<PlayerForCreationDto> Players { get; set; } = new List<PlayerForCreationDto>();
     }
 }

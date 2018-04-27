@@ -11,6 +11,8 @@ namespace Infrastructure.Extensions
     {
         public static async Task<PagedList<T>> ToPaginatedResult<T>(this IQueryable<T> query, PagingParameter paging)
         {
+            var totalCount = await query.CountAsync();
+
             var items = await query
                 .Skip((paging.PageNumber - 1) * paging.PageSize)
                 .Take(paging.PageSize)
@@ -20,19 +22,19 @@ namespace Infrastructure.Extensions
             {
                 Result = items,
                 CurrentPage = paging.PageNumber,
-                TotalPages = (int)Math.Ceiling(items.Count / (double)paging.PageSize),
+                TotalPages = (int)Math.Ceiling(totalCount / (double)paging.PageSize),
                 PageSize = paging.PageSize,
-                TotalCount = items.Count
+                TotalCount = totalCount
             };
         }
 
         public static async Task<T> GetOrThrow<T>(this IQueryable<T> query, int itemId) where T : IKeyIdentifier
         {
-            T result = await query.FirstOrDefaultAsync(x => x.Id == itemId);
+            T result = await query.FirstOrDefaultAsync(item => item.Id == itemId);
 
             if (result == null)
             {
-                throw new ItemNotFoundException(typeof(T).ToString(), itemId);
+                throw new ItemNotFoundException(typeof(T).Name, itemId);
             }
 
             return result;

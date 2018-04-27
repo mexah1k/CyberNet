@@ -3,7 +3,6 @@ using Infrastructure.Extensions;
 using Infrastructure.Pagination;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Teams.Data.Contracts.Context;
 using Teams.Data.Contracts.Repositories;
@@ -23,9 +22,6 @@ namespace Teams.Data.Core.Repositories
         public async Task Create(Team team)
         {
             Throw.IfNull(team, nameof(team));
-
-            context.Positions.AttachRange(team.Players.Select(p => p.Position));
-
             await context.Teams.AddAsync(team);
         }
 
