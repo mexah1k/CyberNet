@@ -34,9 +34,9 @@ namespace Teams.Domain.Services
 
         public async Task<TeamDto> Create(TeamForCreationDto playerDto)
         {
-            await unitOfWork.Teams.Create(Map(playerDto));
-
             var team = Map(playerDto);
+
+            await unitOfWork.Teams.Create(team);
             await SaveDbChangesAsync();
 
             return Map(team);

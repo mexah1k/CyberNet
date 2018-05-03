@@ -8,8 +8,6 @@
 
         public int Points { get; set; }
 
-        public decimal Revenue { get; set; }
-
         public string LogoUrl { get; set; }
     }
 }
