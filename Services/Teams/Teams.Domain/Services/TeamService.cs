@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Infrastructure.Pagination;
+using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Threading.Tasks;
 using Teams.Data.Contracts.Repositories.UnitOfWork;
@@ -48,9 +49,23 @@ namespace Teams.Domain.Services
             await SaveDbChangesAsync();
         }
 
-        public async Task Update(int id)
+        public async Task Update(TeamForUpdateDto teamDto, int id)
         {
-            throw new NotImplementedException();
+            var team = await unitOfWork.Teams.Get(id);
+
+            mapper.Map(teamDto, team);
+            await SaveDbChangesAsync();
+        }
+
+        public async Task PartialUpdate(JsonPatchDocument<TeamForUpdateDto> teamPatchDto, int id)
+        {
+            var team = await unitOfWork.Teams.Get(id);
+            var teamCreatingDto = mapper.Map<TeamForUpdateDto>(team);
+
+            teamPatchDto.ApplyTo(teamCreatingDto);
+            mapper.Map(teamCreatingDto, team);
+
+            await SaveDbChangesAsync();
         }
 
         private async Task SaveDbChangesAsync()

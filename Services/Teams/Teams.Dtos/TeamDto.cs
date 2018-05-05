@@ -8,6 +8,6 @@
 
         public int Points { get; set; }
 
-        public string LogoUrl { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }

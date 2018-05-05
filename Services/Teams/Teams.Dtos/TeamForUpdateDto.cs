@@ -2,7 +2,7 @@
 
 namespace Teams.Dtos
 {
-    public class TeamForCreationDto
+    public class TeamForUpdateDto
     {
         [Required]
         public string Name { get; set; }

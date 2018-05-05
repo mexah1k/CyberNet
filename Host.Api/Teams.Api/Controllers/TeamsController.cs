@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Pagination;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Teams.Domain.Contracts;
@@ -40,7 +41,22 @@ namespace Teams.Api.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await teams.Delete(id);
-            return NoContent();
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromBody] TeamForUpdateDto teamDto, int id)
+        {
+            await teams.Update(teamDto, id);
+            return Ok();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch([FromBody] JsonPatchDocument<TeamForUpdateDto> teamDto, int id)
+        {
+            await teams.PartialUpdate(teamDto, id);
+
+            return Ok();
         }
     }
 }

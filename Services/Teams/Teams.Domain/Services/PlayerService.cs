@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Infrastructure.Pagination;
+using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Threading.Tasks;
 using Teams.Data.Contracts.Repositories.UnitOfWork;
@@ -48,9 +49,36 @@ namespace Teams.Domain.Services
             await SaveDbChangesAsync();
         }
 
-        public Task Update(int id)
+        // TODO: Upserting could be implemented (create if not exist)
+        public async Task PartialUpdate(JsonPatchDocument<PlayerForUpdateDto> playerPatchDto, int playerId, int? positionId, int? teamId)
         {
-            throw new NotImplementedException();
+            var player = await unitOfWork.Players.Get(playerId);
+            var playerCreatingDto = mapper.Map<PlayerForUpdateDto>(player);
+
+            playerPatchDto.ApplyTo(playerCreatingDto);
+            mapper.Map(playerCreatingDto, player);
+
+            if (positionId.HasValue)
+                player.Position = await unitOfWork.Positions.Get(positionId.Value);
+
+            if (teamId.HasValue)
+                player.Team = await unitOfWork.Teams.Get(teamId.Value);
+
+            await SaveDbChangesAsync();
+        }
+
+        // TODO: Upserting could be implemented (create if not exist)
+        public async Task Update(PlayerForUpdateDto playerDto, int playerId, int positionId, int? teamId)
+        {
+            var player = await unitOfWork.Players.Get(playerId);
+
+            mapper.Map(playerDto, player);
+            player.Position = await unitOfWork.Positions.Get(positionId);
+
+            if (teamId.HasValue)
+                player.Team = await unitOfWork.Teams.Get(teamId.Value);
+
+            await SaveDbChangesAsync();
         }
 
         private async Task SaveDbChangesAsync()

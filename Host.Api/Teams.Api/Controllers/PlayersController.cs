@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Pagination;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Teams.Domain.Contracts;
@@ -29,9 +30,9 @@ namespace Teams.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]PlayerForCreationDto playerForCreationDto)
+        public async Task<IActionResult> Create([FromBody]PlayerForCreationDto playerDto)
         {
-            var createdPlayer = await players.Create(playerForCreationDto);
+            var createdPlayer = await players.Create(playerDto);
 
             return CreatedAtRoute("GetPlayerForTeam",
                 new { id = createdPlayer.Id },
@@ -42,7 +43,23 @@ namespace Teams.Api.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await players.Delete(id);
-            return NoContent();
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromBody] PlayerForUpdateDto playerDto, int id, int positionId, int? teamId)
+        {
+            await players.Update(playerDto, id, positionId, teamId);
+            return Ok();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch([FromBody] JsonPatchDocument<PlayerForUpdateDto> playerDto, int id,
+            int? positionId, int? teamId)
+        {
+            await players.PartialUpdate(playerDto, id, positionId, teamId);
+
+            return Ok();
         }
     }
 }

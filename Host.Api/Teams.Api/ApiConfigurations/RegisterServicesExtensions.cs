@@ -14,7 +14,8 @@ namespace Teams.Api.ApiConfigurations
     {
         public static IServiceCollection ConfigureApiServices(this IServiceCollection services)
         {
-            services.AddMvc(setupAction =>
+            services
+                .AddMvc(setupAction =>
                     {
                         setupAction.ReturnHttpNotAcceptable = true;
                         setupAction.Filters.Add(typeof(ModelStateValidationActionFilter));
