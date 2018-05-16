@@ -50,41 +50,52 @@ namespace Teams.Domain.Services
         }
 
         // TODO: Upserting could be implemented (create if not exist)
-        public async Task PartialUpdate(JsonPatchDocument<PlayerForUpdateDto> playerPatchDto, int playerId, int? positionId, int? teamId)
+        public async Task PartialUpdate(JsonPatchDocument<PlayerForUpdateDto> playerPatchDto, int id)
         {
-            var player = await unitOfWork.Players.Get(playerId);
-            var playerCreatingDto = mapper.Map<PlayerForUpdateDto>(player);
+            var player = await unitOfWork.Players.Get(id);
+            var playerForUpdateDto = mapper.Map<PlayerForUpdateDto>(player);
 
-            playerPatchDto.ApplyTo(playerCreatingDto);
-            mapper.Map(playerCreatingDto, player);
+            playerPatchDto.ApplyTo(playerForUpdateDto);
+            mapper.Map(playerForUpdateDto, player);
 
-            if (positionId.HasValue)
-                player.Position = await unitOfWork.Positions.Get(positionId.Value);
-
-            if (teamId.HasValue)
-                player.Team = await unitOfWork.Teams.Get(teamId.Value);
+            await UpdatePlayerPosition(playerForUpdateDto, player);
+            await UpdatePlayerTeam(playerForUpdateDto, player);
 
             await SaveDbChangesAsync();
         }
 
         // TODO: Upserting could be implemented (create if not exist)
-        public async Task Update(PlayerForUpdateDto playerDto, int playerId, int positionId, int? teamId)
+        public async Task Update(PlayerForUpdateDto playerForUpdateDto, int id)
         {
-            var player = await unitOfWork.Players.Get(playerId);
+            var player = await unitOfWork.Players.Get(id);
 
-            mapper.Map(playerDto, player);
-            player.Position = await unitOfWork.Positions.Get(positionId);
+            mapper.Map(playerForUpdateDto, player);
 
-            if (teamId.HasValue)
-                player.Team = await unitOfWork.Teams.Get(teamId.Value);
+            if (playerForUpdateDto.PositionId.HasValue)
+                player.Position = await unitOfWork.Positions.Get(playerForUpdateDto.PositionId.Value);
+
+            await UpdatePlayerPosition(playerForUpdateDto, player);
+            await UpdatePlayerTeam(playerForUpdateDto, player);
 
             await SaveDbChangesAsync();
+        }
+
+        private async Task UpdatePlayerTeam(PlayerForUpdateDto playerDto, Player player)
+        {
+            if (playerDto.TeamId.HasValue)
+                player.Team = await unitOfWork.Teams.Get(playerDto.TeamId.Value);
         }
 
         private async Task SaveDbChangesAsync()
         {
             if (!await unitOfWork.SaveChangesAsync())
                 throw new Exception("Something went wrong."); // todo: move message to resource file
+        }
+
+        private async Task UpdatePlayerPosition(PlayerForUpdateDto playerForUpdateDto, Player player)
+        {
+            if (playerForUpdateDto.PositionId.HasValue)
+                player.Position = await unitOfWork.Positions.Get(playerForUpdateDto.PositionId.Value);
         }
 
         private PlayerDto Map(Player source)

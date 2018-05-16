@@ -11,7 +11,7 @@ namespace Teams.Domain.Contracts
         Task<PagedList<PlayerDto>> Get(PagingParameter paging);
         Task<PlayerDto> Create(PlayerForCreationDto playerDto);
         Task Delete(int id);
-        Task Update(PlayerForUpdateDto playerDto, int playerId, int positionId, int? teamId);
-        Task PartialUpdate(JsonPatchDocument<PlayerForUpdateDto> playerPatchDto, int playerId, int? positionId, int? teamId);
+        Task Update(PlayerForUpdateDto playerDto, int id);
+        Task PartialUpdate(JsonPatchDocument<PlayerForUpdateDto> playerPatchDto, int id);
     }
 }

@@ -16,5 +16,9 @@ namespace Teams.Dtos
         public int Points { get; set; }
 
         public string PhotoUrl { get; set; }
+
+        public int? PositionId { get; set; }
+
+        public int? TeamId { get; set; }
     }
 }

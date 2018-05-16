@@ -47,7 +47,9 @@ namespace Teams.Domain.MapperProfiles
             CreateMap<PlayerDto, Player>();
 
             CreateMap<PlayerForCreationDto, Player>();
-            CreateMap<PlayerForUpdateDto, Player>();
+            CreateMap<PlayerForUpdateDto, Player>()
+                .ForMember(dest => dest.PositionId, opt => opt.Ignore())
+                .ForMember(dest => dest.TeamId, opt => opt.Ignore());
             CreateMap<Player, PlayerForUpdateDto>();
         }
 

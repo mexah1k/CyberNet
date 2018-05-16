@@ -47,17 +47,16 @@ namespace Teams.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromBody] PlayerForUpdateDto playerDto, int id, int positionId, int? teamId)
+        public async Task<IActionResult> Update([FromBody] PlayerForUpdateDto playerDto, int id)
         {
-            await players.Update(playerDto, id, positionId, teamId);
+            await players.Update(playerDto, id);
             return Ok();
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch([FromBody] JsonPatchDocument<PlayerForUpdateDto> playerDto, int id,
-            int? positionId, int? teamId)
+        public async Task<IActionResult> Patch([FromBody] JsonPatchDocument<PlayerForUpdateDto> playerDto, int id)
         {
-            await players.PartialUpdate(playerDto, id, positionId, teamId);
+            await players.PartialUpdate(playerDto, id);
 
             return Ok();
         }

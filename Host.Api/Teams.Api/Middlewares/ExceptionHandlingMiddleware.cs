@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Infrastructure.Exceptions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch.Exceptions;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Infrastructure.Exceptions;
-using Microsoft.Extensions.Logging;
 
 namespace Teams.Api.Middlewares
 {
@@ -30,6 +31,10 @@ namespace Teams.Api.Middlewares
             catch (UnauthorizedAccessException ex)
             {
                 await HandleExceptionAsync(context, ex.Message, HttpStatusCode.Unauthorized);
+            }
+            catch (JsonPatchException ex)
+            {
+                await HandleExceptionAsync(context, ex.Message, HttpStatusCode.BadRequest);
             }
             catch (Exception ex)
             {
