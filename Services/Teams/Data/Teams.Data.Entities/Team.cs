@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Extensions;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Teams.Data.Entities
 {
@@ -15,10 +16,19 @@ namespace Teams.Data.Entities
 
         public string PhotoUrl { get; set; }
 
-        public int Points { get; set; }
-
         public decimal Revenue { get; set; }
 
         public ICollection<Player> Players { get; set; }
+
+        public int GetPoints()
+        {
+            if (!Players.Any())
+                return 0;
+
+            return Players
+                .OrderBy(p => p.Points)
+                .Take(3)
+                .Sum(p => p.Points);
+        }
     }
 }

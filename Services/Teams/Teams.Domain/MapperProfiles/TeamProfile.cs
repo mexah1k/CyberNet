@@ -24,13 +24,17 @@ namespace Teams.Domain.MapperProfiles
         private void MapPosition()
         {
             CreateMap<PositionEnum, Position>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => (int)src))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ToString()));
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(
+                    src => (int)src))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(
+                    src => src.ToString()));
         }
 
         private void MapTeam()
         {
-            CreateMap<Team, TeamDto>();
+            CreateMap<Team, TeamDto>()
+                .ForMember(dest => dest.Points, opt => opt.MapFrom(
+                    src => src.GetPoints()));
             CreateMap<TeamDto, Team>();
 
             CreateMap<TeamForCreationDto, Team>();

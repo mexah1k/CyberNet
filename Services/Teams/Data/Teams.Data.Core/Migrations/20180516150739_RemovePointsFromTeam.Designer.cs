@@ -11,9 +11,10 @@ using Teams.Data.Core.Context;
 namespace Teams.Data.Core.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180516150739_RemovePointsFromTeam")]
+    partial class RemovePointsFromTeam
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
