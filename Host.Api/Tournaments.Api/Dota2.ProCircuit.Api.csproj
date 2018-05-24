@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DependencyInjectionPackages\**" />
+    <Content Remove="DependencyInjectionPackages\**" />
+    <EmbeddedResource Remove="DependencyInjectionPackages\**" />
+    <None Remove="DependencyInjectionPackages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Services\Dota2\Tournaments\Tournaments.Data\Tournaments.Data.Core\Tournaments.Data.Core.csproj" />
+    <ProjectReference Include="..\..\Services\Dota2\Tournaments\Tournaments.Domain\Tournaments.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
