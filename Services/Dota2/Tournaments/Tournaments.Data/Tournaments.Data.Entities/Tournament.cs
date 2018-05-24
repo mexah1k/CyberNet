@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Tournaments.Data.Entities
 {
-    public class Tournamet : IKeyIdentifier
+    public class Tournament : IKeyIdentifier
     {
         public int Id { get; set; }
 
@@ -15,5 +15,7 @@ namespace Tournaments.Data.Entities
         public DateTime EndDate { get; set; }
 
         public IEnumerable<Team> Teams { get; set; }
+
+        public IEnumerable<Serie> Series { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace Tournaments.Data.Entities
 
             return Players
                 .OrderBy(p => p.Points)
-                .Take(3)
+                .Take(3) // TODO: Move number 3 to config file
                 .Sum(p => p.Points);
         }
     }
