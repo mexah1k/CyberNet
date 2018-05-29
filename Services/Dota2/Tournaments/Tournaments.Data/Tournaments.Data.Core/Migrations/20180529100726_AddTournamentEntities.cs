@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Tournaments.Data.Core.Migrations
 {
-    public partial class Add_Team_Series_Match_Tournament_Entities : Migration
+    public partial class AddTournamentEntities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -96,8 +96,7 @@ namespace Tournaments.Data.Core.Migrations
                     DireTeamId = table.Column<int>(nullable: false),
                     IsRadiantWin = table.Column<bool>(nullable: false),
                     RadiantTeamId = table.Column<int>(nullable: false),
-                    SeriesId = table.Column<int>(nullable: false),
-                    TeamId = table.Column<int>(nullable: true)
+                    SeriesId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -120,12 +119,6 @@ namespace Tournaments.Data.Core.Migrations
                         principalTable: "Series",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Matches_Teams_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "Teams",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -142,11 +135,6 @@ namespace Tournaments.Data.Core.Migrations
                 name: "IX_Matches_SeriesId",
                 table: "Matches",
                 column: "SeriesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Matches_TeamId",
-                table: "Matches",
-                column: "TeamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Series_SeriesTypeId",

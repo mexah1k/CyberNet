@@ -32,7 +32,7 @@ namespace Tournaments.Data.Core.Context
             // team and match relations | TODO: move to helper class
             modelBuilder.Entity<Match>()
                 .HasOne(m => m.DireTeam)
-                .WithMany()
+                .WithMany(t => t.Matches)
                 .HasForeignKey(m => m.DireTeamId)
                 .OnDelete(DeleteBehavior.Restrict);
 

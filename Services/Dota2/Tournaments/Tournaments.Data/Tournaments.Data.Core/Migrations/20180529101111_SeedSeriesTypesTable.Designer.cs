@@ -11,8 +11,8 @@ using Tournaments.Data.Core.Context;
 namespace Tournaments.Data.Core.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180525133150_Add_Team_Series_Match_Tournament_Entities")]
-    partial class Add_Team_Series_Match_Tournament_Entities
+    [Migration("20180529101111_SeedSeriesTypesTable")]
+    partial class SeedSeriesTypesTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,8 +47,6 @@ namespace Tournaments.Data.Core.Migrations
 
                     b.Property<int>("SeriesId");
 
-                    b.Property<int?>("TeamId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DireTeamId");
@@ -56,8 +54,6 @@ namespace Tournaments.Data.Core.Migrations
                     b.HasIndex("RadiantTeamId");
 
                     b.HasIndex("SeriesId");
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("Matches");
                 });
@@ -196,7 +192,7 @@ namespace Tournaments.Data.Core.Migrations
             modelBuilder.Entity("Tournaments.Data.Entities.Match", b =>
                 {
                     b.HasOne("Tournaments.Data.Entities.Team", "DireTeam")
-                        .WithMany()
+                        .WithMany("Matches")
                         .HasForeignKey("DireTeamId")
                         .OnDelete(DeleteBehavior.Restrict);
 
@@ -209,10 +205,6 @@ namespace Tournaments.Data.Core.Migrations
                         .WithMany("Matches")
                         .HasForeignKey("SeriesId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Tournaments.Data.Entities.Team")
-                        .WithMany("Matches")
-                        .HasForeignKey("TeamId");
                 });
 
             modelBuilder.Entity("Tournaments.Data.Entities.Player", b =>
