@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Infrastructure.Pagination;
+using System.Linq;
 using Tournaments.Data.Entities;
 using Tournaments.Data.Entities.Enum;
 using Tournaments.Dtos;
@@ -62,7 +63,9 @@ namespace Tournaments.Domain.MapperProfiles
             CreateMap<PagedList<Player>, PagedList<PlayerDto>>();
             CreateMap<PagedList<PlayerDto>, PagedList<Player>>();
 
-            CreateMap<PagedList<Team>, PagedList<TeamDto>>();
+            CreateMap<PagedList<Team>, PagedList<TeamDto>>()
+                .ForMember(dest => dest.Result, opt => opt.MapFrom(
+                    src => src.Result.OrderByDescending(t => t.GetPoints())));
             CreateMap<PagedList<TeamDto>, PagedList<Team>>();
         }
     }

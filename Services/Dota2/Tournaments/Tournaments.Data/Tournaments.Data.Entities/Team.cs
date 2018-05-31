@@ -27,7 +27,7 @@ namespace Tournaments.Data.Entities
 
         public int GetPoints()
         {
-            if (!Players.Any())
+            if (Players == null || !Players.Any())
                 return 0;
 
             return Players
