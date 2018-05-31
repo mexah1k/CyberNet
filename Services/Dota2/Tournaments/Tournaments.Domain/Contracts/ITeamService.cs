@@ -13,5 +13,6 @@ namespace Tournaments.Domain.Contracts
         Task Delete(int id);
         Task Update(TeamForUpdateDto teamDto, int id);
         Task PartialUpdate(JsonPatchDocument<TeamForUpdateDto> teamPatchDto, int id);
+        Task<PagedList<PlayerDto>> GetPlayers(int id, PagingParameter paging);
     }
 }

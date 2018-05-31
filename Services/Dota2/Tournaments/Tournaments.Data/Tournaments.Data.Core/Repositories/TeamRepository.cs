@@ -3,6 +3,7 @@ using Infrastructure.Extensions;
 using Infrastructure.Pagination;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Tournaments.Data.Contracts.Context;
 using Tournaments.Data.Contracts.Repositories;
@@ -44,6 +45,15 @@ namespace Tournaments.Data.Core.Repositories
 
             return await context.Teams
                 .Include(t => t.Players)
+                .ToPaginatedResult(paging);
+        }
+
+        public async Task<PagedList<Player>> GetPlayers(int teamId, PagingParameter paging)
+        {
+            Throw.IfNull(paging, nameof(paging));
+
+            return await context.Players
+                .Where(p => p.TeamId == teamId)
                 .ToPaginatedResult(paging);
         }
 

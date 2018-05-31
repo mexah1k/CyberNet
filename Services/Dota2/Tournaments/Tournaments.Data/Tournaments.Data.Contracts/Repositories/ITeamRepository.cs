@@ -14,5 +14,7 @@ namespace Tournaments.Data.Contracts.Repositories
         Task<Team> Get(int id);
 
         Task<PagedList<Team>> Get(PagingParameter paging);
+
+        Task<PagedList<Player>> GetPlayers(int teamId, PagingParameter paging);
     }
 }

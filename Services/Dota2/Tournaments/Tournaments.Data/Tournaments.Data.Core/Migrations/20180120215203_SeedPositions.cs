@@ -7,7 +7,6 @@ namespace Tournaments.Data.Core.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // todo: make it invariant
             migrationBuilder.InsertData("Positions", new[] { "id", "name" }, new object[] { (int)PositionEnum.Midlane, PositionEnum.Midlane.ToString() });
             migrationBuilder.InsertData("Positions", new[] { "id", "name" }, new object[] { (int)PositionEnum.Carry, PositionEnum.Carry.ToString() });
             migrationBuilder.InsertData("Positions", new[] { "id", "name" }, new object[] { (int)PositionEnum.Hardlane, PositionEnum.Hardlane.ToString() });
@@ -17,6 +16,7 @@ namespace Tournaments.Data.Core.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.Sql("DELETE FROM Positions", true);
         }
     }
 }

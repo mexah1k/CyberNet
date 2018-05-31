@@ -1,25 +1,29 @@
 ﻿using Infrastructure.Extensions;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tournaments.Data.Entities
 {
     public class Match : IKeyIdentifier
     {
+        [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(Serie))]
-        public int SerieId { get; set; }
+        public int SeriesId { get; set; }
 
-        public Serie Serie { get; set; }
+        [ForeignKey(nameof(SeriesId))]
+        public Series Series { get; set; }
 
-        [ForeignKey(nameof(DireTeam))]
         public int DireTeamId { get; set; }
 
+        [ForeignKey(nameof(DireTeamId))]
         public Team DireTeam { get; set; }
 
-        [ForeignKey(nameof(RadiantTeam))]
         public int RadiantTeamId { get; set; }
 
+        [ForeignKey(nameof(RadiantTeamId))]
         public Team RadiantTeam { get; set; }
+
+        public bool IsRadiantWin { get; set; }
     }
 }

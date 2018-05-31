@@ -11,9 +11,10 @@ using Tournaments.Data.Core.Context;
 namespace Tournaments.Data.Core.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180529101111_SeedSeriesTypesTable")]
+    partial class SeedSeriesTypesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

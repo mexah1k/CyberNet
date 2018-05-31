@@ -29,6 +29,12 @@ namespace Dota2.ProCircuit.Api.Controllers
             return Ok(await teams.Get(paging));
         }
 
+        [HttpGet("{id}/players", Name = "GetTeamPlayers")]
+        public async Task<IActionResult> GetPlayers(int id, PagingParameter paging)
+        {
+            return Ok(await teams.GetPlayers(id, paging));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] TeamForCreationDto teamForCreationDto)
         {

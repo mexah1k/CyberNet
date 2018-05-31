@@ -30,14 +30,14 @@ namespace Tournaments.Data.Entities
 
         public DateTime DateOfBirth { get; set; }
 
-        [ForeignKey(nameof(Position))]
         public int? PositionId { get; set; }
 
+        [ForeignKey(nameof(PositionId))]
         public Position Position { get; set; }
 
-        [ForeignKey(nameof(Team))]
         public int? TeamId { get; set; }
 
+        [ForeignKey(nameof(TeamId))]
         public Team Team { get; set; }
     }
 }
