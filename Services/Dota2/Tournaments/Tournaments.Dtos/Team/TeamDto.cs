@@ -1,4 +1,4 @@
-﻿namespace Tournaments.Dtos
+﻿namespace Tournaments.Dtos.Team
 {
     public class TeamDto
     {

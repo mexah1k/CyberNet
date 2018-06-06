@@ -17,6 +17,8 @@ namespace Tournaments.Data.Core
                 .AddScoped<IPlayerRepository, PlayerRepository>()
                 .AddScoped<IPositionsRepository, PositionsRepository>()
                 .AddScoped<ITeamRepository, TeamRepository>()
+                .AddScoped<IPositionsRepository, PositionsRepository>()
+                .AddScoped<IMatchRepository, MatchRepository>()
                 .AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Extensions;
+using Infrastructure.Pagination;
 using System;
 using System.Threading.Tasks;
 using Tournaments.Data.Contracts.Context;
@@ -19,6 +20,11 @@ namespace Tournaments.Data.Core.Repositories
         public async Task<Position> Get(int id)
         {
             return await context.Positions.GetOrThrow(id);
+        }
+
+        public async Task<PagedList<Position>> Get(PagingParameter paging)
+        {
+            return await context.Positions.ToPaginatedResult(paging);
         }
 
         public void Dispose()

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Tournaments.Dtos
+namespace Tournaments.Dtos.Player
 {
     public class PlayerForUpdateDto
     {

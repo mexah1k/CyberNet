@@ -10,7 +10,8 @@ namespace Tournaments.Domain
         {
             services
                 .AddScoped<ITeamService, TeamService>()
-                .AddScoped<IPlayerService, PlayerService>();
+                .AddScoped<IPlayerService, PlayerService>()
+                .AddScoped<IPositionService, PositionService>();
 
             return services;
         }

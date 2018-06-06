@@ -7,6 +7,7 @@ using Tournaments.Data.Contracts.Repositories.UnitOfWork;
 using Tournaments.Data.Entities;
 using Tournaments.Domain.Contracts;
 using Tournaments.Dtos;
+using Tournaments.Dtos.Player;
 
 namespace Tournaments.Domain.Services
 {

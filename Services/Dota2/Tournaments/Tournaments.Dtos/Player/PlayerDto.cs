@@ -1,6 +1,6 @@
 ﻿using Tournaments.Data.Entities.Enum;
 
-namespace Tournaments.Dtos
+namespace Tournaments.Dtos.Player
 {
     public class PlayerDto
     {

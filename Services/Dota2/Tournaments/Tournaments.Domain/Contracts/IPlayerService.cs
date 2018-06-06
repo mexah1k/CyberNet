@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.JsonPatch;
 using System.Threading.Tasks;
 using Tournaments.Dtos;
+using Tournaments.Dtos.Player;
 
 namespace Tournaments.Domain.Contracts
 {

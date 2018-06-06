@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Tournaments.Domain.Contracts;
 using Tournaments.Dtos;
+using Tournaments.Dtos.Team;
 
 namespace Dota2.ProCircuit.Api.Controllers
 {
