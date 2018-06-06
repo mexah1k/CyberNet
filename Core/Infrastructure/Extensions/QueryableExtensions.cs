@@ -2,6 +2,7 @@
 using Infrastructure.Pagination;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,12 +12,9 @@ namespace Infrastructure.Extensions
     {
         public static async Task<PagedList<T>> ToPaginatedResult<T>(this IQueryable<T> query, PagingParameter paging)
         {
-            var totalCount = await query.CountAsync();
+            var items = await GetPagedList(query, paging);
 
-            var items = await query
-                .Skip((paging.PageNumber - 1) * paging.PageSize)
-                .Take(paging.PageSize)
-                .ToListAsync();
+            var totalCount = await query.CountAsync();
 
             return new PagedList<T>
             {
@@ -38,6 +36,18 @@ namespace Infrastructure.Extensions
             }
 
             return result;
+        }
+
+        private static async Task<IList<T>> GetPagedList<T>(IQueryable<T> query, PagingParameter paging)
+        {
+            // TODO: fix if PageNumber = 1 and PageSize = 0
+            if (paging.PageNumber == 0 && paging.PageSize == 0)
+                return await query.ToListAsync();
+
+            return await query
+                .Skip((paging.PageNumber - 1) * paging.PageSize)
+                .Take(paging.PageSize)
+                .ToListAsync();
         }
     }
 }
