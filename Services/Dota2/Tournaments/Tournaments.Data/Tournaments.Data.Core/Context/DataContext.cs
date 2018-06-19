@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Infrastructure.Extensions;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Tournaments.Data.Contracts.Context;
 using Tournaments.Data.Entities;
+using Tournaments.Data.Entities.Enum;
 using Tournaments.Data.Entities.HelperTables;
 
 namespace Tournaments.Data.Core.Context
@@ -55,6 +57,8 @@ namespace Tournaments.Data.Core.Context
                 .HasOne(tr => tr.Team)
                 .WithMany(t => t.TeamTournament)
                 .HasForeignKey(tr => tr.TeamId);
+
+            modelBuilder.Entity<Position>().SeedEnumEntities<Position, PositionEnum>(@enum => @enum);
 
             base.OnModelCreating(modelBuilder);
         }

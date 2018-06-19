@@ -30,6 +30,11 @@ namespace Dota2.ProCircuit.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+            }
 
             app.UseMiddleware<ExceptionHandlingMiddleware>()
                 .UseSwagger()
@@ -44,6 +49,10 @@ namespace Dota2.ProCircuit.Api
                         name: "default",
                         template: "{controller}/{action}/{id?}");
                 });
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
         }
     }
 }
