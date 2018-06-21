@@ -59,6 +59,7 @@ namespace Tournaments.Data.Core.Context
                 .HasForeignKey(tr => tr.TeamId);
 
             modelBuilder.Entity<Position>().SeedEnumEntities<Position, PositionEnum>(@enum => @enum);
+            modelBuilder.Entity<SeriesType>().SeedEnumEntities<SeriesType, SeriesTypeEnum>(@enum => @enum);
 
             base.OnModelCreating(modelBuilder);
         }
