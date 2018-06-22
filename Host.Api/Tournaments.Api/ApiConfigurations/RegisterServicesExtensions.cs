@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Dota2.ProCircuit.Api.Validators;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -14,6 +16,13 @@ namespace Dota2.ProCircuit.Api.ApiConfigurations
     {
         public static IServiceCollection ConfigureApiServices(this IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services
                 .AddMvc(setupAction =>
                     {
@@ -24,7 +33,8 @@ namespace Dota2.ProCircuit.Api.ApiConfigurations
                     {
                         options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
                         options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
-                    });
+                    })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             ConfigureCors(services);
             ConfigureSwagger(services);

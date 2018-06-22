@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tournaments.Data.Core.Context;
 
 namespace Tournaments.Data.Core.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180619143723_SeedPositionEntity")]
+    partial class SeedPositionEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,18 +148,11 @@ namespace Tournaments.Data.Core.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20);
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
                     b.ToTable("SeriesTypes");
-
-                    b.HasData(
-                        new { Id = 1, Name = "Bo1" },
-                        new { Id = 2, Name = "Bo2" },
-                        new { Id = 3, Name = "Bo3" },
-                        new { Id = 4, Name = "Bo5" }
-                    );
                 });
 
             modelBuilder.Entity("Tournaments.Data.Entities.Team", b =>

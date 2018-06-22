@@ -40,7 +40,6 @@ namespace Infrastructure.Extensions
 
         private static async Task<IList<T>> GetPagedList<T>(IQueryable<T> query, PagingParameter paging)
         {
-            // TODO: fix if PageNumber = 1 and PageSize = 0
             if (paging.PageNumber == 0 && paging.PageSize == 0)
                 return await query.ToListAsync();
 

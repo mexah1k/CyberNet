@@ -8,23 +8,23 @@ using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Core.Repositories
 {
-    public class PositionsRepository : IPositionsRepository
+    public class SeriesTypeRepository : ISeriesTypesRepository
     {
         private readonly IDataContext context;
 
-        public PositionsRepository(IDataContext context)
+        public SeriesTypeRepository(IDataContext context)
         {
             this.context = context;
         }
 
-        public async Task<Position> Get(int id)
+        public async Task<SeriesType> Get(int id)
         {
-            return await context.Positions.GetOrThrow(id);
+            return await context.SeriesTypes.GetOrThrow(id);
         }
 
-        public async Task<PagedList<Position>> Get(PagingParameter paging)
+        public async Task<PagedList<SeriesType>> Get(PagingParameter paging)
         {
-            return await context.Positions.ToPaginatedResult(paging);
+            return await context.SeriesTypes.ToPaginatedResult(paging);
         }
 
         public void Dispose()
