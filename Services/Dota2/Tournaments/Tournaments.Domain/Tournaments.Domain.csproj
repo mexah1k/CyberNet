@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Core\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Tournaments.Data\Tournaments.Data.Contracts\Tournaments.Data.Contracts.csproj" />
+    <ProjectReference Include="..\Tournaments.Data\Tournaments.Data.Entities\Tournaments.Data.Entities.csproj" />
+    <ProjectReference Include="..\Tournaments.Dtos\Tournaments.Dtos.csproj" />
+  </ItemGroup>
+
+</Project>

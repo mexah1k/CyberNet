@@ -1,31 +1,37 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host.Api", "Host.Api", "{29412CAC-CA25-4AA8-BE70-E5725C1BA05D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B2DBFE4A-51CC-48F2-9CE8-B93F2B84A583}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teams.Api", "Host.Api\Teams.Api\Teams.Api.csproj", "{CEBC8070-7F45-4D80-BB34-A98B7C8E0BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dota2.ProCircuit.Api", "Host.Api\Tournaments.Api\Dota2.ProCircuit.Api.csproj", "{CEBC8070-7F45-4D80-BB34-A98B7C8E0BC0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0CF4F86C-1323-459D-B4DB-AF29959E7310}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Core\Infrastructure\Infrastructure.csproj", "{9E2DAA73-FD58-4358-A275-EBDA687D4A1B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Teams", "Teams", "{1727C7BC-97DB-4307-B446-F6D8E594B1EA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dota2", "Dota2", "{1727C7BC-97DB-4307-B446-F6D8E594B1EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teams.Domain", "Services\Teams\Teams.Domain\Teams.Domain.csproj", "{D2E83FC1-C419-4B31-ACCE-87ADF4DDED8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Domain", "Services\Dota2\Tournaments\Tournaments.Domain\Tournaments.Domain.csproj", "{D2E83FC1-C419-4B31-ACCE-87ADF4DDED8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teams.Dtos", "Services\Teams\Teams.Dtos\Teams.Dtos.csproj", "{F470B9A4-1812-46B7-93B1-8D3EC8A22ABF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Dtos", "Services\Dota2\Tournaments\Tournaments.Dtos\Tournaments.Dtos.csproj", "{F470B9A4-1812-46B7-93B1-8D3EC8A22ABF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teams.Data.Entities", "Services\Teams\Data\Teams.Data.Entities\Teams.Data.Entities.csproj", "{4A6D5B05-9E72-4741-9E14-34EB4C3672A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Data.Entities", "Services\Dota2\Tournaments\Tournaments.Data\Tournaments.Data.Entities\Tournaments.Data.Entities.csproj", "{4A6D5B05-9E72-4741-9E14-34EB4C3672A4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EADF3154-B6B5-4BCA-8230-D99FD8AA9F59}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tournaments.Data", "Tournaments.Data", "{EADF3154-B6B5-4BCA-8230-D99FD8AA9F59}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teams.Data.Contracts", "Services\Teams\Data\Teams.Data.Contracts\Teams.Data.Contracts.csproj", "{37390733-AA93-4565-971D-41D557006932}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Data.Contracts", "Services\Dota2\Tournaments\Tournaments.Data\Tournaments.Data.Contracts\Tournaments.Data.Contracts.csproj", "{37390733-AA93-4565-971D-41D557006932}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teams.Data.Core", "Services\Teams\Data\Teams.Data.Core\Teams.Data.Core.csproj", "{8835C3AC-55FE-4686-BC01-E06B07582ED9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Data.Core", "Services\Dota2\Tournaments\Tournaments.Data\Tournaments.Data.Core\Tournaments.Data.Core.csproj", "{8835C3AC-55FE-4686-BC01-E06B07582ED9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Telegram", "Telegram", "{5C94A753-BDC2-46F3-8D81-2290B2777B8F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramBot.Core", "Telegram\TelegramBot.Core\TelegramBot.Core.csproj", "{CBF270FF-BF36-496F-9D4A-B93677DF6291}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tournaments", "Tournaments", "{5C70E519-BAF7-42A4-A6F1-EA020B41984C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +67,10 @@ Global
 		{8835C3AC-55FE-4686-BC01-E06B07582ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8835C3AC-55FE-4686-BC01-E06B07582ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8835C3AC-55FE-4686-BC01-E06B07582ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBF270FF-BF36-496F-9D4A-B93677DF6291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBF270FF-BF36-496F-9D4A-B93677DF6291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBF270FF-BF36-496F-9D4A-B93677DF6291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBF270FF-BF36-496F-9D4A-B93677DF6291}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,12 +79,14 @@ Global
 		{CEBC8070-7F45-4D80-BB34-A98B7C8E0BC0} = {29412CAC-CA25-4AA8-BE70-E5725C1BA05D}
 		{9E2DAA73-FD58-4358-A275-EBDA687D4A1B} = {B2DBFE4A-51CC-48F2-9CE8-B93F2B84A583}
 		{1727C7BC-97DB-4307-B446-F6D8E594B1EA} = {0CF4F86C-1323-459D-B4DB-AF29959E7310}
-		{D2E83FC1-C419-4B31-ACCE-87ADF4DDED8D} = {1727C7BC-97DB-4307-B446-F6D8E594B1EA}
-		{F470B9A4-1812-46B7-93B1-8D3EC8A22ABF} = {1727C7BC-97DB-4307-B446-F6D8E594B1EA}
+		{D2E83FC1-C419-4B31-ACCE-87ADF4DDED8D} = {5C70E519-BAF7-42A4-A6F1-EA020B41984C}
+		{F470B9A4-1812-46B7-93B1-8D3EC8A22ABF} = {5C70E519-BAF7-42A4-A6F1-EA020B41984C}
 		{4A6D5B05-9E72-4741-9E14-34EB4C3672A4} = {EADF3154-B6B5-4BCA-8230-D99FD8AA9F59}
-		{EADF3154-B6B5-4BCA-8230-D99FD8AA9F59} = {1727C7BC-97DB-4307-B446-F6D8E594B1EA}
+		{EADF3154-B6B5-4BCA-8230-D99FD8AA9F59} = {5C70E519-BAF7-42A4-A6F1-EA020B41984C}
 		{37390733-AA93-4565-971D-41D557006932} = {EADF3154-B6B5-4BCA-8230-D99FD8AA9F59}
 		{8835C3AC-55FE-4686-BC01-E06B07582ED9} = {EADF3154-B6B5-4BCA-8230-D99FD8AA9F59}
+		{CBF270FF-BF36-496F-9D4A-B93677DF6291} = {5C94A753-BDC2-46F3-8D81-2290B2777B8F}
+		{5C70E519-BAF7-42A4-A6F1-EA020B41984C} = {1727C7BC-97DB-4307-B446-F6D8E594B1EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BB8FBDD4-0A74-4459-98C9-3B1A07130DDA}
