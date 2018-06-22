@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Tournaments.Data.Contracts.Context;
+using Tournaments.Data.Core.Extensions;
 using Tournaments.Data.Entities;
 using Tournaments.Data.Entities.Enum;
-using Tournaments.Data.Entities.HelperTables;
 
 namespace Tournaments.Data.Core.Context
 {
@@ -31,37 +31,18 @@ namespace Tournaments.Data.Core.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // team and match relations | TODO: move to helper class
-            modelBuilder.Entity<Match>()
-                .HasOne(m => m.DireTeam)
-                .WithMany(t => t.Matches)
-                .HasForeignKey(m => m.DireTeamId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.ConfigureMatchRelations();
+            modelBuilder.ConfigureTeamTournamentRelations();
 
-            modelBuilder.Entity<Match>()
-                .HasOne(m => m.RadiantTeam)
-                .WithMany()
-                .HasForeignKey(m => m.RadiantTeamId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            // team and tournaments relations (many-to-many) | TODO: move to helper class
-            modelBuilder.Entity<TeamTournament>()
-                .HasKey(t => new { t.TeamId, t.TournamentId });
-
-            modelBuilder.Entity<TeamTournament>()
-                .HasOne(t => t.Tournament)
-                .WithMany(tr => tr.TeamTournament)
-                .HasForeignKey(t => t.TournamentId);
-
-            modelBuilder.Entity<TeamTournament>()
-                .HasOne(tr => tr.Team)
-                .WithMany(t => t.TeamTournament)
-                .HasForeignKey(tr => tr.TeamId);
-
-            modelBuilder.Entity<Position>().SeedEnumEntities<Position, PositionEnum>(@enum => @enum);
-            modelBuilder.Entity<SeriesType>().SeedEnumEntities<SeriesType, SeriesTypeEnum>(@enum => @enum);
+            SeedEnumValues(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        private static void SeedEnumValues(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Position>().SeedEnumEntities<Position, PositionEnum>(@enum => @enum);
+            modelBuilder.Entity<SeriesType>().SeedEnumEntities<SeriesType, SeriesTypeEnum>(@enum => @enum);
         }
 
         public Task<int> SaveChangesAsync()

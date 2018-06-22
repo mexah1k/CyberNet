@@ -15,9 +15,9 @@ namespace Tournaments.Data.Core
             services
                 .AddScoped<IDataContext, DataContext>()
                 .AddScoped<IPlayerRepository, PlayerRepository>()
-                .AddScoped<IPositionsRepository, PositionsRepository>()
+                .AddScoped<IPositionsRepository, PositionRepository>()
                 .AddScoped<ITeamRepository, TeamRepository>()
-                .AddScoped<IPositionsRepository, PositionsRepository>()
+                .AddScoped<IPositionsRepository, PositionRepository>()
                 .AddScoped<IMatchRepository, MatchRepository>()
                 .AddScoped<IUnitOfWork, UnitOfWork>();
 
