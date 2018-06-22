@@ -2,7 +2,7 @@
 
 namespace Tournaments.Dtos.Team
 {
-    public class TeamForCreationDto
+    public class TeamForCreateDto
     {
         [Required]
         public string Name { get; set; }

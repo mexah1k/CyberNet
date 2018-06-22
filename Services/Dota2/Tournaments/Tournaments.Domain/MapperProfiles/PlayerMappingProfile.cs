@@ -26,7 +26,7 @@ namespace Tournaments.Domain.MapperProfiles
                     src => src.Position.Name));
             CreateMap<PlayerDto, Player>();
 
-            CreateMap<PlayerForCreationDto, Player>();
+            CreateMap<PlayerForCreateDto, Player>();
             CreateMap<PlayerForUpdateDto, Player>()
                 .ForMember(dest => dest.PositionId, opt => opt.Ignore())
                 .ForMember(dest => dest.TeamId, opt => opt.Ignore());

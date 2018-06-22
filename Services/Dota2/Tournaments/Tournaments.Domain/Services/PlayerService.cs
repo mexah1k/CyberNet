@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Tournaments.Data.Contracts.Repositories.UnitOfWork;
 using Tournaments.Data.Entities;
 using Tournaments.Domain.Contracts;
-using Tournaments.Dtos;
 using Tournaments.Dtos.Player;
 
 namespace Tournaments.Domain.Services
@@ -34,7 +33,7 @@ namespace Tournaments.Domain.Services
             return Map(players);
         }
 
-        public async Task<PlayerDto> Create(PlayerForCreationDto playerDto)
+        public async Task<PlayerDto> Create(PlayerForCreateDto playerDto)
         {
             var player = Map(playerDto);
 
@@ -104,7 +103,7 @@ namespace Tournaments.Domain.Services
             return mapper.Map<PlayerDto>(source);
         }
 
-        private Player Map(PlayerForCreationDto source)
+        private Player Map(PlayerForCreateDto source)
         {
             return mapper.Map<Player>(source);
         }

@@ -3,7 +3,7 @@ using Tournaments.Data.Entities.Enum;
 
 namespace Tournaments.Dtos.Player
 {
-    public class PlayerForCreationDto
+    public class PlayerForCreateDto
     {
         [Required]
         public string NickName { get; set; }

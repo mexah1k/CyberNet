@@ -10,7 +10,7 @@ namespace Tournaments.Domain.Contracts
     {
         Task<PlayerDto> Get(int id);
         Task<PagedList<PlayerDto>> Get(PagingParameter paging);
-        Task<PlayerDto> Create(PlayerForCreationDto playerDto);
+        Task<PlayerDto> Create(PlayerForCreateDto playerDto);
         Task Delete(int id);
         Task Update(PlayerForUpdateDto playerDto, int id);
         Task PartialUpdate(JsonPatchDocument<PlayerForUpdateDto> playerPatchDto, int id);

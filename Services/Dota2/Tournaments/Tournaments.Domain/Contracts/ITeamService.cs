@@ -11,7 +11,7 @@ namespace Tournaments.Domain.Contracts
     {
         Task<TeamDto> Get(int id);
         Task<PagedList<TeamDto>> Get(PagingParameter paging);
-        Task<TeamDto> Create(TeamForCreationDto playerDto);
+        Task<TeamDto> Create(TeamForCreateDto playerDto);
         Task Delete(int id);
         Task Update(TeamForUpdateDto teamDto, int id);
         Task PartialUpdate(JsonPatchDocument<TeamForUpdateDto> teamPatchDto, int id);

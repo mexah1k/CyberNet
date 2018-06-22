@@ -1,6 +1,6 @@
-﻿namespace Tournaments.Dtos.Position
+﻿namespace Tournaments.Dtos.SeriesType
 {
-    public class PositionDto
+    public class SeriesTypeDto
     {
         public int Id { get; set; }
 

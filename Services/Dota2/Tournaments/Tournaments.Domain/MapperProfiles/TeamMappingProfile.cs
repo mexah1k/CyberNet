@@ -21,10 +21,10 @@ namespace Tournaments.Domain.MapperProfiles
                     src => src.GetPoints()));
             CreateMap<TeamDto, Team>();
 
-            CreateMap<TeamForCreationDto, Team>();
+            CreateMap<TeamForCreateDto, Team>();
             CreateMap<TeamForUpdateDto, Team>();
             CreateMap<Team, TeamForUpdateDto>();
-            CreateMap<TeamForUpdateDto, TeamForCreationDto>();
+            CreateMap<TeamForUpdateDto, TeamForCreateDto>();
         }
 
         private void MapPagedLists()

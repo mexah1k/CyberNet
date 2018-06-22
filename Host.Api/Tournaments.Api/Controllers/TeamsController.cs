@@ -37,7 +37,7 @@ namespace Dota2.ProCircuit.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] TeamForCreationDto teamForCreationDto)
+        public async Task<IActionResult> Create([FromBody] TeamForCreateDto teamForCreationDto)
         {
             var createdTeam = await teams.Create(teamForCreationDto);
 

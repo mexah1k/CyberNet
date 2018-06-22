@@ -34,7 +34,7 @@ namespace Tournaments.Domain.Services
             return Map(teams);
         }
 
-        public async Task<TeamDto> Create(TeamForCreationDto playerDto)
+        public async Task<TeamDto> Create(TeamForCreateDto playerDto)
         {
             var team = Map(playerDto);
 
@@ -91,7 +91,7 @@ namespace Tournaments.Domain.Services
             return mapper.Map<Team>(source);
         }
 
-        private Team Map(TeamForCreationDto source)
+        private Team Map(TeamForCreateDto source)
         {
             return mapper.Map<Team>(source);
         }
