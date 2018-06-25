@@ -49,7 +49,6 @@ namespace Tournaments.Domain.Services
             await SaveDbChangesAsync();
         }
 
-        // TODO: Upserting could be implemented (create if not exist)
         public async Task PartialUpdate(JsonPatchDocument<PlayerForUpdateDto> playerPatchDto, int id)
         {
             var player = await unitOfWork.Players.Get(id);
@@ -64,7 +63,6 @@ namespace Tournaments.Domain.Services
             await SaveDbChangesAsync();
         }
 
-        // TODO: Upserting could be implemented (create if not exist)
         public async Task Update(PlayerForUpdateDto playerForUpdateDto, int id)
         {
             var player = await unitOfWork.Players.Get(id);
@@ -80,16 +78,16 @@ namespace Tournaments.Domain.Services
             await SaveDbChangesAsync();
         }
 
-        private async Task UpdatePlayerTeam(PlayerForUpdateDto playerDto, Player player)
-        {
-            if (playerDto.TeamId.HasValue)
-                player.Team = await unitOfWork.Teams.Get(playerDto.TeamId.Value);
-        }
-
         private async Task SaveDbChangesAsync()
         {
             if (!await unitOfWork.SaveChangesAsync())
                 throw new Exception("Something went wrong."); // todo: move message to resource file
+        }
+
+        private async Task UpdatePlayerTeam(PlayerForUpdateDto playerDto, Player player)
+        {
+            if (playerDto.TeamId.HasValue)
+                player.Team = await unitOfWork.Teams.Get(playerDto.TeamId.Value);
         }
 
         private async Task UpdatePlayerPosition(PlayerForUpdateDto playerForUpdateDto, Player player)

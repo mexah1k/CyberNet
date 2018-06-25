@@ -10,6 +10,6 @@
 
         public int RadiantTeamId { get; set; }
 
-        public bool IsRadiantWin { get; set; }
+        public bool? IsRadiantWin { get; set; }
     }
 }

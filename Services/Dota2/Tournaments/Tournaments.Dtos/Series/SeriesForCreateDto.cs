@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Tournaments.Dtos.Match;
 
 namespace Tournaments.Dtos.Series
 {
@@ -7,7 +6,7 @@ namespace Tournaments.Dtos.Series
     {
         public int TournamentId { get; set; }
 
-        public IEnumerable<MatchDto> Matches { get; set; }
+        public IEnumerable<int> MatchIds { get; set; }
 
         public int SeriesTypeId { get; set; }
     }

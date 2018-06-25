@@ -2,6 +2,6 @@
 {
     public class MatchForUpdateDto
     {
-        public bool IsRadiantWin { get; set; }
+        public bool? IsRadiantWin { get; set; }
     }
 }

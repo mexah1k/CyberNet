@@ -24,6 +24,6 @@ namespace Tournaments.Data.Entities
         [ForeignKey(nameof(RadiantTeamId))]
         public Team RadiantTeam { get; set; }
 
-        public bool IsRadiantWin { get; set; }
+        public bool? IsRadiantWin { get; set; }
     }
 }

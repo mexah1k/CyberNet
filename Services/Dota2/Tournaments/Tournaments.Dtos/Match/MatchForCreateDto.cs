@@ -6,6 +6,6 @@
 
         public int DireTeamId { get; set; }
 
-        public int RadiantTeamId { get; set; }
+        public int? RadiantTeamId { get; set; }
     }
 }
