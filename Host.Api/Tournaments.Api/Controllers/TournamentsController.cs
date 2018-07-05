@@ -7,6 +7,7 @@ using Tournaments.Dtos.Tournament;
 
 namespace Dota2.ProCircuit.Api.Controllers
 {
+    [Route("api/tournaments")]
     public class TournamentsController : Controller
     {
         private readonly ITournamentService tournaments;
@@ -38,7 +39,7 @@ namespace Dota2.ProCircuit.Api.Controllers
         public async Task<IActionResult> Create([FromBody] TournamentForCreateDto tournamentForCreationDto)
         {
             var createdTournament = await tournaments.Create(tournamentForCreationDto);
-            return CreatedAtRoute("GetTournaments", new { id = createdTournament.Id }, createdTournament);
+            return CreatedAtRoute("GetTournament", new { id = createdTournament.Id }, createdTournament);
         }
 
         [HttpDelete("{id}")]
