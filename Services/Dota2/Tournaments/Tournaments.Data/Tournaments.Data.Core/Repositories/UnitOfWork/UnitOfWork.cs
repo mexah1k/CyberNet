@@ -14,30 +14,30 @@ namespace Tournaments.Data.Core.Repositories.UnitOfWork
 
         public ITeamRepository Teams { get; }
 
-        public IPositionsRepository Positions { get; }
+        public IPositionRepository Position { get; }
 
         public IMatchRepository Matches { get; }
 
         public ISeriesRepository Series { get; }
 
-        public ISeriesTypesRepository SeriesTypes { get; }
+        public ISeriesTypeRepository SeriesType { get; }
 
-        public ITournamentsRepository Tournaments { get; }
+        public ITournamentRepository Tournament { get; }
 
         public UnitOfWork(IDataContext dbcontext,
             IPlayerRepository players,
             ITeamRepository teams,
-            IPositionsRepository positions, IMatchRepository matches, ISeriesRepository series,
-            ISeriesTypesRepository seriesTypes, ITournamentsRepository tournaments)
+            IPositionRepository position, IMatchRepository matches, ISeriesRepository series,
+            ISeriesTypeRepository seriesType, ITournamentRepository tournament)
         {
             context = dbcontext;
             Players = players;
             Teams = teams;
-            Positions = positions;
+            Position = position;
             Matches = matches;
             Series = series;
-            SeriesTypes = seriesTypes;
-            Tournaments = tournaments;
+            SeriesType = seriesType;
+            Tournament = tournament;
         }
 
         public async Task<bool> SaveChangesAsync()
@@ -49,11 +49,11 @@ namespace Tournaments.Data.Core.Repositories.UnitOfWork
         {
             Players?.Dispose();
             Teams?.Dispose();
-            Positions?.Dispose();
+            Position?.Dispose();
             Matches?.Dispose();
             Series?.Dispose();
-            SeriesTypes?.Dispose();
-            Tournaments?.Dispose();
+            SeriesType?.Dispose();
+            Tournament?.Dispose();
             context?.Dispose();
             GC.SuppressFinalize(this);
         }

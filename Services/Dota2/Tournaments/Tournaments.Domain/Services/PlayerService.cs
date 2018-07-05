@@ -70,7 +70,7 @@ namespace Tournaments.Domain.Services
             mapper.Map(playerForUpdateDto, player);
 
             if (playerForUpdateDto.PositionId.HasValue)
-                player.Position = await unitOfWork.Positions.Get(playerForUpdateDto.PositionId.Value);
+                player.Position = await unitOfWork.Position.Get(playerForUpdateDto.PositionId.Value);
 
             await UpdatePlayerPosition(playerForUpdateDto, player);
             await UpdatePlayerTeam(playerForUpdateDto, player);
@@ -93,7 +93,7 @@ namespace Tournaments.Domain.Services
         private async Task UpdatePlayerPosition(PlayerForUpdateDto playerForUpdateDto, Player player)
         {
             if (playerForUpdateDto.PositionId.HasValue)
-                player.Position = await unitOfWork.Positions.Get(playerForUpdateDto.PositionId.Value);
+                player.Position = await unitOfWork.Position.Get(playerForUpdateDto.PositionId.Value);
         }
 
         private PlayerDto Map(Player source)

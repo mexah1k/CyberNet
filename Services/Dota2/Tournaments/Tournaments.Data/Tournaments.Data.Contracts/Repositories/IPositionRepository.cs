@@ -5,7 +5,7 @@ using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Contracts.Repositories
 {
-    public interface IPositionsRepository : IDisposable
+    public interface IPositionRepository : IDisposable
     {
         Task<Position> Get(int id);
 

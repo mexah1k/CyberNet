@@ -8,7 +8,7 @@ using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Core.Repositories
 {
-    public class PositionRepository : IPositionsRepository
+    public class PositionRepository : IPositionRepository
     {
         private readonly IDataContext context;
 

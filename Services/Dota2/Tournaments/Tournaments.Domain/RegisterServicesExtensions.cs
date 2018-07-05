@@ -14,7 +14,8 @@ namespace Tournaments.Domain
                 .AddScoped<IPositionService, PositionService>()
                 .AddScoped<IMatchService, MatchService>()
                 .AddScoped<ISeriesService, SeriesService>()
-                .AddScoped<ISeriesTypeService, SeriesTypeService>();
+                .AddScoped<ISeriesTypeService, SeriesTypeService>()
+                .AddScoped<ITournamentService, TournamentService>();
 
             return services;
         }

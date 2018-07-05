@@ -34,6 +34,12 @@ namespace Tournaments.Domain.Services
             return Map(teams);
         }
 
+        public async Task<PagedList<PlayerDto>> GetPlayers(int id, PagingParameter paging)
+        {
+            var teamPlayers = await unitOfWork.Teams.GetPlayers(id, paging);
+            return Map(teamPlayers);
+        }
+
         public async Task<PagedList<TeamDto>> GetTournaments(int id, PagingParameter paging)
         {
             var teams = await unitOfWork.Teams.Get(paging);
@@ -73,12 +79,6 @@ namespace Tournaments.Domain.Services
             mapper.Map(teamForUpdateDto, team);
 
             await SaveDbChangesAsync();
-        }
-
-        public async Task<PagedList<PlayerDto>> GetPlayers(int id, PagingParameter paging)
-        {
-            var teamPlayers = await unitOfWork.Teams.GetPlayers(id, paging);
-            return Map(teamPlayers);
         }
 
         private async Task SaveDbChangesAsync()

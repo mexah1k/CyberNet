@@ -1,20 +1,19 @@
 ﻿using AutoMapper;
 using Infrastructure.Pagination;
+using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.JsonPatch;
 using Tournaments.Data.Contracts.Repositories.UnitOfWork;
 using Tournaments.Data.Entities;
 using Tournaments.Data.Entities.HelperTables;
+using Tournaments.Domain.Contracts;
 using Tournaments.Dtos.Team;
 using Tournaments.Dtos.Tournament;
 
 namespace Tournaments.Domain.Services
 {
-    public class TournamentService
+    public class TournamentService : ITournamentService
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
@@ -27,19 +26,19 @@ namespace Tournaments.Domain.Services
 
         public async Task<TournamentDto> Get(int id)
         {
-            var tournament = await unitOfWork.Tournaments.Get(id);
+            var tournament = await unitOfWork.Tournament.Get(id);
             return Map(tournament);
         }
 
         public async Task<PagedList<TournamentDto>> Get(PagingParameter paging)
         {
-            var tournaments = await unitOfWork.Tournaments.Get(paging);
+            var tournaments = await unitOfWork.Tournament.Get(paging);
             return Map(tournaments);
         }
 
         public async Task<PagedList<TeamDto>> GetTeams(int id, PagingParameter paging)
         {
-            var tournamentTeams = await unitOfWork.Tournaments.GetTeams(id, paging);
+            var tournamentTeams = await unitOfWork.Tournament.GetTeams(id, paging);
             return Map(tournamentTeams);
         }
 
@@ -47,15 +46,21 @@ namespace Tournaments.Domain.Services
         {
             var tournament = Map(tournamentDto);
 
-            await unitOfWork.Tournaments.Create(tournament);
+            await unitOfWork.Tournament.Create(tournament);
             await SaveDbChangesAsync();
 
             return Map(tournament);
         }
 
+        public async Task Delete(int id)
+        {
+            await unitOfWork.Tournament.Delete(id);
+            await SaveDbChangesAsync();
+        }
+
         public async Task Update(TournamentForUpdateDto tournamentDto, int id)
         {
-            var tournament = await unitOfWork.Tournaments.Get(id);
+            var tournament = await unitOfWork.Tournament.Get(id);
 
             mapper.Map(tournamentDto, tournament);
             await SaveDbChangesAsync();
@@ -63,7 +68,7 @@ namespace Tournaments.Domain.Services
 
         public async Task PartialUpdate(JsonPatchDocument<TournamentForUpdateDto> tournamentPatchDto, int id)
         {
-            var tournament = await unitOfWork.Tournaments.Get(id);
+            var tournament = await unitOfWork.Tournament.Get(id);
             var tournamentForUpdateDto = mapper.Map<TournamentForUpdateDto>(tournament);
 
             tournamentPatchDto.ApplyTo(tournamentForUpdateDto);
@@ -74,7 +79,7 @@ namespace Tournaments.Domain.Services
 
         public async Task AddTeams(IEnumerable<int> teamIds, int id)
         {
-            var tournament = await unitOfWork.Tournaments.Get(id);
+            var tournament = await unitOfWork.Tournament.Get(id);
             var teams = await unitOfWork.Teams.Get(teamIds);
 
             foreach (var team in teams)

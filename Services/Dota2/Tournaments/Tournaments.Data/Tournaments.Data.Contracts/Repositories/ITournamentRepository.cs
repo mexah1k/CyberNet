@@ -5,7 +5,7 @@ using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Contracts.Repositories
 {
-    public interface ITournamentsRepository : IDisposable
+    public interface ITournamentRepository : IDisposable
     {
         Task Create(Tournament tournament);
         Task Delete(int id);

@@ -5,26 +5,26 @@ using Tournaments.Domain.Contracts;
 
 namespace Dota2.ProCircuit.Api.Controllers
 {
-    [Route("api/positions")]
-    public class PositionsController : Controller
+    [Route("api/seriestypes")]
+    public class SeriesTypesController : Controller
     {
-        private readonly IPositionService positions;
+        private readonly ISeriesTypeService seriesTypes;
 
-        public PositionsController(IPositionService positions)
+        public SeriesTypesController(ISeriesTypeService seriesTypesService)
         {
-            this.positions = positions;
+            seriesTypes = seriesTypesService;
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await positions.Get(id));
+            return Ok(await seriesTypes.Get(id));
         }
 
         [HttpGet]
         public async Task<IActionResult> Get(PagingParameter paging)
         {
-            return Ok(await positions.Get(paging));
+            return Ok(await seriesTypes.Get(paging));
         }
     }
 }

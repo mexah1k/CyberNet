@@ -51,7 +51,7 @@ namespace Tournaments.Domain.Services
         public async Task Update(SeriesForUpdateDto seriesForUpdateDto, int id)
         {
             var series = await unitOfWork.Series.Get(id);
-            series.Tournament = await unitOfWork.Tournaments.Get(seriesForUpdateDto.TournamentId);
+            series.Tournament = await unitOfWork.Tournament.Get(seriesForUpdateDto.TournamentId);
 
             await SaveDbChangesAsync();
         }

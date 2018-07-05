@@ -11,7 +11,7 @@ using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Core.Repositories
 {
-    public class TournamentRepository : ITournamentsRepository
+    public class TournamentRepository : ITournamentRepository
     {
         private readonly IDataContext context;
 
