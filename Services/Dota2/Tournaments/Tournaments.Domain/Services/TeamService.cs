@@ -34,6 +34,12 @@ namespace Tournaments.Domain.Services
             return Map(teams);
         }
 
+        public async Task<PagedList<TeamDto>> GetTournaments(int id, PagingParameter paging)
+        {
+            var teams = await unitOfWork.Teams.Get(paging);
+            return Map(teams);
+        }
+
         public async Task<TeamDto> Create(TeamForCreateDto playerDto)
         {
             var team = Map(playerDto);
@@ -61,10 +67,10 @@ namespace Tournaments.Domain.Services
         public async Task PartialUpdate(JsonPatchDocument<TeamForUpdateDto> teamPatchDto, int id)
         {
             var team = await unitOfWork.Teams.Get(id);
-            var teamCreatingDto = mapper.Map<TeamForUpdateDto>(team);
+            var teamForUpdateDto = mapper.Map<TeamForUpdateDto>(team);
 
-            teamPatchDto.ApplyTo(teamCreatingDto);
-            mapper.Map(teamCreatingDto, team);
+            teamPatchDto.ApplyTo(teamForUpdateDto);
+            mapper.Map(teamForUpdateDto, team);
 
             await SaveDbChangesAsync();
         }
@@ -84,11 +90,6 @@ namespace Tournaments.Domain.Services
         private TeamDto Map(Team source)
         {
             return mapper.Map<TeamDto>(source);
-        }
-
-        private Team Map(TeamDto source)
-        {
-            return mapper.Map<Team>(source);
         }
 
         private Team Map(TeamForCreateDto source)

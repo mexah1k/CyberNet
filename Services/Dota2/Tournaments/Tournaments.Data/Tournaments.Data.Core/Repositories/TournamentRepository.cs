@@ -56,14 +56,9 @@ namespace Tournaments.Data.Core.Repositories
         {
             Throw.IfNull(paging, nameof(paging));
 
-            var tournament = await context.Tournaments
-                .Include(t => t.TeamTournament)
-                .ThenInclude(t => t.Team)
-                .GetOrThrow(tournamentId);
-
-            return await tournament.TeamTournament
+            return await context.TeamTournament
+                .Where(t => t.TournamentId == tournamentId)
                 .Select(t => t.Team)
-                .AsQueryable()
                 .ToPaginatedResult(paging);
         }
 
