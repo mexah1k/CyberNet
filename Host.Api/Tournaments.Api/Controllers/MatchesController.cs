@@ -28,13 +28,6 @@ namespace Dota2.ProCircuit.Api.Controllers
             return Ok(await matches.Get(paging));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] MatchForCreateDto matchDto)
-        {
-            var createdMatch = await matches.Create(matchDto);
-            return CreatedAtRoute("GetMatch", new { id = createdMatch.Id }, createdMatch);
-        }
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

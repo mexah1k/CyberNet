@@ -8,6 +8,7 @@ using Tournaments.Data.Contracts.Repositories.UnitOfWork;
 using Tournaments.Data.Entities;
 using Tournaments.Data.Entities.HelperTables;
 using Tournaments.Domain.Contracts;
+using Tournaments.Dtos.Series;
 using Tournaments.Dtos.Team;
 using Tournaments.Dtos.Tournament;
 
@@ -38,8 +39,14 @@ namespace Tournaments.Domain.Services
 
         public async Task<PagedList<TeamDto>> GetTeams(int id, PagingParameter paging)
         {
-            var tournamentTeams = await unitOfWork.Tournament.GetTeams(id, paging);
-            return Map(tournamentTeams);
+            var teams = await unitOfWork.Tournament.GetTeams(id, paging);
+            return Map(teams);
+        }
+
+        public async Task<PagedList<SeriesDto>> GetSeries(int id, PagingParameter paging)
+        {
+            var series = await unitOfWork.Tournament.GetSeries(id, paging);
+            return Map(series);
         }
 
         public async Task<TournamentDto> Create(TournamentForCreateDto tournamentDto)
@@ -123,6 +130,11 @@ namespace Tournaments.Domain.Services
         private PagedList<TeamDto> Map(PagedList<Team> source)
         {
             return mapper.Map<PagedList<TeamDto>>(source);
+        }
+
+        private PagedList<SeriesDto> Map(PagedList<Series> source)
+        {
+            return mapper.Map<PagedList<SeriesDto>>(source);
         }
     }
 }

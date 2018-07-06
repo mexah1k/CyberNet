@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.JsonPatch;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Tournaments.Dtos.Series;
 using Tournaments.Dtos.Team;
 using Tournaments.Dtos.Tournament;
 
@@ -14,6 +15,8 @@ namespace Tournaments.Domain.Contracts
         Task<PagedList<TournamentDto>> Get(PagingParameter paging);
 
         Task<PagedList<TeamDto>> GetTeams(int id, PagingParameter paging);
+
+        Task<PagedList<SeriesDto>> GetSeries(int id, PagingParameter paging);
 
         Task<TournamentDto> Create(TournamentForCreateDto tournamentDto);
 

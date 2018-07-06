@@ -62,6 +62,15 @@ namespace Tournaments.Data.Core.Repositories
                 .ToPaginatedResult(paging);
         }
 
+        public async Task<PagedList<Series>> GetSeries(int tournamentId, PagingParameter paging)
+        {
+            Throw.IfNull(paging, nameof(paging));
+
+            return await context.Series
+                .Where(s => s.TournamentId == tournamentId)
+                .ToPaginatedResult(paging);
+        }
+
         public void Dispose()
         {
             context?.Dispose();

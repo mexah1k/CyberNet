@@ -35,6 +35,12 @@ namespace Dota2.ProCircuit.Api.Controllers
             return Ok(await tournaments.GetTeams(id, paging));
         }
 
+        [HttpGet("{id}/series", Name = "GetTournamentSeries")]
+        public async Task<IActionResult> GetSeries(int id, PagingParameter paging)
+        {
+            return Ok(await tournaments.GetSeries(id, paging));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] TournamentForCreateDto tournamentForCreationDto)
         {
