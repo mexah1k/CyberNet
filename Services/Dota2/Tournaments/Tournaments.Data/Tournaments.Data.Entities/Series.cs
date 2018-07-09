@@ -7,6 +7,11 @@ namespace Tournaments.Data.Entities
 {
     public class Series : IKeyIdentifier
     {
+        protected Series()
+        {
+            NumberOfMatches = SeriesType.Id;
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -21,5 +26,12 @@ namespace Tournaments.Data.Entities
 
         [ForeignKey(nameof(SeriesTypeId))]
         public SeriesType SeriesType { get; set; }
+
+        public int NumberOfMatches { get; set; }
+
+        public int? WinnerTeamId { get; set; }
+
+        [ForeignKey(nameof(WinnerTeamId))]
+        public Team WinnerTeam { get; set; }
     }
 }

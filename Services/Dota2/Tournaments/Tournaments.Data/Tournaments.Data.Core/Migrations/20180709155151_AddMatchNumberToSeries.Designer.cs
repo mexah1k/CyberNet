@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tournaments.Data.Core.Context;
 
 namespace Tournaments.Data.Core.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180709155151_AddMatchNumberToSeries")]
+    partial class AddMatchNumberToSeries
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,15 +133,11 @@ namespace Tournaments.Data.Core.Migrations
 
                     b.Property<int>("TournamentId");
 
-                    b.Property<int?>("WinnerTeamId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("SeriesTypeId");
 
                     b.HasIndex("TournamentId");
-
-                    b.HasIndex("WinnerTeamId");
 
                     b.ToTable("Series");
                 });
@@ -255,10 +253,6 @@ namespace Tournaments.Data.Core.Migrations
                         .WithMany("Series")
                         .HasForeignKey("TournamentId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Tournaments.Data.Entities.Team", "WinnerTeam")
-                        .WithMany()
-                        .HasForeignKey("WinnerTeamId");
                 });
 #pragma warning restore 612, 618
         }

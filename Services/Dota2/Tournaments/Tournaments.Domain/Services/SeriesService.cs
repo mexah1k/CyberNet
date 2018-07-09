@@ -37,6 +37,7 @@ namespace Tournaments.Domain.Services
             var series = Map(seriesDto);
 
             await unitOfWork.Series.Create(series);
+
             await SaveDbChangesAsync();
 
             return Map(series);
