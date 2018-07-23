@@ -1,7 +1,9 @@
 ﻿using Infrastructure.Pagination;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Domain.Contracts;
 using Tournaments.Dtos.Team;
 
@@ -24,9 +26,9 @@ namespace Dota2.ProCircuit.Api.Controllers
         }
 
         [HttpGet(Name = "GetTeams")]
-        public async Task<IActionResult> Get(PagingParameter paging)
+        public async Task<IActionResult> Get(PagingParameter paging, [Optional] TeamFilter filters)
         {
-            return Ok(await teams.Get(paging));
+            return Ok(await teams.Get(paging, filters));
         }
 
         [HttpGet("{id}/players", Name = "GetTeamPlayers")]

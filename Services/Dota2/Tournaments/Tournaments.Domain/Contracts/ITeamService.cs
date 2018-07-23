@@ -1,8 +1,10 @@
 ﻿using Infrastructure.Pagination;
 using Microsoft.AspNetCore.JsonPatch;
 using System.Threading.Tasks;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Dtos.Player;
 using Tournaments.Dtos.Team;
+using Tournaments.Dtos.Tournament;
 
 namespace Tournaments.Domain.Contracts
 {
@@ -10,7 +12,7 @@ namespace Tournaments.Domain.Contracts
     {
         Task<TeamDto> Get(int id);
 
-        Task<PagedList<TeamDto>> Get(PagingParameter paging);
+        Task<PagedList<TeamDto>> Get(PagingParameter paging, TeamFilter filters);
 
         Task<TeamDto> Create(TeamForCreateDto playerDto);
 
@@ -22,6 +24,6 @@ namespace Tournaments.Domain.Contracts
 
         Task<PagedList<PlayerDto>> GetPlayers(int id, PagingParameter paging);
 
-        Task<PagedList<TeamDto>> GetTournaments(int id, PagingParameter paging);
+        Task<PagedList<TournamentDto>> GetTournaments(int teamId, PagingParameter paging);
     }
 }

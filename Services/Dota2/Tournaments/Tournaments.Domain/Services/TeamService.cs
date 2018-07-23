@@ -3,11 +3,13 @@ using Infrastructure.Pagination;
 using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Threading.Tasks;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Contracts.Repositories.UnitOfWork;
 using Tournaments.Data.Entities;
 using Tournaments.Domain.Contracts;
 using Tournaments.Dtos.Player;
 using Tournaments.Dtos.Team;
+using Tournaments.Dtos.Tournament;
 
 namespace Tournaments.Domain.Services
 {
@@ -28,9 +30,9 @@ namespace Tournaments.Domain.Services
             return Map(team);
         }
 
-        public async Task<PagedList<TeamDto>> Get(PagingParameter paging)
+        public async Task<PagedList<TeamDto>> Get(PagingParameter paging, TeamFilter filters)
         {
-            var teams = await unitOfWork.Teams.Get(paging);
+            var teams = await unitOfWork.Teams.Get(paging, filters);
             return Map(teams);
         }
 
@@ -40,10 +42,10 @@ namespace Tournaments.Domain.Services
             return Map(teamPlayers);
         }
 
-        public async Task<PagedList<TeamDto>> GetTournaments(int id, PagingParameter paging)
+        public async Task<PagedList<TournamentDto>> GetTournaments(int teamId, PagingParameter paging)
         {
-            var teams = await unitOfWork.Teams.Get(paging);
-            return Map(teams);
+            var tournaments = await unitOfWork.Teams.GetTournaments(teamId, paging);
+            return Map(tournaments);
         }
 
         public async Task<TeamDto> Create(TeamForCreateDto playerDto)
@@ -105,6 +107,11 @@ namespace Tournaments.Domain.Services
         private PagedList<PlayerDto> Map(PagedList<Player> source)
         {
             return mapper.Map<PagedList<PlayerDto>>(source);
+        }
+
+        private PagedList<TournamentDto> Map(PagedList<Tournament> source)
+        {
+            return mapper.Map<PagedList<TournamentDto>>(source);
         }
     }
 }

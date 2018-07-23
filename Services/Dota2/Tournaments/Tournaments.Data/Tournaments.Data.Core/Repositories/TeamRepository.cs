@@ -7,7 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tournaments.Data.Contracts.Context;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Contracts.Repositories;
+using Tournaments.Data.Core.Filters.FilterExtensions;
 using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Core.Repositories
@@ -40,12 +42,13 @@ namespace Tournaments.Data.Core.Repositories
                 .GetOrThrow(id);
         }
 
-        public async Task<PagedList<Team>> Get(PagingParameter paging)
+        public async Task<PagedList<Team>> Get(PagingParameter paging, TeamFilter filters)
         {
             Throw.IfNull(paging, nameof(paging));
 
             return await context.Teams
                 .Include(t => t.Players)
+                .WithFilter(filters)
                 .ToPaginatedResult(paging);
         }
 

@@ -40,10 +40,6 @@ namespace Infrastructure.Extensions
 
         private static async Task<IList<T>> GetPagedList<T>(IQueryable<T> query, PagingParameter paging)
         {
-            // TODO: RETURN ALL LIST IF PAGING PARAMETER EMPTY
-            //if (paging.PageNumber == 0 && paging.PageSize == 0)
-            //    return await query.ToListAsync();
-
             return await query
                 .Skip((paging.PageNumber - 1) * paging.PageSize)
                 .Take(paging.PageSize)

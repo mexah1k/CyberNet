@@ -25,8 +25,4 @@
     <ProjectReference Include="..\Tournaments.Data.Entities\Tournaments.Data.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
-
 </Project>
