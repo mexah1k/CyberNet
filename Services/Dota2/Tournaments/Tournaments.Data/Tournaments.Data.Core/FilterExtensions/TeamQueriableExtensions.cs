@@ -1,9 +1,9 @@
-﻿using Infrastructure.Extensions;
-using System.Linq;
+﻿using System.Linq;
+using Infrastructure.Extensions;
 using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Entities;
 
-namespace Tournaments.Data.Core.Filters.FilterExtensions
+namespace Tournaments.Data.Core.Filters
 {
     public static class TeamQueriableExtensions
     {

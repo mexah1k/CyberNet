@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Tournaments.Data.Contracts.Context;
 using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Contracts.Repositories;
-using Tournaments.Data.Core.Filters.FilterExtensions;
+using Tournaments.Data.Core.Filters;
 using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Core.Repositories
