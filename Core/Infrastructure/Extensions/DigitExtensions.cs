@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Extensions
 {
-    public static class DigitsExtensions
+    public static class DigitExtensions
     {
         public static bool EquilIfNull<T>(this T? digit, T? target) where T : struct, IComparable, IComparable<T>,
             IConvertible, IEquatable<T>, IFormattable
