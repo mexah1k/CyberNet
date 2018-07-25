@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using Infrastructure.Extensions;
+﻿using Infrastructure.Extensions;
+using System.Linq;
 using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Entities;
 
-namespace Tournaments.Data.Core.Filters
+namespace Tournaments.Data.Core.FilterExtensions
 {
     public static class TeamQueriableExtensions
     {
@@ -13,8 +13,8 @@ namespace Tournaments.Data.Core.Filters
                 return entities;
 
             return entities.Where(team =>
-                team.Name.ContainsIfNotNull(filter.Name) &&
-                team.Revenue.EquilIfNull(filter.Revenue));
+                team.Name.ContainsWithNull(filter.Name) &&
+                team.Revenue.EquilWithNull(filter.Revenue));
         }
     }
 }

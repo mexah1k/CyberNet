@@ -3,6 +3,7 @@ using Infrastructure.Pagination;
 using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Threading.Tasks;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Contracts.Repositories.UnitOfWork;
 using Tournaments.Data.Entities;
 using Tournaments.Domain.Contracts;
@@ -27,9 +28,9 @@ namespace Tournaments.Domain.Services
             return Map(player);
         }
 
-        public async Task<PagedList<PlayerDto>> Get(PagingParameter paging)
+        public async Task<PagedList<PlayerDto>> Get(PagingParameter paging, PlayerFilter filter)
         {
-            var players = await unitOfWork.Players.Get(paging);
+            var players = await unitOfWork.Players.Get(paging, filter);
             return Map(players);
         }
 

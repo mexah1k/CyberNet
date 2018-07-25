@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Pagination;
 using System;
 using System.Threading.Tasks;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Contracts.Repositories
@@ -13,7 +14,7 @@ namespace Tournaments.Data.Contracts.Repositories
 
         Task<Tournament> Get(int id);
 
-        Task<PagedList<Tournament>> Get(PagingParameter paging);
+        Task<PagedList<Tournament>> Get(PagingParameter paging, TournamentFilter filter);
 
         Task<PagedList<Team>> GetTeams(int tournamentId, PagingParameter paging);
 

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Infrastructure.Extensions;
 using Infrastructure.Pagination;
 using System.Threading.Tasks;
-using Tournaments.Data.Contracts.Context;
+using Tournaments.Data.Contracts.Filters;
+using Tournaments.Data.Contracts.Repositories.UnitOfWork;
 using Tournaments.Data.Entities;
 using Tournaments.Domain.Contracts;
 using Tournaments.Dtos.Position;
@@ -11,24 +11,24 @@ namespace Tournaments.Domain.Services
 {
     public class PositionService : IPositionService
     {
-        private readonly IDataContext context;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public PositionService(IDataContext context, IMapper mapper)
+        public PositionService(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            this.context = context;
             this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
         }
 
         public async Task<PositionDto> Get(int id)
         {
-            var position = await context.Positions.GetOrThrow(id);
+            var position = await unitOfWork.Position.Get(id);
             return Map(position);
         }
 
-        public async Task<PagedList<PositionDto>> Get(PagingParameter paging)
+        public async Task<PagedList<PositionDto>> Get(PagingParameter paging, PositionFilter filter)
         {
-            var positions = await context.Positions.ToPaginatedResult(paging);
+            var positions = await unitOfWork.Position.Get(paging, filter);
             return Map(positions);
         }
 
