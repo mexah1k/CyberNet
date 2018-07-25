@@ -50,7 +50,17 @@ namespace Infrastructure.Extensions
 
         public static IQueryable<T> Sort<T>(this IQueryable<T> source, string sortBy)
         {
-            return string.IsNullOrEmpty(sortBy) ? source : source.OrderBy(sortBy);
+            if (string.IsNullOrEmpty(sortBy))
+                return source;
+
+            try
+            {
+                return source.OrderBy(sortBy);
+            }
+            catch
+            {
+                throw new ParameterForOrderExeption(sortBy);
+            }
         }
     }
 }

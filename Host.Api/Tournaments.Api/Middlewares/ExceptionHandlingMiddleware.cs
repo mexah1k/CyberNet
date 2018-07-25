@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.JsonPatch.Exceptions;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
+using System.Data.SqlClient;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -35,6 +36,14 @@ namespace Dota2.ProCircuit.Api.Middlewares
             catch (JsonPatchException ex)
             {
                 await HandleExceptionAsync(context, ex.Message, HttpStatusCode.BadRequest);
+            }
+            catch (ParameterForOrderExeption ex)
+            {
+                await HandleExceptionAsync(context, ex.Message, HttpStatusCode.BadRequest);
+            }
+            catch (SqlException)
+            {
+                await HandleExceptionAsync(context, "Incorrect request exeption", HttpStatusCode.BadRequest);
             }
             catch (Exception ex)
             {
