@@ -25,7 +25,9 @@ namespace Tournaments.Data.Entities
 
         public IEnumerable<TeamTournament> TeamTournament { get; set; }
 
-        public int GetPoints()
+        public int Points => GetPoints();
+
+        private int GetPoints()
         {
             if (Players == null || !Players.Any())
                 return 0;

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Infrastructure.Pagination;
-using System.Linq;
 using Tournaments.Data.Entities;
 using Tournaments.Dtos.Team;
 
@@ -18,7 +17,7 @@ namespace Tournaments.Domain.MapperProfiles
         {
             CreateMap<Team, TeamDto>()
                 .ForMember(dest => dest.Points, opt => opt.MapFrom(
-                    src => src.GetPoints()));
+                    src => src.Points));
             CreateMap<TeamDto, Team>();
 
             CreateMap<TeamForCreateDto, Team>();
@@ -29,9 +28,7 @@ namespace Tournaments.Domain.MapperProfiles
 
         private void MapPagedLists()
         {
-            CreateMap<PagedList<Team>, PagedList<TeamDto>>()
-                .ForMember(dest => dest.Result, opt => opt.MapFrom(
-                    src => src.Result.OrderByDescending(t => t.GetPoints())));
+            CreateMap<PagedList<Team>, PagedList<TeamDto>>();
             CreateMap<PagedList<TeamDto>, PagedList<Team>>();
         }
     }

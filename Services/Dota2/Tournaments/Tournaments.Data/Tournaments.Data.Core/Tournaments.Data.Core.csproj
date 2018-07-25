@@ -8,6 +8,7 @@
     <Compile Remove="Migrations\20180706144252_UpdateSeriesTypeNumbes.cs" />
     <Compile Remove="Migrations\20180709153732_AddMatchNumberToSeries.cs" />
     <Compile Remove="Migrations\20180709155011_AddMatchNumberToSeries.cs" />
+    <Compile Remove="Migrations\20180725161452_PointsForTeam.cs" />
   </ItemGroup>
 
   <ItemGroup>

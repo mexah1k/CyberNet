@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Extensions
@@ -43,7 +44,13 @@ namespace Infrastructure.Extensions
             return await query
                 .Skip((paging.PageNumber - 1) * paging.PageSize)
                 .Take(paging.PageSize)
+                .Sort(paging.SortBy)
                 .ToListAsync();
+        }
+
+        public static IQueryable<T> Sort<T>(this IQueryable<T> source, string sortBy)
+        {
+            return string.IsNullOrEmpty(sortBy) ? source : source.OrderBy(sortBy);
         }
     }
 }

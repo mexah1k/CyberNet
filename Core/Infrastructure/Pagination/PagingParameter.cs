@@ -9,5 +9,7 @@ namespace Infrastructure.Pagination
 
         [Range(1, 250)]
         public int PageSize { get; set; } = 250;
+
+        public string SortBy { get; set; }
     }
 }
