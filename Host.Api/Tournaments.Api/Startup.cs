@@ -36,6 +36,7 @@ namespace Dota2.ProCircuit.Api
                 app.UseHsts();
             }
 
+            app.UseResponseCaching();
             app.UseHttpCacheHeaders();
 
             app.UseMiddleware<ExceptionHandlingMiddleware>()

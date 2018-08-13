@@ -3,8 +3,6 @@ using Dota2.ProCircuit.Api.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using Tournaments.Data.Core;
@@ -45,8 +43,6 @@ namespace Dota2.ProCircuit.Api.ApiConfigurations
                 .RegisterTeamDataServices()
                 .RegisterTeamServices();
 
-            RegisterUrlHelper(services);
-
             return services;
         }
 
@@ -56,17 +52,8 @@ namespace Dota2.ProCircuit.Api.ApiConfigurations
                 expirationOption => expirationOption.MaxAge = 600,
                 validationModelOption => validationModelOption.MustRevalidate = true
                 );
-        }
 
-        private static void RegisterUrlHelper(IServiceCollection services)
-        {
-            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-            services.AddScoped<IUrlHelper, UrlHelper>(
-                implementationFactory =>
-                    {
-                        var actionContext = implementationFactory.GetService<IActionContextAccessor>().ActionContext;
-                        return new UrlHelper(actionContext);
-                    });
+            services.AddResponseCaching();
         }
 
         private static void ConfigureSwagger(IServiceCollection services)
