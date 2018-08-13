@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using AspNetCoreRateLimit;
+using AutoMapper;
 using Dota2.ProCircuit.Api.ApiConfigurations;
 using Dota2.ProCircuit.Api.Middlewares;
 using Microsoft.AspNetCore.Builder;
@@ -36,6 +37,7 @@ namespace Dota2.ProCircuit.Api
                 app.UseHsts();
             }
 
+            app.UseIpRateLimiting();
             app.UseResponseCaching();
             app.UseHttpCacheHeaders();
 
