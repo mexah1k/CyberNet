@@ -23,6 +23,8 @@ namespace Dota2.ProCircuit.Api.ApiConfigurations
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            ConfigureCache(services);
+
             services
                 .AddMvc(setupAction =>
                     {
@@ -46,6 +48,14 @@ namespace Dota2.ProCircuit.Api.ApiConfigurations
             RegisterUrlHelper(services);
 
             return services;
+        }
+
+        private static void ConfigureCache(IServiceCollection services)
+        {
+            services.AddHttpCacheHeaders(
+                expirationOption => expirationOption.MaxAge = 600,
+                validationModelOption => validationModelOption.MustRevalidate = true
+                );
         }
 
         private static void RegisterUrlHelper(IServiceCollection services)
