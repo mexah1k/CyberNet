@@ -15,17 +15,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Core\Infr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SportName", "SportName", "{1727C7BC-97DB-4307-B446-F6D8E594B1EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Domain", "Services\Dota2\Tournaments\Tournaments.Domain\Tournaments.Domain.csproj", "{D2E83FC1-C419-4B31-ACCE-87ADF4DDED8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Domain", "Services\SportName\Tournaments\Tournaments.Domain\Tournaments.Domain.csproj", "{D2E83FC1-C419-4B31-ACCE-87ADF4DDED8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Dtos", "Services\Dota2\Tournaments\Tournaments.Dtos\Tournaments.Dtos.csproj", "{F470B9A4-1812-46B7-93B1-8D3EC8A22ABF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Dtos", "Services\SportName\Tournaments\Tournaments.Dtos\Tournaments.Dtos.csproj", "{F470B9A4-1812-46B7-93B1-8D3EC8A22ABF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Data.Entities", "Services\Dota2\Tournaments\Tournaments.Data\Tournaments.Data.Entities\Tournaments.Data.Entities.csproj", "{4A6D5B05-9E72-4741-9E14-34EB4C3672A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Data.Entities", "Services\SportName\Tournaments\Tournaments.Data\Tournaments.Data.Entities\Tournaments.Data.Entities.csproj", "{4A6D5B05-9E72-4741-9E14-34EB4C3672A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tournaments.Data", "Tournaments.Data", "{EADF3154-B6B5-4BCA-8230-D99FD8AA9F59}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Data.Contracts", "Services\Dota2\Tournaments\Tournaments.Data\Tournaments.Data.Contracts\Tournaments.Data.Contracts.csproj", "{37390733-AA93-4565-971D-41D557006932}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Data.Contracts", "Services\SportName\Tournaments\Tournaments.Data\Tournaments.Data.Contracts\Tournaments.Data.Contracts.csproj", "{37390733-AA93-4565-971D-41D557006932}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Data.Core", "Services\Dota2\Tournaments\Tournaments.Data\Tournaments.Data.Core\Tournaments.Data.Core.csproj", "{8835C3AC-55FE-4686-BC01-E06B07582ED9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Data.Core", "Services\SportName\Tournaments\Tournaments.Data\Tournaments.Data.Core\Tournaments.Data.Core.csproj", "{8835C3AC-55FE-4686-BC01-E06B07582ED9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Telegram", "Telegram", "{5C94A753-BDC2-46F3-8D81-2290B2777B8F}"
 EndProject

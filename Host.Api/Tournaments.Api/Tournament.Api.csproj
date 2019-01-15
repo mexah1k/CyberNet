@@ -23,8 +23,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\..\Services\Dota2\Tournaments\Tournaments.Data\Tournaments.Data.Core\Tournaments.Data.Core.csproj" />
-    <ProjectReference Include="..\..\Services\Dota2\Tournaments\Tournaments.Domain\Tournaments.Domain.csproj" />
+    <ProjectReference Include="..\..\Services\SportName\Tournaments\Tournaments.Data\Tournaments.Data.Core\Tournaments.Data.Core.csproj" />
+    <ProjectReference Include="..\..\Services\SportName\Tournaments\Tournaments.Domain\Tournaments.Domain.csproj" />
+    <ProjectReference Include="..\..\Services\SportName\Tournaments\Tournaments.Dtos\Tournaments.Dtos.csproj" />
   </ItemGroup>
 
 </Project>
