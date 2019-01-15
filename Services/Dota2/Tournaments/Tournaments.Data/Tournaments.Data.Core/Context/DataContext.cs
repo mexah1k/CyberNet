@@ -5,6 +5,7 @@ using Tournaments.Data.Contracts.Context;
 using Tournaments.Data.Core.Extensions;
 using Tournaments.Data.Entities;
 using Tournaments.Data.Entities.Enum;
+using Tournaments.Data.Entities.HelperTables;
 
 namespace Tournaments.Data.Core.Context
 {
@@ -23,6 +24,8 @@ namespace Tournaments.Data.Core.Context
         public DbSet<Series> Series { get; set; }
 
         public DbSet<SeriesType> SeriesTypes { get; set; }
+
+        public DbSet<TeamTournament> TeamTournament { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

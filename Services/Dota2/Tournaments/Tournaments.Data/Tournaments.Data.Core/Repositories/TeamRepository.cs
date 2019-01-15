@@ -3,10 +3,13 @@ using Infrastructure.Extensions;
 using Infrastructure.Pagination;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tournaments.Data.Contracts.Context;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Contracts.Repositories;
+using Tournaments.Data.Core.FilterExtensions;
 using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Core.Repositories
@@ -39,13 +42,24 @@ namespace Tournaments.Data.Core.Repositories
                 .GetOrThrow(id);
         }
 
-        public async Task<PagedList<Team>> Get(PagingParameter paging)
+        public async Task<PagedList<Team>> Get(PagingParameter paging, TeamFilter filters)
         {
             Throw.IfNull(paging, nameof(paging));
 
             return await context.Teams
                 .Include(t => t.Players)
+                .WithFilter(filters)
                 .ToPaginatedResult(paging);
+        }
+
+        public async Task<ICollection<Team>> Get(IEnumerable<int> listIds)
+        {
+            Throw.IfNull(listIds, nameof(listIds));
+
+            return await context.Teams
+                .Where(t => listIds.Contains(t.Id))
+                .Include(t => t.Players)
+                .ToListAsync();
         }
 
         public async Task<PagedList<Player>> GetPlayers(int teamId, PagingParameter paging)
@@ -54,6 +68,16 @@ namespace Tournaments.Data.Core.Repositories
 
             return await context.Players
                 .Where(p => p.TeamId == teamId)
+                .ToPaginatedResult(paging);
+        }
+
+        public async Task<PagedList<Tournament>> GetTournaments(int teamId, PagingParameter paging)
+        {
+            Throw.IfNull(paging, nameof(paging));
+
+            return await context.TeamTournament
+                .Where(t => t.TeamId == teamId)
+                .Select(t => t.Tournament)
                 .ToPaginatedResult(paging);
         }
 

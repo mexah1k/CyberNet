@@ -15,10 +15,12 @@ namespace Tournaments.Data.Core
             services
                 .AddScoped<IDataContext, DataContext>()
                 .AddScoped<IPlayerRepository, PlayerRepository>()
-                .AddScoped<IPositionsRepository, PositionRepository>()
+                .AddScoped<IPositionRepository, PositionRepository>()
                 .AddScoped<ITeamRepository, TeamRepository>()
-                .AddScoped<IPositionsRepository, PositionRepository>()
+                .AddScoped<ISeriesRepository, SeriesRepository>()
+                .AddScoped<ISeriesTypeRepository, SeriesTypeRepository>()
                 .AddScoped<IMatchRepository, MatchRepository>()
+                .AddScoped<ITournamentRepository, TournamentRepository>()
                 .AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

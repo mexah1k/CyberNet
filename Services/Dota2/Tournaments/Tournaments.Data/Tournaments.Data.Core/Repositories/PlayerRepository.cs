@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 using Tournaments.Data.Contracts.Context;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Contracts.Repositories;
+using Tournaments.Data.Core.FilterExtensions;
 using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Core.Repositories
@@ -27,13 +29,14 @@ namespace Tournaments.Data.Core.Repositories
                 .GetOrThrow(id);
         }
 
-        public async Task<PagedList<Player>> Get(PagingParameter paging)
+        public async Task<PagedList<Player>> Get(PagingParameter paging, PlayerFilter filter)
         {
             Throw.IfNull(paging, nameof(paging));
 
             return await context.Players
                 .Include(p => p.Position)
                 .Include(p => p.Team)
+                .WithFilter(filter)
                 .ToPaginatedResult(paging);
         }
 

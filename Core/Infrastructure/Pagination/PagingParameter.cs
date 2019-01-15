@@ -4,10 +4,12 @@ namespace Infrastructure.Pagination
 {
     public class PagingParameter
     {
-        [Range(0, int.MaxValue)]
-        public int PageNumber { get; set; }
+        [Range(1, int.MaxValue)]
+        public int PageNumber { get; set; } = 1;
 
-        [Range(0, 250)]
-        public int PageSize { get; set; }
+        [Range(1, 250)]
+        public int PageSize { get; set; } = 250;
+
+        public string SortBy { get; set; }
     }
 }

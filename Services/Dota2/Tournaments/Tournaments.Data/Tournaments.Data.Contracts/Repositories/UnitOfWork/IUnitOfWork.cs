@@ -9,7 +9,15 @@ namespace Tournaments.Data.Contracts.Repositories.UnitOfWork
 
         ITeamRepository Teams { get; }
 
-        IPositionsRepository Positions { get; }
+        IPositionRepository Position { get; }
+
+        IMatchRepository Matches { get; }
+
+        ISeriesRepository Series { get; }
+
+        ISeriesTypeRepository SeriesType { get; }
+
+        ITournamentRepository Tournament { get; }
 
         Task<bool> SaveChangesAsync();
     }

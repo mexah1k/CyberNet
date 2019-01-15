@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Tournaments.Data.Entities.HelperTables;
 
 namespace Tournaments.Data.Entities
@@ -17,7 +18,7 @@ namespace Tournaments.Data.Entities
 
         public DateTime EndDate { get; set; }
 
-        public IEnumerable<TeamTournament> TeamTournament { get; set; }
+        public ICollection<TeamTournament> TeamTournament { get; set; }
 
         public IEnumerable<Series> Series { get; set; }
     }

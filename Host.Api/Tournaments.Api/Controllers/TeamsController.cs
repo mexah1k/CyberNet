@@ -1,9 +1,10 @@
 ﻿using Infrastructure.Pagination;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Domain.Contracts;
-using Tournaments.Dtos;
 using Tournaments.Dtos.Team;
 
 namespace Dota2.ProCircuit.Api.Controllers
@@ -25,9 +26,9 @@ namespace Dota2.ProCircuit.Api.Controllers
         }
 
         [HttpGet(Name = "GetTeams")]
-        public async Task<IActionResult> Get(PagingParameter paging)
+        public async Task<IActionResult> Get(PagingParameter paging, [Optional] TeamFilter filters)
         {
-            return Ok(await teams.Get(paging));
+            return Ok(await teams.Get(paging, filters));
         }
 
         [HttpGet("{id}/players", Name = "GetTeamPlayers")]
@@ -36,11 +37,16 @@ namespace Dota2.ProCircuit.Api.Controllers
             return Ok(await teams.GetPlayers(id, paging));
         }
 
+        [HttpGet("{id}/tournaments", Name = "GetTeamTournaments")]
+        public async Task<IActionResult> GetTournaments(int id, PagingParameter paging)
+        {
+            return Ok(await teams.GetTournaments(id, paging));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] TeamForCreateDto teamForCreationDto)
         {
             var createdTeam = await teams.Create(teamForCreationDto);
-
             return CreatedAtRoute("GetTeam", new { id = createdTeam.Id }, createdTeam);
         }
 
@@ -62,7 +68,6 @@ namespace Dota2.ProCircuit.Api.Controllers
         public async Task<IActionResult> Patch([FromBody] JsonPatchDocument<TeamForUpdateDto> teamDto, int id)
         {
             await teams.PartialUpdate(teamDto, id);
-
             return Ok();
         }
     }

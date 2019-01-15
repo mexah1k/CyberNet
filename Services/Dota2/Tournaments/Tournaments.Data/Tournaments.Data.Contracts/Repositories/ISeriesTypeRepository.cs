@@ -5,7 +5,7 @@ using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Contracts.Repositories
 {
-    public interface ISeriesTypesRepository : IDisposable
+    public interface ISeriesTypeRepository : IDisposable
     {
         Task<SeriesType> Get(int id);
         Task<PagedList<SeriesType>> Get(PagingParameter paging);

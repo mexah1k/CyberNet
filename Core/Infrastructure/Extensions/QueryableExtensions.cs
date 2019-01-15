@@ -4,17 +4,25 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Extensions
 {
     public static class QueryableExtensions
     {
-        public static async Task<PagedList<T>> ToPaginatedResult<T>(this IQueryable<T> query, PagingParameter paging)
+        public static async Task<PagedList<T>> ToPaginatedResult<T>(this IQueryable<T> query, PagingParameter paging,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                return null;
+            }
+
             var items = await GetPagedList(query, paging);
 
-            var totalCount = await query.CountAsync();
+            var totalCount = await query.CountAsync(cancellationToken);
 
             return new PagedList<T>
             {
@@ -40,13 +48,26 @@ namespace Infrastructure.Extensions
 
         private static async Task<IList<T>> GetPagedList<T>(IQueryable<T> query, PagingParameter paging)
         {
-            if (paging.PageNumber == 0 && paging.PageSize == 0)
-                return await query.ToListAsync();
-
             return await query
                 .Skip((paging.PageNumber - 1) * paging.PageSize)
                 .Take(paging.PageSize)
+                .Sort(paging.SortBy)
                 .ToListAsync();
+        }
+
+        public static IQueryable<T> Sort<T>(this IQueryable<T> source, string sortBy)
+        {
+            if (string.IsNullOrEmpty(sortBy))
+                return source;
+
+            try
+            {
+                return source.OrderBy(sortBy);
+            }
+            catch
+            {
+                throw new ParameterForOrderExeption(sortBy);
+            }
         }
     }
 }

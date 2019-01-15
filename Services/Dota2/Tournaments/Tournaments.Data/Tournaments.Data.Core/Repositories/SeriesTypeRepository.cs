@@ -8,7 +8,7 @@ using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Core.Repositories
 {
-    public class SeriesTypeRepository : ISeriesTypesRepository
+    public class SeriesTypeRepository : ISeriesTypeRepository
     {
         private readonly IDataContext context;
 

@@ -3,6 +3,7 @@ using Infrastructure.Pagination;
 using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Threading.Tasks;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Contracts.Repositories.UnitOfWork;
 using Tournaments.Data.Entities;
 using Tournaments.Domain.Contracts;
@@ -27,9 +28,9 @@ namespace Tournaments.Domain.Services
             return Map(player);
         }
 
-        public async Task<PagedList<PlayerDto>> Get(PagingParameter paging)
+        public async Task<PagedList<PlayerDto>> Get(PagingParameter paging, PlayerFilter filter)
         {
-            var players = await unitOfWork.Players.Get(paging);
+            var players = await unitOfWork.Players.Get(paging, filter);
             return Map(players);
         }
 
@@ -49,7 +50,6 @@ namespace Tournaments.Domain.Services
             await SaveDbChangesAsync();
         }
 
-        // TODO: Upserting could be implemented (create if not exist)
         public async Task PartialUpdate(JsonPatchDocument<PlayerForUpdateDto> playerPatchDto, int id)
         {
             var player = await unitOfWork.Players.Get(id);
@@ -64,7 +64,6 @@ namespace Tournaments.Domain.Services
             await SaveDbChangesAsync();
         }
 
-        // TODO: Upserting could be implemented (create if not exist)
         public async Task Update(PlayerForUpdateDto playerForUpdateDto, int id)
         {
             var player = await unitOfWork.Players.Get(id);
@@ -72,18 +71,12 @@ namespace Tournaments.Domain.Services
             mapper.Map(playerForUpdateDto, player);
 
             if (playerForUpdateDto.PositionId.HasValue)
-                player.Position = await unitOfWork.Positions.Get(playerForUpdateDto.PositionId.Value);
+                player.Position = await unitOfWork.Position.Get(playerForUpdateDto.PositionId.Value);
 
             await UpdatePlayerPosition(playerForUpdateDto, player);
             await UpdatePlayerTeam(playerForUpdateDto, player);
 
             await SaveDbChangesAsync();
-        }
-
-        private async Task UpdatePlayerTeam(PlayerForUpdateDto playerDto, Player player)
-        {
-            if (playerDto.TeamId.HasValue)
-                player.Team = await unitOfWork.Teams.Get(playerDto.TeamId.Value);
         }
 
         private async Task SaveDbChangesAsync()
@@ -92,10 +85,16 @@ namespace Tournaments.Domain.Services
                 throw new Exception("Something went wrong."); // todo: move message to resource file
         }
 
+        private async Task UpdatePlayerTeam(PlayerForUpdateDto playerDto, Player player)
+        {
+            if (playerDto.TeamId.HasValue)
+                player.Team = await unitOfWork.Teams.Get(playerDto.TeamId.Value);
+        }
+
         private async Task UpdatePlayerPosition(PlayerForUpdateDto playerForUpdateDto, Player player)
         {
             if (playerForUpdateDto.PositionId.HasValue)
-                player.Position = await unitOfWork.Positions.Get(playerForUpdateDto.PositionId.Value);
+                player.Position = await unitOfWork.Position.Get(playerForUpdateDto.PositionId.Value);
         }
 
         private PlayerDto Map(Player source)

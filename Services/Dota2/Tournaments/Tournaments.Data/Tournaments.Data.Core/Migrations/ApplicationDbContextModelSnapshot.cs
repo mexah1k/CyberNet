@@ -40,7 +40,7 @@ namespace Tournaments.Data.Core.Migrations
 
                     b.Property<int>("DireTeamId");
 
-                    b.Property<bool>("IsRadiantWin");
+                    b.Property<bool?>("IsRadiantWin");
 
                     b.Property<int>("RadiantTeamId");
 
@@ -125,15 +125,21 @@ namespace Tournaments.Data.Core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("NumberOfMatches");
+
                     b.Property<int>("SeriesTypeId");
 
                     b.Property<int>("TournamentId");
+
+                    b.Property<int?>("WinnerTeamId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SeriesTypeId");
 
                     b.HasIndex("TournamentId");
+
+                    b.HasIndex("WinnerTeamId");
 
                     b.ToTable("Series");
                 });
@@ -156,7 +162,7 @@ namespace Tournaments.Data.Core.Migrations
                         new { Id = 1, Name = "Bo1" },
                         new { Id = 2, Name = "Bo2" },
                         new { Id = 3, Name = "Bo3" },
-                        new { Id = 4, Name = "Bo5" }
+                        new { Id = 5, Name = "Bo5" }
                     );
                 });
 
@@ -249,6 +255,10 @@ namespace Tournaments.Data.Core.Migrations
                         .WithMany("Series")
                         .HasForeignKey("TournamentId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Tournaments.Data.Entities.Team", "WinnerTeam")
+                        .WithMany()
+                        .HasForeignKey("WinnerTeamId");
                 });
 #pragma warning restore 612, 618
         }

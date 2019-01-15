@@ -1,14 +1,15 @@
 ﻿using Infrastructure.Pagination;
 using System;
 using System.Threading.Tasks;
+using Tournaments.Data.Contracts.Filters;
 using Tournaments.Data.Entities;
 
 namespace Tournaments.Data.Contracts.Repositories
 {
-    public interface IPositionsRepository : IDisposable
+    public interface IPositionRepository : IDisposable
     {
         Task<Position> Get(int id);
 
-        Task<PagedList<Position>> Get(PagingParameter paging);
+        Task<PagedList<Position>> Get(PagingParameter paging, PositionFilter filter);
     }
 }

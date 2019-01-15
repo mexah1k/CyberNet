@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Tournaments.Data.Entities;
+using Tournaments.Data.Entities.HelperTables;
 
 namespace Tournaments.Data.Contracts.Context
 {
@@ -13,6 +14,7 @@ namespace Tournaments.Data.Contracts.Context
         DbSet<Match> Matches { get; set; }
         DbSet<Series> Series { get; set; }
         DbSet<SeriesType> SeriesTypes { get; set; }
+        DbSet<TeamTournament> TeamTournament { get; set; }
 
         Task<int> SaveChangesAsync();
         void Dispose();
