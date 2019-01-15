@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Dota2.ProCircuit.Api.Middlewares
+namespace Tournament.Api.Middlewares
 {
     public class ExceptionHandlingMiddleware
     {

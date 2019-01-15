@@ -1,16 +1,16 @@
 ﻿using AspNetCoreRateLimit;
 using AutoMapper;
-using Dota2.ProCircuit.Api.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
+using Tournament.Api.Validators;
 using Tournaments.Data.Core;
 using Tournaments.Domain;
 
-namespace Dota2.ProCircuit.Api.ApiConfigurations
+namespace Tournament.Api.ApiConfigurations
 {
     public static class RegisterServicesExtensions
     {
