@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Tournaments.Data.Contracts.Filters;
 using Tournaments.Domain.Contracts;
 
-namespace Dota2.ProCircuit.Api.Controllers
+namespace Tournament.Api.Controllers
 {
     [Route("api/positions")]
     public class PositionsController : Controller

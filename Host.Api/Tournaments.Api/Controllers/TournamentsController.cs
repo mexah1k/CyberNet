@@ -6,7 +6,7 @@ using Tournaments.Data.Contracts.Filters;
 using Tournaments.Domain.Contracts;
 using Tournaments.Dtos.Tournament;
 
-namespace Dota2.ProCircuit.Api.Controllers
+namespace Tournament.Api.Controllers
 {
     [Route("api/tournaments")]
     public class TournamentsController : Controller

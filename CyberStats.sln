@@ -7,13 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host.Api", "Host.Api", "{29
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B2DBFE4A-51CC-48F2-9CE8-B93F2B84A583}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dota2.ProCircuit.Api", "Host.Api\Tournaments.Api\Dota2.ProCircuit.Api.csproj", "{CEBC8070-7F45-4D80-BB34-A98B7C8E0BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournament.Api", "Host.Api\Tournaments.Api\Tournament.Api.csproj", "{CEBC8070-7F45-4D80-BB34-A98B7C8E0BC0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0CF4F86C-1323-459D-B4DB-AF29959E7310}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Core\Infrastructure\Infrastructure.csproj", "{9E2DAA73-FD58-4358-A275-EBDA687D4A1B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dota2", "Dota2", "{1727C7BC-97DB-4307-B446-F6D8E594B1EA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SportName", "SportName", "{1727C7BC-97DB-4307-B446-F6D8E594B1EA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournaments.Domain", "Services\Dota2\Tournaments\Tournaments.Domain\Tournaments.Domain.csproj", "{D2E83FC1-C419-4B31-ACCE-87ADF4DDED8D}"
 EndProject

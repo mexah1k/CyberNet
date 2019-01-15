@@ -1,14 +1,14 @@
 ﻿using AspNetCoreRateLimit;
 using AutoMapper;
-using Dota2.ProCircuit.Api.ApiConfigurations;
-using Dota2.ProCircuit.Api.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Tournament.Api.ApiConfigurations;
+using Tournament.Api.Middlewares;
 
-namespace Dota2.ProCircuit.Api
+namespace Tournament.Api
 {
     public class Startup
     {

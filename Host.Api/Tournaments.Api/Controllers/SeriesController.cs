@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Tournaments.Domain.Contracts;
 using Tournaments.Dtos.Series;
 
-namespace Dota2.ProCircuit.Api.Controllers
+namespace Tournament.Api.Controllers
 {
     [Route("api/series")]
     public class SeriesController : Controller

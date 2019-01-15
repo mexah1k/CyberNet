@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure.Filtering
 {
-    public class Filter
+    public interface IFilter
     {
     }
 }

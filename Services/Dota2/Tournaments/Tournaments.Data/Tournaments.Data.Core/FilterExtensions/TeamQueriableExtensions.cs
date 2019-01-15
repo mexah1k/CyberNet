@@ -14,7 +14,7 @@ namespace Tournaments.Data.Core.FilterExtensions
 
             return entities.Where(team =>
                 team.Name.ContainsWithNull(filter.Name) &&
-                team.Revenue.EquilWithNull(filter.Revenue));
+                team.Revenue.EqualWithNull(filter.Revenue));
         }
     }
 }
